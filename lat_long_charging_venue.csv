@@ -1,0 +1,94 @@
+﻿Station Name,EVSE ID,Charging Venue,Org Name,Address 1,City,State/Province,Zip/Postal Code,Latitude (y),Longitude (x)
+TVPPA 7SPC / CORP OFFICE,682921,Office,TVPPA & 7SPC,1210 Broad Street,Chattanooga,Tennessee,37402,35.040119,-85.309135
+TVPPA 7SPC / HOLSTON CONNECT,1785631,Office,TVPPA & 7SPC,1200 W Main St,Rogersville,Tennessee,37857,36.400318,-83.018478
+7SPC / COLUMBUS MS,1844191,Leisure,TVPPA & 7SPC,322 Main St,Columbus,Mississippi,39701,33.494743,-88.429993
+7SPC / STARKVILLE DWTN,1921351,Office,Seven States Power Corp,135 Jefferson St,Starkville,Mississippi,39759,33.464867,-88.814087
+7SPC / STARKVILLE REC,1921531,Leisure,Seven States Power Corp,405 Lynn Ln,Starkville,Mississippi,39759,33.44154,-88.82991
+7SPC / BR-JC LIBRARY_combined,1932851,Library,Seven States Power Corp,201 N Roan St,Johnson City,Tennessee,37601,36.319176,-82.353256
+7SPC / BR-JONESBOROUGH,1933211,Office,Seven States Power Corp,117 Boone St,Jonesborough,Tennessee,37659,36.296951,-82.471016
+7SPC / GUNTERSVILLE PD,1964521,Office,Seven States Power Corp,329 Gunter Avenue,Guntersville,Alabama,35976,34.361038,-86.291985
+7SPC / SCES DOLLYWOOD,1988061,Leisure,Seven States Power Corp,Timber Canyon,Pigeon Forge,Tennessee,37863,35.796936,-83.532631
+7SPC / SCES DREAM MORE,1988141,Hotel,Seven States Power Corp,2525 DreamMore Way,Pigeon Forge,Tennessee,37862,35.812756,-83.536514
+7SPC / TTU DC FAST 1,2118081,Leisure,Seven States Power Corp,320 University Drive,Cookeville,Tennessee,38501,36.176765,-85.511383
+CULLMANELECTRIC / STATION1-L,5122191,Hotel,Cullman Electric Cooperative,5982 AL-157,Cullman,Alabama,35058,34.208065,-86.875031
+CULLMANELECTRIC / STATION2-R,5346231,Hotel,Cullman Electric Cooperative,5982 AL-157,Cullman,Alabama,35058,34.208118,-86.875031
+CULLMANELECTRIC / CEC MAIN OFFICE,5350831,Office,Cullman Electric Cooperative,1749 Eva Rd NE,Cullman,Alabama,35055,34.197895,-86.830193
+7SPC / GREENEVILLE TA,5354011,Office,Seven States Power Corp,195 Van Hill Rd,Greeneville,Tennessee,37745,36.32513,-82.835075
+7SPC / HARTSELLE UTIL,5363211,Retail,Seven States Power Corp,110 Sparkman St SW,Hartselle,Alabama,35640,34.44326,-86.934067
+7SPC / CULLMAN PB,5380331,Leisure,Seven States Power Corp,304 1st Ave NE,Cullman,Alabama,35055,34.179787,-86.84446
+7SPC / TRI-COUNTY EMC,5384781,Office,Seven States Power Corp,405 College St,Lafayette,Tennessee,37083,36.519249,-86.030701
+7SPC / UC - CARTHAGE,5414151,Parking,Seven States Power Corp,84 Dixon Springs Hwy,Carthage,Tennessee,37030,36.266594,-85.958633
+7SPC / UC - LIVINGSTON,5445161,Leisure,Seven States Power Corp,210 N McHenry St,Livingston,Tennessee,38570,36.381214,-85.323326
+7SPC / NASA USSRC R,5466441,Leisure,Seven States Power Corp,Space and Rocket Center,Huntsville,Alabama,35805,34.71172,-86.655479
+7SPC / CFEC SPENCER,5498461,Office,Seven States Power Corp,430 Spring St,Spencer,Tennessee,38585,35.746964,-85.458412
+7SPC / SMITHVILLE,5506341,Parking,Seven States Power Corp,201 E Church Street,Smithville,Tennessee,37166,35.962002,-85.812775
+7SPC / SPARTA TN,5525971,Office,Seven States Power Corp,5 W Maple St,Sparta,Tennessee,38583,35.924793,-85.465202
+7SPC / SCES LECONTE 5,5565191,Parking,Seven States Power Corp,2925 Teaster Ln,Pigeon Forge,Tennessee,37863,35.799435,-83.561607
+7SPC / SCES LECONTE 2,5565201,Parking,Seven States Power Corp,2925 Teaster Ln,Pigeon Forge,Tennessee,37863,35.79953,-83.561417
+7SPC / SCES LECONTE 4,5565241,Parking,Seven States Power Corp,2925 Teaster Ln,Pigeon Forge,Tennessee,37863,35.799477,-83.561592
+7SPC / SCES LECONTE 3,5565251,Parking,Seven States Power Corp,2925 Teaster Ln,Pigeon Forge,Tennessee,37863,35.799496,-83.561539
+7SPC / SCES LECONTE 1,5565291,Parking,Seven States Power Corp,2925 Teaster Ln,Pigeon Forge,Tennessee,37863,35.799549,-83.561378
+7SPC / VEC BYRDSTOWN,5603971,Office,Seven States Power Corp,300 W Main St,Byrdstown,Tennessee,38549,36.571091,-85.133438
+7SPC / WARREN RECC BG,5619801,Office,Seven States Power Corp,951 Fairview Ave,Bowling Green,Kentucky,42101,36.990479,-86.430092
+7SPC / VEC JAMESTOWN,5625391,Education,Seven States Power Corp,196 Gaudin Ave,Jamestown,Tennessee,38556,36.424179,-84.93206
+AEC / AEC CORP OFFICE,6867451,Office,Appalachian Electric Cooperative,1109 Hill Dr,New Market,Tennessee,37820,36.1063,-83.533028
+SCOTTSBORO EPB / MAIN OFFICE,7173851,Office,Scottsboro Electric Power Board,404 East Willow Street,Scottsboro,Alabama,35768,34.67292,-86.029945
+JEFFERSON AVE. / OXFORD STA1(L),7505851,Office,Oxford Utilities,1102 Jefferson Avenue,Oxford,Mississippi,38655,34.367867,-89.519547
+7SPC / SEVIERVILLE DC1,8851921,Leisure,Seven States Power Corporation,136 Bruce St,Sevierville,Tennessee,37862,35.867249,-83.564766
+UT PARKING / S7 STATION 1,9677521,Parking,UT Knoxville,811 Neyland Dr,Knoxville,Tennessee,37902,35.956306,-83.921837
+CRMC 1 / CRMC-1,9745721,Medical,Cullman Regional Medical Center,POB2 Parking Lot,Cullman,Alabama,35058,34.202984,-86.804886
+CRMC / CRMC-2- L2RIGHT,9777021,Parking,Cullman Regional Medical Center,POB2 Parking Lot - Station 2,Cullman,Alabama,35058,34.203648,-86.804939
+FPIA / RIGHT STATION,12406401,Leisure,Fort Payne Improvement Authority,501 Gault Ave N,Fort Payne,Alabama,35967,34.444214,-85.718971
+FPIA / LEFT STATION,12406491,Leisure,Fort Payne Improvement Authority,501 Gault Ave N,Fort Payne,Alabama,35967,34.444248,-85.718925
+7SPC / WARREN RECC LF,12448521,Office,Seven States Power Corporation,107 Electric Avenue,Leitchfield,Kentucky,42754,37.482788,-86.27993
+PES / LEFT STATION,12460751,Office,Pulaski Electric System,128 S 1st St,Pulaski,Tennessee,38478,35.198219,-87.031822
+PES / RIGHT STATION,12460811,Office,Pulaski Electric System,128 S 1st St,Pulaski,Tennessee,38478,35.198193,-87.03183
+NEMEPA / NEMEPA EMPLOYEE,12676071,Office,NEMEPA - North East Mississippi Electric Power Ass,10 Private Rd 2050,Oxford,Mississippi,38655,34.385387,-89.494637
+NEMEPA / NEMEPA CUSTOMER,12676411,Office,NEMEPA - North East Mississippi Electric Power Ass,10 Private Rd 2050,Oxford,Mississippi,38655,34.385109,-89.494995
+WRECC / STATION 2,12720861,Parking,Warren RECC,675 Western Kentucky Pkwy,Beaver Dam,Kentucky,42320,37.377178,-86.826294
+WRECC / STATION 1,12720881,Parking,Warren RECC,675 Western Kentucky Pkwy,Beaver Dam,Kentucky,42320,37.377159,-86.826317
+WCMES / CITYHALL1-L,12754021,Citty Hall,Weakley County Municipal Electric System,109 University Street,Martin,Tennessee,38237,36.342487,-88.851303
+EASY AUTO / OFFICE1,12961031,Office,Easy Auto,1800 Mt Vernon Dr NW,Cleveland,Tennessee,37311,35.19099,-84.887123
+EASY AUTO / SHOP1,12961511,Retail,Easy Auto,100 25th St NW,Cleveland,Tennessee,37311,35.176746,-84.864532
+BTES / BTES OFFICE,12988591,Office,Bristol Tennessee Essential Services,2460 Volunteer Pkwy,Bristol,Tennessee,37620,36.531914,-82.247162
+BTES / CITY HALL,12989161,Citty Hall,Bristol Tennessee Essential Services,835 Anderson St,Bristol,Tennessee,37620,36.592918,-82.187943
+WCMES / CITYHALL2-R,13026471,Citty Hall,Weakley County Municipal Electric System,109 University Street,Martin,Tennessee,38237,36.342426,-88.851303
+BTES / STATION 2 (LM),13164881,Retail,Bristol Tennessee Essential Services,392 Pinnacle Pkwy,Bristol,Tennessee,37620,36.591827,-82.261559
+7SPC / NASA USSRC L,13290491,Leisure,Seven States Power Corporation,1 tranquility base,Huntsville,Alabama,35805,34.711758,-86.65538
+LODGE CAST IRON / STATION 1,13292801,Retail,Lodge Cast Iron,220 East 3rd St,South Pittsburg,Tennessee,37380,35.010876,-85.703247
+AEC / STATION #2 (R),13423581,Leisure,Appalachian Electric Cooperative,1171 US-11W,Bean Station,Tennessee,37708,36.343754,-83.270042
+AEC / STATION #1 (L),13423691,Leisure,Appalachian Electric Cooperative,1171 US-11W,Bean Station,Tennessee,37708,36.343761,-83.269989
+I24 EXIT11 / STATION 4 (RR),13606061,Parking,CDE Lightband | 2021 Wilma Rudolph Blvd,701 Sango Road,Clarksville,Tennessee,37043,36.523895,-87.223366
+I24 EXIT11 / STATION 3 (RM),13606091,Parking,CDE Lightband | 2021 Wilma Rudolph Blvd,701 Sango Road,Clarksville,Tennessee,37043,36.523891,-87.223343
+I24 EXIT11 / STATION 2 (LM),13606121,Parking,CDE Lightband | 2021 Wilma Rudolph Blvd,701 Sango Road,Clarksville,Tennessee,37043,36.523888,-87.223312
+I24 EXIT11 / STATION 1 (LL),13606141,Parking,CDE Lightband | 2021 Wilma Rudolph Blvd,701 Sango Road,Clarksville,Tennessee,37043,36.523884,-87.223282
+MU / MUC PWRENG BLDG,13618361,Office,Morristown Utilities Commission,919 Jarnigan Avenue,Morristown,Tennessee,37813,36.19479,-83.309204
+PEPA / STATION 2,13643801,GAS Station,Pontotoc Electric Power Association,3600 MS-9,Pontotoc,Mississippi,38863,34.295979,-88.969414
+PEPA / STATION 1,13643831,GAS Station,Pontotoc Electric Power Association,3600 MS-9,Pontotoc,Mississippi,38863,34.295948,-88.969414
+DISTRICT 2 / STATION 1 (L),13651611,Office,Meriwether Lewis Electric Cooperative,28 S Park Ave,Hohenwald,Tennessee,38462,35.54694,-87.552681
+DISTRICT 2 / STATION #1 (L),13651631,Office,Meriwether Lewis Electric Cooperative,28 S Park Ave,Hohenwald,Tennessee,38462,35.546928,-87.552589
+LAWRENCEBURG / STATION 1,13659831,GAS Station,Lawrenceburg Utility Systems,2347 Tennessee 6,Leoma,Tennessee,38468,35.193836,-87.340424
+LAWRENCEBURG / STATION 2 (R),13659871,GAS Station,Lawrenceburg Utility Systems,2347 Hwy 43 N,Leoma,Tennessee,38468,35.193806,-87.340462
+BTES / STATION 1 (LL),13664401,Parking,Bristol Tennessee Essential Services,392 Pinnacle Pkwy,Bristol,Tennessee,37620,36.591763,-82.261505
+BTES / STATION 3 (RM),13664471,Parking,Bristol Tennessee Essential Services,392 Pinnacle Pkwy,Bristol,Tennessee,37620,36.591862,-82.261597
+BTES / STATION 4 (RR),13664501,Parking,Bristol Tennessee Essential Services,380 Pinnacle Pkwy,Bristol,Tennessee,37620,36.591892,-82.261612
+BRMEMC / STATION 1,13861861,Citty Hall,Blue Ridge Mountain Electric Membership Corporatio,62 Blue Ridge Street,Blairsville,Georgia,30512,34.876095,-83.959709
+BRMEMC / STATION 2,13861891,Citty Hall,Blue Ridge Mountain Electric Membership Corporatio,62 Blue Ridge Street,Blairsville,Georgia,30512,34.876137,-83.959801
+MU / MUC MAIN OFFICE,13880891,Office,Morristown Utilities Commission,433 W 1st N St,Morristown,Tennessee,37814,36.212704,-83.29641
+BEA / STATION 4 (RR),13966031,Leisure,Brownsville Energy Authority,121 Sunny Hill Cove,Brownsville,Tennessee,38012,35.540264,-89.246437
+BEA / STATION 3 (RM),13966051,Leisure,Brownsville Energy Authority,121 Sunny Hill Cove,Brownsville,Tennessee,38012,35.540226,-89.246445
+BEA / STATION 2 (LM),13966811,Leisure,Brownsville Energy Authority,121 Sunny Hill Cove,Brownsville,Tennessee,38012,35.540195,-89.24646
+BEA / STATION 1 (LL),13966851,Leisure,Brownsville Energy Authority,121 Sunny Hill Cove,Brownsville,Tennessee,38012,35.540173,-89.24646
+PARIS BPU / STATION 1(L),14025691,Office,Paris Utility Authority,109 S Fentress St,Paris,Tennessee,38242,36.301228,-88.327324
+JEFFERSON AVE. / OXFORD STA2(R),14047321,Parking,Oxford Utilities,1102 Jefferson Avenue,Oxford,Mississippi,38655,34.367966,-89.519547
+PARIS BPU / STATION 2(R),14049761,Office,Paris Utility Authority,109 S Fentress St,Paris,Tennessee,38242,36.301239,-88.327347
+STEMC / STATION 1 (L),14083151,Parking,Southwest Tennessee Electric Membership Corporatio,171 E Main St,Henderson,Tennessee,38340,35.440849,-88.639252
+STEMC / STATION 2 (R),14083171,Parking,Southwest Tennessee Electric Membership Corporatio,171 E Main St,Henderson,Tennessee,38340,35.440834,-88.639297
+SCOTTSBORO EPB / SEPB DCFC (R),14097711,Office,Scottsboro Electric Power Board,404 E Willow St,Scottsboro,Alabama,35768,34.673115,-86.030121
+SCOTTSBORO EPB / SEPB DCFC (L),14097801,Office,Scottsboro Electric Power Board,404 E Willow St,Scottsboro,Alabama,35768,34.673004,-86.029945
+HOLSTONELECTRIC / CHURCH HILL-1,14337221,Office,Holston Electric Cooperative Inc,219 S Central Ave,Church Hill,Tennessee,37642,36.517365,-82.707458
+HOLSTONELECTRIC / CHURCH HILL-2,14337501,Office,Holston Electric Cooperative Inc,219 S Central Ave,Church Hill,Tennessee,37642,36.517448,-82.707474
+HARTSELLE 1 / STATION 2 (R),14355251,Parking,Hartselle Utilities,214 Chestnut St NW,Hartselle,Alabama,35640,34.443974,-86.935577
+SES-TN / STATION 2,15250701,Parking,Smithville Electric System,106 N 3rd Street,Smithville,Tennessee,37166,35.96196,-85.812782
+SES-TN / STATION 1,15250771,Parking,Smithville Electric System,106 N 3rd Street,Smithville,Tennessee,37166,35.962025,-85.812798
+TRNG CENTER / TRAININGCENTER1,15293211,Education,Jackson Energy Authority,320 U.S. 45 Bypass,Jackson,Tennessee,38301,35.611927,-88.834602
