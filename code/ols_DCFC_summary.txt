@@ -1,0 +1,49 @@
+                                 OLS Regression Results                                
+=======================================================================================
+Dep. Variable:     Util_station (kWh/port/day)   R-squared:                       0.506
+Model:                                     OLS   Adj. R-squared:                  0.503
+Method:                          Least Squares   F-statistic:                     210.4
+Date:                         Tue, 02 Jul 2024   Prob (F-statistic):               0.00
+Time:                                 22:09:15   Log-Likelihood:                -17323.
+No. Observations:                         4345   AIC:                         3.469e+04
+Df Residuals:                             4323   BIC:                         3.483e+04
+Df Model:                                   21                                         
+Covariance Type:                     nonrobust                                         
+====================================================================================================
+                                       coef    std err          t      P>|t|      [0.025      0.975]
+----------------------------------------------------------------------------------------------------
+const                              -29.0485     81.229     -0.358      0.721    -188.299     130.202
+Energy_Unit_Price                   -0.0120      0.007     -1.832      0.067      -0.025       0.001
+port_kw                              0.4102      0.025     16.677      0.000       0.362       0.458
+Distance (miles)                     0.0025      0.001      4.204      0.000       0.001       0.004
+season                               0.2128      0.170      1.252      0.211      -0.120       0.546
+peak_hour                           12.5283      0.228     54.891      0.000      12.081      12.976
+Temp                                 0.8160      3.166      0.258      0.797      -5.391       7.023
+Fahrenheit_Degree_Days              -0.0039      0.015     -0.256      0.798      -0.034       0.026
+Day_of_Week                          0.1834      0.164      1.120      0.263      -0.138       0.504
+Is_Weekday                         -14.7299     40.618     -0.363      0.717     -94.362      64.903
+Is_Weekend                         -14.3186     40.614     -0.353      0.724     -93.943      65.306
+ven_HWY                             -0.9966      1.886     -0.528      0.597      -4.695       2.702
+ven_hotel                            2.3826      2.295      1.038      0.299      -2.117       6.882
+ven_med_ed                           4.8715      2.161      2.255      0.024       0.635       9.108
+ven_leisure                          2.9736      1.399      2.126      0.034       0.231       5.716
+percentage of poulation             -2.2636      0.670     -3.377      0.001      -3.578      -0.949
+ven_office                           4.5240      1.515      2.986      0.003       1.554       7.494
+cost_free                          -17.4600     40.731     -0.429      0.668     -97.313      62.393
+cost_paid                          -11.5885     40.595     -0.285      0.775     -91.175      67.998
+Utilization Rate                   290.3174     59.616      4.870      0.000     173.440     407.195
+Vehicle_Miles_traveled_Passenger  4.125e-06    1.2e-06      3.441      0.001    1.78e-06    6.48e-06
+Vehicle_Passenger_Number         -3.329e-06   3.16e-06     -1.053      0.292   -9.53e-06    2.87e-06
+MED_HH_INCOME                       -0.0002      0.000     -1.189      0.234      -0.001       0.000
+County_population_2021            1.502e-05   4.02e-05      0.373      0.709   -6.38e-05    9.39e-05
+==============================================================================
+Omnibus:                      772.143   Durbin-Watson:                   2.047
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):             2063.503
+Skew:                           0.957   Prob(JB):                         0.00
+Kurtosis:                       5.781   Cond. No.                     5.58e+22
+==============================================================================
+
+Notes:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+[2] The smallest eigenvalue is 1.44e-29. This might indicate that there are
+strong multicollinearity problems or that the design matrix is singular.

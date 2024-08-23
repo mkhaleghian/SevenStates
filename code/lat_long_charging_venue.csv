@@ -1,0 +1,122 @@
+﻿EVSE ID,Charging Venue,Latitude,Longitude,Station Name,Address 1,City,State/Province,Zip/Postal Code,County,Port Type,Port Number
+13659831,HWY,35.193806,-87.340416,LAWRENCEBURG / STATION 1 (L),2347 Hwy 43 N,Leoma,Tennessee,38468,Lawrence County,DC Fast,1A
+5346231,HWY,34.208118,-86.875031,CULLMANELECTRIC / STATION2-R,5982 AL-157,Cullman,Alabama,35058,Cullman County,DC Fast,1A
+13659871,HWY,35.193806,-87.340462,LAWRENCEBURG / STATION 2 (R),2347 Hwy 43 N,Leoma,Tennessee,38468,Lawrence County,DC Fast,1A
+5122191,HWY,34.208065,-86.875031,CULLMANELECTRIC / STATION1-L,5982 AL-157,Cullman,Alabama,35058,Cullman County,DC Fast,1A
+14047321,Office,34.367966,-89.519547,JEFFERSON AVE. / OXFORD STA2(R),1102 Jefferson Avenue,Oxford,Mississippi,38655,Lafayette County,DC Fast,1A
+2118081,Leisure,36.176765,-85.511383,7SPC / TTU DC FAST 1,320 University Drive,Cookeville,Tennessee,38501,Putnam County,DC Fast,1A
+15280441,Office,36.510227,-86.885826,SPRFLD ELECTRIC / STATION 2 (R),401 N Main St.,Springfield,Tennessee,37172,Robertson County,DC Fast,1A
+1932851,Leisure,36.319023,-82.353546,BRIGHTRIDGE EV / BR-JC LIBRARY,201 N Roan St,Johnson City,Tennessee,37601,Washington County,Level 2,2
+13606091,HWY,36.523891,-87.223343,I24 EXIT11 / STATION 3 (RM),701 Sango Road,Clarksville,Tennessee,37043,Montgomery County,DC Fast,1A
+5565291,Leisure,35.799549,-83.561378,7SPC / SCES LECONTE 1,2925 Teaster Ln,Pigeon Forge,Tennessee,37863,Sevier County,Level 2,2
+14359491,Office,34.358807,-86.294914,EBOFG / STATION 1 (L),440 Old Town Street,Guntersville,Alabama,35976,Marshall County,DC Fast,1A
+12406401,Leisure,34.444214,-85.718971,FPIA / RIGHT STATION,501 Gault Ave N,Fort Payne,Alabama,35967,DeKalb County,DC Fast,1A
+13606061,HWY,36.523895,-87.223366,I24 EXIT11 / STATION 4 (RR),701 Sango Road,Clarksville,Tennessee,37043,Montgomery County,DC Fast,1A
+12406491,Leisure,34.444248,-85.718925,FPIA / LEFT STATION,501 Gault Ave N,Fort Payne,Alabama,35967,DeKalb County,DC Fast,1A
+5445161,Leisure,36.381214,-85.323326,7SPC / UC - LIVINGSTON,210 N McHenry St,Livingston,Tennessee,38570,Overton County,Level 2,1
+13664501,Shopping,36.591892,-82.261612,BTES / STATION 4 (RR),392 Pinnacle Pkwy,Bristol,Tennessee,37620,Sullivan County,DC Fast,1A
+15280471,Office,36.510201,-86.885803,SPRFLD ELECTRIC / STATION 1 (L),401 N Main St.,Springfield,Tennessee,37172,Robertson County,DC Fast,1A
+13606141,HWY,36.523884,-87.223282,I24 EXIT11 / STATION 1 (LL),701 Sango Road,Clarksville,Tennessee,37043,Montgomery County,DC Fast,1A
+15250701,Leisure,35.96196,-85.812782,SES-TN / STATION 2,106 N 3rd Street,Smithville,Tennessee,37166,DeKalb County,DC Fast,1A
+15729991,Leisure,36.119453,-83.489426,AEC / AEC03,2214 Branner Avenue,Jefferson City,Tennessee,37760,Jefferson County,Level 2,1
+13966031,HWY,35.540264,-89.246437,BEA / STATION 4 (RR),121 Sunny Hill Cove,Brownsville,Tennessee,38012,Haywood County,DC Fast,1A
+5424051,Shopping,36.347511,-82.218582,EEDEV / ELIZ DOWNTOWN,404 E Elk Ave,Elizabethton,Tennessee,37643,Carter County,Level 2,2
+9777021,Leisure,34.203648,-86.804939,CRMC / CRMC-2- L2RIGHT,POB2 Parking Lot - Station 2,Cullman,Alabama,35058,Cullman County,Level 2,1
+5354011,HWY,36.32513,-82.835075,7SPC / GREENEVILLE TA,195 Van Hill Rd,Greeneville,Tennessee,37745,Greene County,DC Fast,1A
+5466441,Leisure,34.71172,-86.655479,7SPC / NASA USSRC R,1 Tranquility Base,Huntsville,Alabama,35805,Madison County,Level 2,2
+12720881,HWY,37.377159,-86.826317,WRECC / STATION 1,675 Western Kentucky Pkwy,Beaver Dam,Kentucky,42320,Ohio County,DC Fast,1A
+14337501,Med,36.517448,-82.707474,HOLSTONELECTRIC / CHURCH HILL-2,219 S Central Ave,Church Hill,Tennessee,37642,Hawkins County,DC Fast,1B
+15574161,Leisure,34.697075,-76.703003,SOUTHWINDS2008 / SOUTHWINDS,2008 E Fort Macon Rd,Atlantic Beach,North Carolina,28512,Carteret County,Level 2,2A
+13290491,Leisure,34.711758,-86.65538,7SPC / NASA USSRC L,1 Tranquility Base,Huntsville,Alabama,35805,Madison County,Level 2,1
+13423581,Office,36.343754,-83.270042,AEC / STATION #2 (R),1171 US-11W,Bean Station,Tennessee,37708,Grainger County,DC Fast,1A
+12754021,Leisure,36.342487,-88.851303,WCMES / CITYHALL1-L,109 University Street,Martin,Tennessee,38237,Weakley County,DC Fast,1A
+1988061,Leisure,35.796936,-83.532631,7SPC / SCES DOLLYWOOD,2700 Dollywood Parks Blvd.,Pigeon Forge,Tennessee,37863,Sevier County,Level 2,2
+14083151,Office,35.440941,-88.639389,STEMC / STATION 2 (R) H,171 E Main St,Henderson,Tennessee,38340,Chester County,DC Fast,1A
+13861861,Office,34.875931,-83.959709,BRMEMC / STATION 1,62 Blue Ridge St,Blairsville,Georgia,30512,Union County,DC Fast,1A
+8851921,Office,35.867615,-83.564766,7SPC / SEVIERVILLE DC1,150 Bruce Street,Sevierville,Tennessee,37862,Sevier County,DC Fast,1A
+6867451,Office,36.1063,-83.533028,AEC / CORP OFFICE,1109 Hill Dr,New Market,Tennessee,37820,Jefferson County,Level 2,1
+14097711,Office,34.673115,-86.030121,SCOTTSBORO EPB / SEPB DCFC (R),404 E Willow St,Scottsboro,Alabama,35768,Jackson County,DC Fast,1A
+13861891,Office,34.875916,-83.959747,BRMEMC / STATION 2,62 Blue Ridge St,Blairsville,Georgia,30512,Union County,DC Fast,1A
+13026471,Office,36.342426,-88.851303,WCMES / CITYHALL2-R,109 University Street,Martin,Tennessee,38237,Weakley County,DC Fast,1A
+13606121,HWY,36.523888,-87.223312,I24 EXIT11 / STATION 2 (LM),701 Sango Road,Clarksville,Tennessee,37043,Montgomery County,DC Fast,1A
+1933211,Leisure,36.296749,-82.47126,BRIGHTRIDGE EV / BR-JONESBOROUGH,117 Boone St,Jonesborough,Tennessee,37659,Washington County,Level 2,2
+14355251,Edu,34.443974,-86.935577,HARTSELLE 1 / STATION 2 (R),214 Chestnut St NW,Hartselle,Alabama,35640,Morgan County,DC Fast,1A
+1988141,Leisure,35.812756,-83.536514,7SPC / SCES DREAM MORE,2525 DreamMore Way,Pigeon Forge,Tennessee,37862,Sevier County,Level 2,1
+1964521,Office,34.360722,-86.292336,EBOFG / GUNTERSVILLE PD,329 Gunter Ave,Guntersville,Alabama,35976,Marshall County,Level 2,2
+1844191,Office,33.494751,-88.43,CLW / MAIN ST,322 Main St,Columbus,Mississippi,39701,Lowndes County,Level 2,1
+5384781,Office,36.519249,-86.030701,7SPC / TRI-COUNTY EMC,405 College St,Lafayette,Tennessee,37083,Macon County,Level 2,2
+13664401,Shopping,36.591763,-82.261505,BTES / STATION 1 (LL),392 Pinnacle Pkwy,Bristol,Tennessee,37620,Sullivan County,DC Fast,1A
+15548181,Edu,34.604515,-86.983635,DECATURDOWNTWN / STATION 2 (L),112 2nd Avenue Northeast,Decatur,Alabama,35601,Morgan County,DC Fast,1A
+15548151,Edu,34.604481,-86.983604,DECATURDOWNTWN / STATION 1 (R),112 2nd Avenue Northeast,Decatur,Alabama,35601,Morgan County,DC Fast,1A
+13966851,HWY,35.540173,-89.24646,BEA / STATION 1 (LL),121 Sunny Hill Cove,Brownsville,Tennessee,38012,Haywood County,DC Fast,1A
+13966051,HWY,35.540226,-89.246445,BEA / STATION 3 (RM),121 Sunny Hill Cove,Brownsville,Tennessee,38012,Haywood County,,0
+15640171,HWY,34.852856,-89.689857,NECDC / STATION 2 (R),101 Dempsey Rd.,Byhalia,Mississippi,38611,Marshall County,DC Fast,1A
+9677521,Leisure,35.956306,-83.921837,UT PARKING / S7 STATION 1,811 Neyland Dr,Knoxville,Tennessee,37902,Knox County,Level 2,1
+14097801,Office,34.673004,-86.029945,SCOTTSBORO EPB / SEPB DCFC (L),404 E Willow St,Scottsboro,Alabama,35768,Jackson County,DC Fast,1A
+15694081,HWY,36.316109,-82.349922,BRIGHTRIDGE EV / STATION 2 (R),110 Cherry Street,Johnson City,Tennessee,37601,Washington County,DC Fast,1A
+12961031,Office,35.190556,-84.887253,EASY AUTO / OFFICE1,1800 Mt. Vernon Dr.,Cleveland,Tennessee,37311,Bradley County,Level 2,2
+5625391,Edu,36.424179,-84.93206,7SPC / VEC JAMESTOWN,196 Gaudin Ave,Jamestown,Tennessee,38556,Fentress County,Level 2,2
+15742641,HWY,36.173271,-82.83773,GEA-1 / STATION 2 (R),885 W Andrew Johnson Hwy,Greeneville,Tennessee,37745,Greene County,DC Fast,1B
+5363211,Edu,34.443203,-86.934418,HARTSELLE 1 / HARTSELLE 1,110 Hickory St SW,Hartselle,Alabama,35640,Morgan County,Level 2,2
+5619801,Office,36.990479,-86.430092,7SPC / WARREN RECC BG,951 Fairview Ave,Bowling Green,Kentucky,42101,Warren County,Level 2,2
+1921351,Office,33.464863,-88.814087,STARKVILLE UTIL / STARKVILLE DWTN,135 Jefferson St,Starkville,Mississippi,39759,Oktibbeha County,Level 2,1
+13803581,Office,35.152031,-86.571404,FPU / STATION 1 (L),110 College St W,Fayetteville,Tennessee,37334,Lincoln County,DC Fast,1A
+12720861,HWY,37.377178,-86.826294,WRECC / STATION 2,675 Western Kentucky Pkwy,Beaver Dam,Kentucky,42320,Ohio County,DC Fast,1A
+15623211,Office,33.492542,-88.427109,CLW / 5TH ST 2 (R),301 5th Street South,Columbus,Mississippi,39701,Lowndes County,DC Fast,1A
+5565251,Leisure,35.799496,-83.561539,7SPC / SCES LECONTE 3,2925 Teaster Ln,Pigeon Forge,Tennessee,37863,Sevier County,Level 2,2
+15623231,Office,33.492546,-88.42704,CLW / 5TH ST 1 (L),301 5th Street South,Columbus,Mississippi,39701,Lowndes County,,0
+5397731,Edu,36.298908,-82.293709,EEDEV / MILLIGAN UNIV,200 Blowers Blvd,Johnson City,Tennessee,37601,Carter County,Level 2,1
+13966811,HWY,35.540195,-89.24646,BEA / STATION 2 (LM),121 Sunny Hill Cove,Brownsville,Tennessee,38012,Haywood County,DC Fast,1A
+15694171,HWY,36.316124,-82.349937,BRIGHTRIDGE EV / STATION 1 (L),110 Cherry Street,Johnson City,Tennessee,37601,Washington County,DC Fast,1A
+13423691,Leisure,36.343761,-83.269989,AEC / STATION #1 (L),1171 US-11W,Bean Station,Tennessee,37708,Grainger County,DC Fast,1A
+15332351,Shopping,35.361801,-86.209717,TUA NW ATLANTIC / STATION 2 (R),114 SW Atlantic St.,Tullahoma,Tennessee,37388,Coffee County,DC Fast,1A
+13292801,HWY,35.010876,-85.703247,LODGE CAST IRON / STORE & MUSEUM,220 East 3rd St,South Pittsburg,Tennessee,37380,Marion County,Level 2,2
+5565241,Leisure,35.799477,-83.561592,7SPC / SCES LECONTE 4,2925 Teaster Ln,Pigeon Forge,Tennessee,37863,Sevier County,Level 2,2
+7173851,Office,34.67292,-86.029945,SCOTTSBORO EPB / MAIN OFFICE,404 East Willow Street,Scottsboro,Alabama,35768,Jackson County,Level 2,1
+5603971,Office,36.571091,-85.133438,7SPC / VEC BYRDSTOWN,300 W Main St,Byrdstown,Tennessee,38549,Pickett County,Level 2,2
+5380331,Shopping,34.175587,-86.841537,CULLMAN PB / STATION 1,304 1st Ave NE,Cullman,Alabama,35055,Cullman County,Level 2,1
+15332321,Shopping,35.361801,-86.209702,TUA NW ATLANTIC / STATION 1 (L),114 SW Atlantic St,Tullahoma,Tennessee,37388,Coffee County,DC Fast,1A
+13664471,Shopping,36.591862,-82.261597,BTES / STATION 3 (RM),392 Pinnacle Pkwy,Bristol,Tennessee,37620,Sullivan County,DC Fast,1A
+12460751,Leisure,35.198219,-87.031822,PES / LEFT STATION,128 S 1st St,Pulaski,Tennessee,38478,Giles County,Level 2,1
+14337221,HWY,36.517365,-82.707458,HOLSTONELECTRIC / CHURCH HILL-1,219 S Central Ave,Church Hill,Tennessee,37642,Hawkins County,DC Fast,1A
+15250771,Office,35.962025,-85.812798,SES-TN / STATION 1,106 N 3rd Street,Smithville,Tennessee,37166,DeKalb County,DC Fast,1A
+13643801,HWY,34.295979,-88.969414,PEPA / STATION 2,3600 MS-9,Pontotoc,Mississippi,38863,Pontotoc County,DC Fast,1A
+15640031,HWY,34.85289,-89.689873,NECDC / STATION 1 (L),101 Dempsey Rd.,Byhalia,Mississippi,38611,Marshall County,DC Fast,1A
+14359531,Office,34.358799,-86.294899,EBOFG / STATION 2 (R),440 Old Town Street,Guntersville,Alabama,35976,Marshall County,DC Fast,1B
+12989161,Office,36.592937,-82.187958,BTES / CITY HALL,835 Anderson St,Bristol,Tennessee,37620,Sullivan County,Level 2,2
+14083171,Edu,35.440834,-88.639297,STEMC / STATION 1 (L) H,171 E Main St,Henderson,Tennessee,38340,Chester County,DC Fast,1B
+14025691,Edu,36.301228,-88.327324,PARIS BPU / STATION 1(L),109 S Fentress St,Paris,Tennessee,38242,Henry County,DC Fast,1B
+15260251,Hotel,35.449619,-89.78064,STEMC / STATION 2 (R) A,10772 U.S. 51,Atoka,Tennessee,38004,Tipton County,DC Fast,1A
+15260241,Hotel,35.449581,-89.780579,STEMC / STATION 1 (L) A,10772 US-51,Atoka,Tennessee,38004,Tipton County,DC Fast,1A
+14355271,Edu,34.444057,-86.935623,HARTSELLE 1 / STATION 1 (L),214 Chestnut St NW,Hartselle,Alabama,35640,Morgan County,DC Fast,1A
+7505851,Leisure,34.367867,-89.519547,JEFFERSON AVE. / OXFORD STA1(L),1102 Jefferson Avenue,Oxford,Mississippi,38655,Lafayette County,DC Fast,1A
+682921,Hotel,35.040119,-85.309135,7SPC / TVPPA OFFICE,1210 Broad Street,Chattanooga,Tennessee,37402,Hamilton County,Level 2,2
+15293211,Office,35.611927,-88.834602,TRNG CENTER / TRAININGCENTER1,320 U.S. 45 Bypass,Jackson,Tennessee,38301,Madison County,Level 2,2
+1921531,Leisure,33.441528,-88.829903,STARKVILLE UTIL / STARKVILLE REC,405 Lynn Ln,Starkville,Mississippi,39759,Oktibbeha County,Level 2,1
+1785631,Office,36.400299,-83.018456,HOLSTONELECTRIC / STATION 1,1200 W Main St,Rogersville,Tennessee,37857,Hawkins County,Level 2,2
+5565191,Edu,35.795963,-83.537933,7SPC / DOLLYWOOD EMPL,1022 Dollywood Ln,Pigeon Forge,Tennessee,37863,Sevier County,Level 2,1
+5414151,Shopping,36.266594,-85.958633,7SPC / UC - CARTHAGE,84 Dixon Springs Hwy,Carthage,Tennessee,37030,Smith County,Level 2,2
+12448521,Office,37.482788,-86.27993,7SPC / WARREN RECC LF,107 Electric Avenue,Leitchfield,Kentucky,42754,Grayson County,Level 2,1
+5350831,Office,34.197895,-86.830193,CULLMANELECTRIC / CEC MAIN OFFICE,1749 Eva Rd NE,Cullman,Alabama,35055,Cullman County,Level 2,1
+12676411,HWY,34.385109,-89.494995,NEMEPA / NEMEPA CUSTOMER,10 Private Rd 2050,Oxford,Mississippi,38655,Lafayette County,Level 2,2
+13880891,Office,36.212704,-83.29641,MU / MUC MAIN OFFICE,433 W 1st N St,Morristown,Tennessee,37814,Hamblen County,Level 2,1
+15684341,HWY,36.083202,-87.797775,MLEC / STATION 2 (R) W,210 West Main St,Waverly,Tennessee,37185,Humphreys County,DC Fast,1A
+12460811,Shopping,35.198193,-87.03183,PES / RIGHT STATION,128 S 1st St,Pulaski,Tennessee,38478,Giles County,Level 2,1
+9745721,Leisure,34.202984,-86.804886,CRMC / CRMC-1 - L2LEFT,POB2 Parking Lot - Station 1,Cullman,Alabama,35058,Cullman County,Level 2,1
+5498461,Office,35.746964,-85.458412,7SPC / CFEC SPENCER,430 Spring St,Spencer,Tennessee,38585,Van Buren County,Level 2,2
+5565201,Leisure,35.79953,-83.561417,7SPC / SCES LECONTE 2,2925 Teaster Ln,Pigeon Forge,Tennessee,37863,Sevier County,Level 2,1
+5525971,Shopping,35.924793,-85.465202,7SPC / SPARTA TN,5 W Maple St,Sparta,Tennessee,38583,White County,Level 2,2
+13618361,Office,36.19479,-83.309204,MU / MUC PWRENG BLDG,919 Jarnigan Avenue,Morristown,Tennessee,37813,Hamblen County,Level 2,1
+15815141,HWY,36.173256,-82.837776,GEA-1 / STATION 1 (L),885 W Andrew Johnson Hwy,Greeneville,Tennessee,37745,Greene County,DC Fast,1A
+13651631,Hotel,35.546932,-87.552597,MLEC / STATION 2 (R) H,28 S Park Ave,Hohenwald,Tennessee,38462,Lewis County,DC Fast,1A
+15684301,HWY,36.082703,-87.797638,MLEC / STATION 1 (L) W,210 West Main St,Waverly,Tennessee,37185,Humphreys County,DC Fast,1A
+14049761,Shopping,36.301239,-88.327347,PARIS BPU / STATION 2(R),109 S Fentress St,Paris,Tennessee,38242,Henry County,DC Fast,1A
+15555831,Office,35.15205,-86.571404,FPU / STATION 2 (R),110 College Street West,Fayetteville,Tennessee,37334,Lincoln County,DC Fast,1A
+13651611,Hotel,35.54694,-87.552681,MLEC / STATION 1 (L) H,28 S Park Ave,Hohenwald,Tennessee,38462,Lewis County,DC Fast,1A
+12676071,HWY,34.385387,-89.494637,NEMEPA / NEMEPA EMPLOYEE,10 Private Rd 2050,Oxford,Mississippi,38655,Lafayette County,Level 2,1
+15728901,HWY,36.033649,-83.429108,AEC / AEC04,760 Justice Center Drive,Dandridge,Tennessee,37725,Jefferson County,Level 2,2
+13164881,Shopping,36.591827,-82.261559,BTES / STATION 2 (LM),392 Pinnacle Pkwy,Bristol,Tennessee,37620,Sullivan County,DC Fast,1A
+13643831,HWY,34.295948,-88.969414,PEPA / STATION 1,3600 MS-9,Pontotoc,Mississippi,38863,Pontotoc County,DC Fast,1A
+12988591,Office,36.531914,-82.247162,BTES / BTES OFFICE,2460 Volunteer Pkwy,Bristol,Tennessee,37620,Sullivan County,Level 2,1
+12961511,Leisure,35.176746,-84.864532,EASY AUTO / SHOP1,100 25th St NW,Cleveland,Tennessee,37311,Bradley County,Level 2,1
+5506341,Office,35.962002,-85.812775,7SPC / SMITHVILLE,201 E Church Street,Smithville,Tennessee,37166,DeKalb County,Level 2,2
