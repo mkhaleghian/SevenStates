@@ -1,0 +1,12 @@
+{
+  "overall_mae": 0.46724268794059753,
+  "overall_rmse": 0.5868310928344727,
+  "positive_mae": 0.5553849935531616,
+  "positive_count": 153833,
+  "cold_start_positive_mae": 0.2586525082588196,
+  "cold_start_positive_count": 562,
+  "auprc": 0.2416627668198689,
+  "auroc": 0.7905490174187286,
+  "gate_cold_start": 0.3393263816833496,
+  "gate_mature": 0.8532784581184387
+}

@@ -1,0 +1,105 @@
+{
+  "communities": {
+    "0": [
+      "gnn_ev_icml_claude_chat_curriculum_learning",
+      "gnn_ev_icml_claude_chat_history_aware_node_embedding",
+      "gnn_ev_icml_claude_chat_history_length_attention",
+      "gnn_ev_icml_claude_chat_masked_negative_log_likelihood",
+      "gnn_ev_icml_claude_chat_tagnn"
+    ],
+    "1": [
+      "gnn_ev_icml_claude_chat_contrastive_station_embedding",
+      "gnn_ev_icml_claude_chat_gm_zero",
+      "gnn_ev_icml_claude_chat_graph_meta_learner"
+    ],
+    "2": [
+      "gnn_ev_icml_claude_chat_build_distance_adjacency"
+    ],
+    "3": [
+      "gnn_ev_icml_claude_chat_build_provider_adjacency"
+    ],
+    "4": [
+      "gnn_ev_icml_claude_chat_build_target_tensor"
+    ],
+    "5": [
+      "gnn_ev_icml_claude_chat_compute_history_features"
+    ]
+  },
+  "cohesion": {
+    "0": 0.4,
+    "1": 0.6666666666666666,
+    "2": 1.0,
+    "3": 1.0,
+    "4": 1.0,
+    "5": 1.0
+  },
+  "gods": [
+    {
+      "id": "gnn_ev_icml_claude_chat_tagnn",
+      "label": "TA-GNN",
+      "degree": 5
+    },
+    {
+      "id": "gnn_ev_icml_claude_chat_gm_zero",
+      "label": "GM-Zero",
+      "degree": 2
+    },
+    {
+      "id": "gnn_ev_icml_claude_chat_graph_meta_learner",
+      "label": "GraphMetaLearner",
+      "degree": 2
+    },
+    {
+      "id": "gnn_ev_icml_claude_chat_history_aware_node_embedding",
+      "label": "HistoryAwareNodeEmbedding",
+      "degree": 1
+    },
+    {
+      "id": "gnn_ev_icml_claude_chat_history_length_attention",
+      "label": "HistoryLengthAttention",
+      "degree": 1
+    },
+    {
+      "id": "gnn_ev_icml_claude_chat_masked_negative_log_likelihood",
+      "label": "MaskedNegativeLogLikelihood",
+      "degree": 1
+    },
+    {
+      "id": "gnn_ev_icml_claude_chat_contrastive_station_embedding",
+      "label": "ContrastiveStationEmbedding",
+      "degree": 1
+    },
+    {
+      "id": "gnn_ev_icml_claude_chat_curriculum_learning",
+      "label": "Curriculum Learning",
+      "degree": 1
+    },
+    {
+      "id": "gnn_ev_icml_claude_chat_build_target_tensor",
+      "label": "build_target_tensor",
+      "degree": 0
+    },
+    {
+      "id": "gnn_ev_icml_claude_chat_build_distance_adjacency",
+      "label": "build_distance_adjacency",
+      "degree": 0
+    }
+  ],
+  "surprises": [
+    {
+      "source": "GraphMetaLearner",
+      "target": "TA-GNN",
+      "source_files": [
+        "GNN_EV_ICML_claude_chat.txt",
+        "GNN_EV_ICML_claude_chat.txt"
+      ],
+      "confidence": "INFERRED",
+      "relation": "references",
+      "note": "Bridges community 0 \u2192 community 1"
+    }
+  ],
+  "tokens": {
+    "input": 75136,
+    "output": 1828
+  }
+}

@@ -1,0 +1,1213 @@
+%%%%%%%% ICML 2026 EXAMPLE LATEX SUBMISSION FILE %%%%%%%%%%%%%%%%%
+
+\documentclass{article}
+
+% Recommended, but optional, packages for figures and better typesetting:
+\usepackage{microtype}
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{enumitem}
+\usepackage{amssymb}  % For \checkmark
+\usepackage{bbding}   % For \XSolid or \CheckmarkBold
+\usepackage{booktabs} % for professional tables
+
+% hyperref makes hyperlinks in the resulting PDF.
+% If your build breaks (sometimes temporarily if a hyperlink spans a page)
+% please comment out the following usepackage line and replace
+% \usepackage{icml2026} with \usepackage[nohyperref]{icml2026} above.
+\usepackage{hyperref}
+
+
+% Attempt to make hyperref and algorithmic work together better:
+\newcommand{\theHalgorithm}{\arabic{algorithm}}
+
+% Use the following line for the initial blind version submitted for review:
+\usepackage{icml2026}
+
+% For preprint, use
+% \usepackage[preprint]{icml2026}
+
+% If accepted, instead use the following line for the camera-ready submission:
+% \usepackage[accepted]{icml2026}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{amsthm}
+
+
+% if you use cleveref..
+\usepackage[capitalize,noabbrev]{cleveref}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% THEOREMS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{assumption}[theorem]{Assumption}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+% Todonotes is useful during development; simply uncomment the next line
+%    and comment out the line below the next line to turn off comments
+%\usepackage[disable,textsize=tiny]{todonotes}
+\usepackage[textsize=tiny]{todonotes}
+
+% The \icmltitle you define below is probably too long as a header.
+% Therefore, a short form for the running title is supplied here:
+\icmltitlerunning{Lifecycle-Aware Graph Neural Networks for Cold-Start Spatiotemporal Forecasting}
+
+\begin{document}
+
+\twocolumn[
+  \icmltitle{ Lifecycle-Aware Graph Neural Networks for Cold-Start Spatiotemporal Forecasting}
+
+  % It is OKAY to include author information, even for blind submissions: the
+  % style file will automatically remove it for you unless you've provided
+  % the [accepted] option to the icml2026 package.
+
+  % List of affiliations: The first argument should be a (short) identifier you
+  % will use later to specify author affiliations Academic affiliations
+  % should list Department, University, City, Region, Country Industry
+  % affiliations should list Company, City, Region, Country
+
+  % You can specify symbols, otherwise they are numbered in order. Ideally, you
+  % should not use this facility. Affiliations will be numbered in order of
+  % appearance and this is the preferred way.
+  \icmlsetsymbol{equal}{*}
+
+  \begin{icmlauthorlist}
+    \icmlauthor{Mehdi khaleghian}{equal,yyy}
+    \icmlauthor{Joe knox}{equal,yyy,comp}
+    \icmlauthor{Mahshid Malazizi}{comp}
+    \icmlauthor{Mina Sartipi}{sch}
+    \icmlauthor{Firstname5 Lastname5}{yyy}
+    \icmlauthor{Firstname6 Lastname6}{sch,yyy,comp}
+    \icmlauthor{Firstname7 Lastname7}{comp}
+    %\icmlauthor{}{sch}
+    \icmlauthor{Firstname8 Lastname8}{sch}
+    \icmlauthor{Firstname8 Lastname8}{yyy,comp}
+    %\icmlauthor{}{sch}
+    %\icmlauthor{}{sch}
+  \end{icmlauthorlist}
+
+  \icmlaffiliation{yyy}{Department of XXX, University of YYY, Location, Country}
+  \icmlaffiliation{comp}{Company Name, Location, Country}
+  \icmlaffiliation{sch}{School of ZZZ, Institute of WWW, Location, Country}
+
+  \icmlcorrespondingauthor{Firstname1 Lastname1}{first1.last1@xxx.edu}
+  \icmlcorrespondingauthor{Firstname2 Lastname2}{first2.last2@www.uk}
+
+  % You may provide any keywords that you find helpful for describing your
+  % paper; these are used to populate the "keywords" metadata in the PDF but
+  % will not be shown in the document
+  \icmlkeywords{Machine Learning, ICML}
+
+  \vskip 0.3in
+]
+
+% this must go after the closing bracket ] following \twocolumn[ ...
+
+% This command actually creates the footnote in the first column listing the
+% affiliations and the copyright notice. The command takes one argument, which
+% is text to display at the start of the footnote. The \icmlEqualContribution
+% command is standard text for equal contribution. Remove it (just {}) if you
+% do not need this facility.
+
+% Use ONE of the following lines. DO NOT remove the command.
+% If you have no special notice, KEEP empty braces:
+\printAffiliationsAndNotice{}  % no special notice (required even if empty)
+% Or, if applicable, use the standard equal contribution text:
+% \printAffiliationsAndNotice{\icmlEqualContribution}
+
+\begin{abstract}
+Spatiotemporal graph neural networks (GNNs) assume all nodes possess sufficient historical observations for training—an assumption that fails in evolving infrastructure networks where new nodes are continuously deployed. We formalize the cold-start spatiotemporal forecasting problem and address it in the context of EV charging demand prediction, where newly installed stations lack historical data yet accurate forecasting is most operationally critical. We propose TA-GNN (Temporal-Adaptive Graph Neural Network), featuring three key innovations: (1) age-modulated graph attention with a directional transfer bias that promotes information flow from mature to cold-start stations; (2) a monotonic age-gated fusion mechanism that smoothly transitions from spatial-dominant to temporal-dominant representations as stations accumulate history; and (3) a hurdle decomposition that separately models demand occurrence and intensity under severe zero-inflation. We introduce a lifecycle-aligned evaluation protocol that defines cold-start relative to each station's commissioning time and carefully distinguishes pre-opening missingness from post-opening observed zeros. On a multi-provider DC fast-charging dataset spanning seven years with 16:1 zero-inflation, TA-GNN achieves 28.5\% improvement in cold-start positive MAE over the strongest neural baseline, with interpretable learned parameters confirming the intended adaptive behavior.
+
+
+\end{abstract}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Introduction}
+ The rapid adoption of electric vehicles has driven unprecedented expansion of charging infrastructure worldwide \cite{haddadian2015accelerating}. Accurate demand forecasting at charging stations is critical for multiple stakeholders: grid operators require load predictions for capacity planning \cite{raza2015review}, charging network operators need demand estimates for pricing and resource allocation, and urban planners depend on usage projections for siting new infrastructure \cite{rashid2024comprehensive}. 
+ 
+ Recent EV charging forecasting research has shifted from classical statistical baselines \cite{amini2016arima} toward deep spatio-temporal models \cite{huttel2021deep} that can represent non-linear, networked dependencies inherent to charging systems. A dominant early paradigm treats charging stations (or regions) as nodes on a graph and combines GCN-style message passing for spatial correlation with recurrent units (LSTM/GRU) \cite{klungsida2024forecasting} for temporal evolution, sometimes enriching edges with electrical or operational attributes to improve robustness under network reconfiguration \cite{xi2025forecasting,zhang2024spatial,fahim2024forecasting,wang2025adaptive,zhang2022gcn}. Subsequent architectural refinements introduce heterogeneous or multi-graph constructions and more parallel temporal processing to capture both local neighborhood effects and broader system coupling that is salient for market-facing and grid-aware prediction \cite{shi2023load}.
+
+More recent work addresses the key limitation of fixed, hand-crafted adjacency by learning dynamic graph structure \cite{luo2019dynamic} via adaptive embeddings \cite{wang2024domain} and time-varying connectivity \cite{pertl2018equivalent}, with causality-aware variants aiming to distinguish predictive association from directional influence. In parallel, attention mechanisms and Transformer backbones increasingly replace RNNs \cite{klungsida2024forecasting} to better capture long-range temporal dependencies and reduce inference latency, while hypergraph formulations model higher-order urban interactions (e.g., POI/land-use groupings) \cite{khaleghian2025data}. State-of-the-art systems further fuse heterogeneous exogenous signals (traffic, weather \cite{wang2025electric}, pricing \cite{dang2020ev}, occupancy \cite{soldan2021short}), sometimes with probabilistic decoders for uncertainty quantification, and incorporate deployment constraints through physics/economics-informed training \cite{alaee2023review} and privacy-preserving federated meta-learning \cite{fallah2020personalized} for cross-city generalization.
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ %Recent advances in graph neural networks (GNNs) have shown remarkable success in spatiotemporal forecasting tasks, including traffic flow prediction \cite{shi2025stadgcn}, air quality monitoring \cite{air_quality_gnn}, and energy load forecasting \cite{energy_gnn}. These methods exploit the spatial dependencies between geographically distributed sensors through message passing on graph structures, while capturing temporal dynamics through recurrent or attention-based architectures.
+
+ However, a fundamental assumption underlies virtually all existing spatiotemporal GNN methods \cite{scarselli2008graph}: \emph{all nodes in the graph have sufficient historical observations for training}. This assumption breaks down in practice for evolving infrastructure networks where new nodes are continuously deployed. For EV charging stations specifically, this creates the \textbf{cold-start problem}—newly installed stations have little to no historical data \cite{forootani2023transfer}, yet accurate demand forecasting is most critical during this early operational phase for validating deployment decisions and optimizing resource allocation.
+
+The cold-start challenge is particularly acute in EV charging forecasting due to the confluence of rapid infrastructure growth and intrinsically sparse, heterogeneous usage signals. Charging networks are expanding continuously, so a non-trivial share of stations at any moment lacks sufficient historical observations, while the early demand trajectories at these sites carry high operational stakes by informing costly planning decisions such as capacity upgrades, grid interconnection design, and whether to expand, relocate, or decommission assets. This difficulty is compounded by severe data sparsity and zero inflation—e.g., in our dataset only 6\% of hourly measurements exhibit any charging activity—rendering robust pattern induction from limited samples especially challenging. Moreover, deployment timelines are highly heterogeneous across providers and rollout phases, producing asynchronously observed time series with widely varying history lengths that standard forecasting pipelines are not designed to accommodate.
+
+Existing approaches to cold-start problems in other domains, such as recommender systems \cite{gilanifar2021clustered,tian2016real}, typically rely on content-based features or meta-learning. However, these methods do not directly transfer to spatiotemporal forecasting, where the goal is not to make a single prediction but to forecast a continuous time series while leveraging both spatial relationships and temporal dynamics.
+
+In this paper, we address the cold-start spatiotemporal forecasting problem with a novel architecture designed explicitly for this setting. Our key insight is that the optimal prediction strategy should \emph{adapt based on station maturity}: young stations with limited history should rely primarily on knowledge transferred from established neighbors, while mature stations with rich historical patterns should primarily leverage their own temporal dynamics. We operationalize this insight through a learnable, monotonic gating mechanism that smoothly transitions between spatial-dominant and temporal-dominant representations as stations age. 
+Our main contributions are:
+
+\textbf{1. Lifecycle-aligned cold-start forecasting under zero-inflated demand.}
+We formalize station-level hourly EV charging demand as a zero-inflated forecasting problem and introduce a lifecycle-aligned protocol that defines cold-start \emph{relative to each station's commissioning time} (rather than a global calendar split), evaluating performance over the first $K$ operational days (with $K{=}14$ in our experiments).
+
+\textbf{2. A corrected observation model for zeros vs.\ missingness.}
+We show that valid cold-start benchmarking requires separating \emph{unobserved pre-opening periods} from \emph{observed post-opening zero-demand hours}.
+Our pipeline explicitly records station opening times and constructs an observation mask that treats all post-opening hours---including zeros---as observed, enabling statistically well-posed training and evaluation under severe zero inflation.
+
+\textbf{3. TA-GNN: age-conditioned dynamic graph attention with monotonic fusion.}
+We propose TA-GNN, which learns dynamic multi-head graph attention regularized by a soft physical prior and an age-directional transfer bias that promotes information flow from mature to newly deployed stations.
+TA-GNN further combines spatial transfer with station-local temporal dynamics via a monotonic age-gated fusion mechanism, yielding lifecycle-adaptive representations.
+
+\textbf{4. Zero-inflation-aware learning and a reproducible multi-provider benchmark.}
+We adopt an imbalance-aware hurdle formulation that separately models demand occurrence and conditional intensity, report both event detection and positive-only regression metrics (including cold-start positive error), and provide a leakage-free preprocessing pipeline and benchmark on a multi-provider DC-fast dataset.
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----Problem formulation-------------------------------------------------------------
+\section{Problem Definition}
+\label{sec:problem}
+
+\subsection{Spatio-temporal charging network and temporal discretization}
+We study station-level EV charging demand over an evolving network of charging stations.
+Let $\mathcal{G}=(\mathcal{V},\mathcal{E},\mathbf{A})$ denote a graph with node set $\mathcal{V}=\{v_1,\ldots,v_N\}$ (stations), edges $\mathcal{E}$ (spatial/metadata relationships), and adjacency matrix $\mathbf{A}\in\mathbb{R}^{N\times N}$.
+Time is discretized on a regular grid (e.g., hourly), indexed by $t\in\{1,\ldots,T\}$ with associated timestamps $\mathrm{ts}(t)$.
+Each station $i$ is characterized by static metadata $\mathbf{s}^{(i)}\in\mathbb{R}^{d_s}$ (e.g., number of EVSE ports, geographic coordinates when available, provider identity) and a \emph{commissioning} (opening) timestamp $\tau_i\in\mathbb{R}$ indicating when station $i$ first becomes operational.
+
+\subsection{Demand tensor, exogenous covariates, and observation model}
+Let $\mathbf{Y}\in\mathbb{R}_{\ge 0}^{T\times N}$ denote the station-level demand tensor with entries
+$y_t^{(i)}\triangleq \text{demand at station } i \text{ during time bin } t$,
+where $y_t^{(i)}$ is a nonnegative count (e.g., hourly session arrivals).
+Let $\mathbf{x}_t\in\mathbb{R}^{d_x}$ denote exogenous temporal covariates at time $t$ (e.g., cyclical encodings of hour-of-day and day-of-week, weekend indicator, month seasonality), and collect them as $\mathbf{X}=(\mathbf{x}_1,\ldots,\mathbf{x}_T)$. A central subtlety in station-level forecasting is that \emph{absence of observations} (pre-opening) is not equivalent to \emph{observed zero demand} (post-opening).
+We therefore introduce an observation (operational) mask $\mathbf{M}\in\{0,1\}^{T\times N}$ with entries
+\begin{equation}
+m_t^{(i)} \triangleq \mathbb{I}\!\left[\mathrm{ts}(t)\ge \tau_i\right],
+\label{eq:mask}
+\end{equation}
+so that all post-opening time bins are treated as observed, including those with $y_t^{(i)}=0$, while pre-opening time bins are excluded ($m_t^{(i)}=0$).
+This distinction is required for statistically valid estimation and evaluation under severe sparsity and heterogeneous commissioning times.
+
+\subsection{Operational age and lifecycle alignment}
+We define the \emph{operational age} (lifecycle time) of station $i$ at time $t$ as
+\begin{equation}
+a_t^{(i)} \triangleq \max\!\left\{0,\; \Delta\!\big(\mathrm{ts}(t),\tau_i\big)\right\},
+\label{eq:age}
+\end{equation}
+where $\Delta(\cdot,\cdot)$ measures elapsed time (e.g., in hours or days).
+Operational age provides a station-specific notion of maturity that is invariant to global calendar time and enables comparisons across stations opened at different dates.
+
+\subsection{Zero inflation and event occurrence}
+Observed post-opening station demand is typically \emph{zero-inflated}, i.e., $y_t^{(i)}=0$ occurs far more frequently than $y_t^{(i)}>0$.
+We make this explicit by defining the binary event indicator
+\begin{equation}
+z_t^{(i)} \triangleq \mathbb{I}\!\left[y_t^{(i)} > 0\right],
+\label{eq:event}
+\end{equation}
+and viewing forecasting as jointly reasoning about \emph{occurrence} and \emph{intensity}.
+Concretely, a forecaster may output (i) an occurrence probability $\hat{\pi}_t^{(i)}\approx \mathbb{P}(z_t^{(i)}=1\,|\,\cdot)$ and (ii) an intensity prediction $\hat{\mu}_t^{(i)}\approx \mathbb{E}[y_t^{(i)} \mid z_t^{(i)}=1,\cdot]$, yielding an implied mean forecast $\hat{y}_t^{(i)}=\hat{\pi}_t^{(i)}\hat{\mu}_t^{(i)}$.
+(Our proposed TA-GNN instantiates this decomposition via a hurdle-style objective; see \S\ref{sec:method}.)
+
+\subsection{Cold-start forecasting task}
+Fix a lookback window length $L$ and a forecasting horizon $H$. At a reference time $t$, define the historical context $\mathcal{H}_t \triangleq \left\{\big(\mathbf{y}_{t-L:t-1}^{(i)},\mathbf{m}_{t-L:t-1}^{(i)}\big)\right\}_{i=1}^N$, $\mathbf{x}_{t-L:t+H-1}$, $\{\mathbf{s}^{(i)},\tau_i\}_{i=1}^N$, and $\mathbf{A}$.
+where $\mathbf{y}_{t-L:t-1}^{(i)}=(y_{t-L}^{(i)},\ldots,y_{t-1}^{(i)})$ and analogously for $\mathbf{m}_{t-L:t-1}^{(i)}$.
+The goal is to learn a predictor $f_\theta$ that produces multi-step forecasts for all stations,
+\begin{equation}
+\hat{\mathbf{Y}}_{t:t+H-1} = f_\theta\!\left(\mathcal{H}_t\right),
+\label{eq:forecast_task}
+\end{equation}
+and is \emph{robust in the cold-start regime}, where for some stations $i$ with small $a_t^{(i)}$ the effective historical signal is limited and the data are dominated by zeros.
+
+\subsection{Lifecycle-aligned evaluation and cold-start window}
+We define a cold-start window length $K$ (in days) and evaluate cold-start performance \emph{relative to each station's commissioning time}.
+Specifically, for any target time $u$, station $i$ is in cold-start if $a_u^{(i)} < K$ days.
+This protocol is invariant to heterogeneous opening dates and yields lifecycle-consistent comparisons across stations.
+
+\subsection{Masked metrics under zero inflation}
+
+All metrics are computed \emph{only on observed targets} (post-opening), i.e., indices where $m_u^{(i)}=1$.
+Let $\Omega$ denote the set of evaluated indices (e.g., all $(u,i)$ in the test horizon with $m_u^{(i)}=1$), and let $\Omega^{+}\subseteq\Omega$ denote those with positive demand ($y_u^{(i)}>0$).
+We report $\operatorname{MAE}$, $\operatorname{PosMAE}$, and the lifecycle-aligned cold-start positive error $\operatorname{CS\text{-}PosMAE}(K)$. To assess event detection under extreme class imbalance, we additionally compute threshold-free classification metrics (e.g., $\operatorname{AUPRC}$/$\operatorname{AUROC}$) using labels $z_u^{(i)}$ and predicted probabilities $\hat{\pi}_u^{(i)}$, evaluated over the same observed set $\Omega$.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Data and preprocessing}
+We compile a multi‑provider dataset of electric vehicle charging sessions from five commercial charging network operators in the United States. \emph{(The names of the companies and data provider will be included in the final version of the paper to avoid any conflict of interest during the review process.)} To ensure consistency in charging behavior and infrastructure characteristics, we restrict our analysis to DC fast-charging (DCFC) stations, which serve distinct use cases (long-distance travel, fleet operations) compared to Level 2 chargers and exhibit more predictable demand patterns.
+
+The dataset spans January 2018 through January 2025 (28,758 hourly time steps), comprising 82,950 charging sessions across $N = 118$ stations distributed across multiple metropolitan areas. Crucially, stations entered the network at different times---deployment dates range from early 2018 to late 2024 with increasing intensity---creating heterogeneous temporal coverage that motivates our cold-start formulation. Geographic coordinates are available for 97 stations (82.2\%), enabling distance-based graph construction; stations without coordinates receive uniform spatial priors in the attention mechanism. We aggregate sessions to hourly resolution, defining the target $y_t^{(i)}$ as the count of sessions initiated at station $i$ during hour $t$.
+
+\subsection{Data Characteristics and Challenges}
+
+\begin{figure*}
+    \centering
+    \includegraphics[width=.7\linewidth]{Figures/figA_data_pathology_v2.pdf}
+    \caption{Data characteristics of the EV charging dataset. (a) Extreme zero-inflation: 94\% of observed hours have zero demand, creating a 16:1 class imbalance. Inset shows the distribution of positive demand. (b) Station lifecycle alignment: observation density (blue) and positive demand rate (orange) as a function of days since station opening. The cold-start evaluation window (first 14 days, shaded) captures the critical early operational phase where accurate forecasting is most valuable}
+    \label{fig:data}
+\end{figure*}
+\textbf{Extreme Zero-Inflation:} EV charging demand exhibits severe sparsity: of 1,105,292 operational station-hours, only 63,927 (5.9\%) recorded any charging activity, yielding a 16:1 zero-to-positive ratio (Figure~\ref{fig:data}(a)). Positive demand follows a right-skewed distribution (mean 1.89, median 1.0 sessions/hour), reflecting the bursty nature of charging events. \textbf{Heterogeneous Station Ages:} At any prediction time $t$, stations span a wide range of operational ages $a_t^{(i)} = \max(0, t - \tau_i)$, from 0 days (newly opened) to over 6 years, with 8.3\% of test observations falling within the 14-day cold-start window (Figure~\ref{fig:data}(b)). This heterogeneity is an inherent property of evolving infrastructure that existing spatiotemporal methods fail to address.
+\textbf{Provider Heterogeneity:} The five providers exhibit distinct operational characteristics, including varying station densities and geographic footprints. Full preprocessing details are provided in Appendix~\ref{app:preprocessing}.
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Method: Temporal-Adaptive Graph Neural Network (TA-GNN)}
+\label{sec:method}
+\subsection{Lifecycle-conditioned spatiotemporal encoder.}
+We propose TA-GNN, illustrated in Figure~\ref{fig:architecture}, which forecasts station-level EV charging demand by jointly modeling (i) within-station temporal dynamics and (ii) cross-station transfer, explicitly conditioned on each station's operational lifecycle stage.
+At prediction time $t$, for each station $i$ we form a length-$L$ history by concatenating demand $y_{t-L:t-1}^{(i)}$, an operational/observation mask $m_{t-L:t-1}^{(i)}$, and exogenous calendar covariates $\mathbf{x}_{t-L:t-1}$, and project this sequence into a latent representation.
+We then inject static station metadata (e.g., charger capacity, provider identity, and optional coordinates with an explicit ``has-coordinates'' indicator) together with a time-varying operational-age embedding, and fuse them with the projected history.
+From the fused sequence, TA-GNN computes two complementary summaries: a temporal pathway (stacked GRU) produces station-local dynamics $\mathbf{h}^{T}_i$, while a spatial pathway applies multi-head graph attention to the most recent latent state, using a \emph{truly-soft} attention mechanism whose logits are regularized by a proximity-based adjacency prior and biased by relative operational age to promote transfer from mature stations to newly opened ones, while masking stations that are not operational as attention sources.
+
+\begin{figure*}[t]
+    \centering
+    \includegraphics[width=.95\linewidth]{Figures/tagnn_final_large.pdf}
+    \caption{\textbf{TA-GNN architecture.} The model encodes demand, mask, temporal, and station features through dual pathways: a \textit{Temporal Pathway} (GRU) for local dynamics and a \textit{Spatial Pathway} (graph attention) for neighbor transfer. An \textit{Age-Gated Fusion} module with monotonic gate $g(a) = \sigma(\alpha(a - \beta))$ adaptively balances spatial-dominant (cold-start) and temporal-dominant (mature) representations. A \textit{Hurdle Head} predicts occurrence $p_i$ and intensity $\mu_i$ separately, outputting $\hat{y}_i = p_i \cdot \mu_i$.}
+    \label{fig:architecture}
+\end{figure*}
+
+
+\subsection{Age-gated fusion and hurdle forecasting objective.}
+TA-GNN reconciles spatial transfer and temporal history using a monotonic age gate $g(a_i)=\sigma(\alpha(a_i-\beta))$ with $\alpha>0$, yielding a fused representation $\mathbf{h}_i=(1-g(a_i))\mathbf{h}^{S}_i + g(a_i)\mathbf{h}^{T}_i$ that emphasizes spatial transfer in cold-start regimes and transitions smoothly toward temporal-dominant modeling as stations mature.
+Forecasts are produced via a hurdle decomposition: for each horizon step $h \in \{1,\dots,H\}$, TA-GNN outputs an occurrence probability $p_{t+h}^{(i)}$ and a conditional positive intensity $\mu_{t+h}^{(i)}$, with expected demand $\hat{y}_{t+h}^{(i)} = p_{t+h}^{(i)}\,\mu_{t+h}^{(i)}$.
+We optimize an imbalance-aware hurdle objective consisting of (i) weighted binary cross-entropy on $\mathbb{I}[y>0]$, (ii) positive-only count regression on $\mu$, and (iii) a regularizer discouraging large positive intensities on observed zeros; all losses are computed only on post-opening observed entries via $m$.
+To improve robustness under sparse histories, we optionally apply age-consistent cold-start augmentation by masking historical demand while simultaneously resetting the corresponding age and mask to mimic newly commissioned stations. Complete mathematical specification of TA-GNN, including design justifications, theoretical properties, and implementation details are provided in Appendix~\ref{app:tagnn}.
+
+
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Baselines and experimental setup}
+
+We compare TA-GNN against two statistical baselines and three neural architectures. The statistical baselines include \textbf{Historical Average (HA)}~\cite{campbell2008predicting}, which predicts demand using the mean of same hour-of-day and day-of-week observations from training data, and \textbf{Last Value (Persistence)}~\cite{shao2003last}, which uses the most recent observed demand. For cold-start stations lacking sufficient history, HA falls back to network-wide averages. These baselines establish lower bounds and test whether simple temporal heuristics suffice.
+
+The neural baselines form an ablation hierarchy isolating specific architectural contributions: \textbf{LSTM-Hurdle}~\cite{huang2024sensitive} processes each station's temporal history independently without spatial information; \textbf{GCN-Hurdle}~\cite{amiri2025novel} aggregates neighbors through fixed spectral convolutions; and \textbf{GAT-Hurdle}~\cite{zhao2020multivariate,zhang2021graphcgan} learns dynamic attention weights over neighbors. Crucially, all neural baselines employ \emph{identical hurdle loss} with class-balanced weighting ($w_+ = 16$), ensuring differences reflect only architectural inductive biases. Unlike TA-GNN, standard GAT attention is symmetric with respect to station age---it encodes neither directional knowledge transfer from mature to young stations nor adaptive spatial-temporal fusion based on station maturity. Detailed formulations are provided in Appendix~\ref{app:baselines}.
+
+\subsection{Training and Evaluation}
+
+We use chronological splits to prevent leakage, allocating 70\% of time steps to training, 15\% to validation, and 15\% to testing; the same stations appear in all splits but at different operational ages, enabling age-dependent pattern learning. All models are optimized with AdamW~\cite{zhou2024towards} (learning rate $10^{-3}$, weight decay $10^{-4}$, batch size 32) and early-stopped when the validation cold-start positive MAE fails to improve for 15 epochs; in practice, models converge within 30--50 epochs on a single NVIDIA V100 GPU. Given the severe zero inflation (approximately 94\% zero-demand observations), overall MAE can be dominated by trivial near-zero predictors; we therefore report (i) Overall MAE over all observed station-hours, (ii) Positive MAE restricted to $y>0$, (iii) Cold-Start Positive MAE (CS-Pos; our primary metric) computed on positive-demand hours within the first $\Delta=14$ days after station opening, and (iv) AUPRC for event detection. All results are averaged over three runs with different random seeds.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% TA-GNN Paper - Results and Analysis Section
+% ICML 2026 Submission
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Results and Analysis}
+\label{sec:results}
+
+\subsection{Main Results}
+
+Table~\ref{tab:main_results} and Figure~\ref{fig:main_comparison} present quantitative comparisons across all methods. We highlight three key findings.
+\begin{table}[t]
+\centering
+\caption{Main results on EV charging demand prediction. CS-Pos = Cold-Start Positive MAE (first 14 days, $y>0$). All neural models use identical hurdle loss with $w_+ = 16$. \textbf{Bold} = best; underline = second best. $\downarrow$ lower is better; $\uparrow$ higher is better.}
+\label{tab:main_results}
+\scriptsize
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+\textbf{Method} & \textbf{Overall}$\downarrow$ & \textbf{Pos-MAE}$\downarrow$ & \textbf{CS-Pos}$\downarrow$ & \textbf{AUPRC}$\uparrow$ \\
+\midrule
+\multicolumn{5}{l}{\textit{Statistical Baselines}} \\
+Historical Avg & \textbf{0.142} & 1.130 & 0.941 & 0.202 \\
+Last Value & \underline{0.141} & 1.160 & 0.931 & 0.080 \\
+\midrule
+\multicolumn{5}{l}{\textit{Neural Baselines}} \\
+LSTM-Hurdle & 0.485 & \underline{0.551} & 0.362 & 0.221 \\
+GCN-Hurdle & 0.430 & 0.590 & 0.474 & \textbf{0.263} \\
+GAT-Hurdle & 0.441 & 0.574 & 0.437 & \underline{0.262} \\
+\midrule
+\textbf{TA-GNN (Ours)} & 0.467 & \textbf{0.555} & \textbf{0.259} & 0.242 \\
+\bottomrule
+\end{tabular}
+\end{table}
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=\linewidth]{Figures/fig1_main_comparison (1).pdf}
+    \caption{Main quantitative results. (a) Cold-Start Positive MAE: TA-GNN achieves 0.259, outperforming all baselines. The dashed line indicates TA-GNN's performance for reference. (b) Detection performance (AUPRC): GCN achieves highest AUPRC (0.263), while TA-GNN maintains competitive detection (0.242) with superior cold-start prediction.}
+    \label{fig:main_comparison}
+\end{figure}
+\textbf{TA-GNN achieves best cold-start performance:} On CS-Pos MAE---the metric directly measuring cold-start prediction quality---TA-GNN achieves \textbf{0.259}, representing significant improvements over all baselines (Figure~\ref{fig:improvement}): \textbf{28.5\%} over LSTM-Hurdle (0.362), \textbf{40.8\%} over GAT-Hurdle (0.437), \textbf{45.5\%} over GCN-Hurdle (0.474), and \textbf{72.5\%} over statistical baselines (${\sim}0.94$). All improvements are statistically significant ($p < 0.01$).
+\textbf{Static GNNs underperform LSTM on cold-start:} Counterintuitively, GCN and GAT perform \emph{worse} than the non-graph LSTM baseline on CS-Pos (0.474/0.437 vs.\ 0.362), despite achieving higher AUPRC for event detection. This reveals a critical failure mode: naive graph aggregation can \emph{hurt} cold-start prediction by diluting limited historical signal with uninformative neighbor features. TA-GNN's adaptive gating mechanism directly addresses this limitation. \textbf{Trade-off between metrics:} Simple baselines achieve lowest overall MAE (${\sim}0.14$) by predicting near-zero everywhere---correct for 94\% of observations but operationally useless. Neural methods sacrifice overall MAE for substantially improved positive and cold-start prediction, reflecting the inherent tension between optimizing for the common case (zeros) versus the decision-relevant case (positive demand).
+\textbf{Ablation Study:} To isolate the contribution of each architectural component, we conduct  systematic ablations by removing or modifying individual elements while  keeping all other settings identical. Table~\ref{tab:ablation} reports 
+results on our primary metric (CS-Pos MAE).
+\begin{table}[t]
+\centering
+\caption{Ablation study on TA-GNN components. All variants use identical training setup.}
+\label{tab:ablation}
+\scriptsize
+\begin{tabular}{@{}lcc@{}}
+\toprule
+\textbf{Variant} & \textbf{CS-Pos}$\downarrow$ & \textbf{$\Delta$} \\
+\midrule
+TA-GNN (full) & \textbf{0.259} & -- \\
+\quad w/o Age Gate (fixed $g=0.5$) & 0.298 & +15.1\% \\
+\quad w/o Monotonicity ($\alpha$ unconstrained) & 0.290 & +12.0\% \\
+\quad w/o Age Attention Bias & 0.312 & +20.5\% \\
+\quad w/o Adjacency Prior & 0.275 & +6.2\% \\
+\quad w/o Hurdle Loss (MSE only) & 0.341 & +31.7\% \\
+\quad w/o Cold-Start Augmentation & 0.284 & +9.7\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=0.85\linewidth]{Figures/fig4_improvement.png}
+    \caption{Relative improvement of TA-GNN over each baseline on CS-Pos MAE. TA-GNN provides largest gains over naive baselines (72\%) and substantial improvements over neural methods (28--46\%).}
+    \label{fig:improvement}
+\end{figure}
+
+%------------------------------------------------------------------------------
+\subsection{Performance Across Station Lifecycle}
+\label{sec:performance_by_age}
+
+Figure~\ref{fig:performance_by_age} decomposes TA-GNN's performance across station age buckets, revealing where the method provides greatest value.
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=\linewidth]{Figures/figB_performance_by_age.png}
+    \caption{Positive-only MAE by station age. TA-GNN (bars) substantially outperforms age-invariant baselines (horizontal lines) within the cold-start window (shaded). Performance at 180--365d reflects limited samples in this age range. Sample counts shown at bar bases.}
+    \label{fig:performance_by_age}
+\end{figure}
+\textbf{Largest gains in cold-start window:} Within the first 14 days of operation, TA-GNN achieves MAE of 0.205 (0--3d), 0.342 (3--7d), and 0.252 (7--14d), consistently outperforming the LSTM-Hurdle baseline (0.551 overall) by \textbf{47--63\%} and GAT-Hurdle (0.574 overall) by \textbf{40--64\%}. This confirms our central hypothesis: adaptive spatial-temporal fusion provides greatest benefit when temporal history is scarce. \textbf{Graceful degradation with age:} As stations mature, TA-GNN's advantage diminishes but remains positive. For stations aged 14--30 days (0.254 MAE) and 30--90 days (0.404 MAE), performance approaches but still exceeds baselines. The spike at 180--365 days (0.691 MAE) reflects limited evaluation samples in this age range rather than systematic degradation. Beyond one year, performance stabilizes at 0.483 MAE.
+
+\textbf{Complementary evidence from gate values:} Figure~\ref{fig:gate_by_age} shows the learned gate values and corresponding prediction errors by age bucket. The monotonically increasing gate (panel a) confirms the model learns the intended behavior: young stations ($g \approx 0.34$) rely on spatial transfer, while mature stations ($g \approx 0.98$) leverage temporal patterns. Panel (b) shows prediction error follows a non-monotonic pattern, with best performance in the cold-start regime where spatial transfer is most valuable.
+
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=\linewidth]{Figures/fig5_performance_by_age.png}
+    \caption{(a) Learned gate value $g(a)$ by station age, showing monotonic increase from 0.34 (cold-start) to 0.98 (mature). Dashed line at $g=0.5$ indicates equal spatial-temporal balance. (b) Positive MAE by age bucket.}
+    \label{fig:gate_by_age}
+\end{figure}
+
+%------------------------------------------------------------------------------
+\subsection{Analysis of Learned Gate Mechanism}
+\label{sec:gate_analysis}
+
+The interpretability of TA-GNN's age-gated fusion provides mechanistic insight into model behavior. Figure~\ref{fig:gate_analysis} visualizes the learned gate function and its implications.
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=\linewidth]{Figures/fig2_gate_analysis.pdf}
+    \caption{Age-gated fusion analysis. (a) Learned gate function $g(a) = \sigma(1.85(a - 0.36))$ with empirical measurements: cold-start stations (yellow circle, $g{=}0.35$) and mature stations (blue square, $g{=}0.85$). Shaded regions show spatial (orange) vs.\ temporal (blue) dominance. (b) Stacked area visualization of spatial-temporal representation balance across station age.}
+    \label{fig:gate_analysis}
+\end{figure}
+\newline
+\textbf{Learned parameters:} The model learns $\alpha = 1.85$ (steepness) and $\beta = 0.36$ years $\approx 131$ days (midpoint). The positive $\alpha$ confirms the monotonicity constraint is satisfied, encoding our inductive bias that reliance on temporal history should increase with station age.
+\newline
+\textbf{Empirical gate values (Computing mean gate values on the test set confirms the intended lifecycle-adaptive behavior):} for cold-start stations (operational age $< 14$ days), we observe an average gate value of $\bar{g}=0.35$, corresponding to approximately \textbf{65\% spatial} transfer and 35\% temporal weighting, whereas for mature stations (age $> 2$ years), the gate increases to $\bar{g}=0.85$, shifting the balance to 15\% spatial and \textbf{85\% temporal} reliance, consistent with the design goal that temporal history dominates as stations accumulate sufficient operational data.
+\newline
+\textbf{Interpretation:} The spatial-temporal balance (Figure~\ref{fig:gate_analysis}b) reveals that TA-GNN allocates nearly two-thirds of representational capacity to spatial knowledge transfer for cold-start stations, gradually transitioning to temporal-dominant representations as history accumulates. The crossover point at $\beta \approx 4$ months represents the learned threshold where temporal patterns become sufficiently reliable to outweigh neighbor information.
+
+%------------------------------------------------------------------------------
+\subsection{Attention Transfer Analysis}
+\label{sec:attention_analysis}
+
+Beyond the fusion gate, we analyze attention patterns to verify that knowledge flows from mature to young stations as intended. Figure~\ref{fig:attention_analysis} visualizes attention distributions.
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=\linewidth]{Figures/figC_attention_analysis (2).png}
+    \caption{Attention transfer patterns. (a) Cold-start queries (yellow) allocate peak attention to stations aged 1--2 years, while mature queries (blue) show similar but attenuated preference. Annotation highlights that cold-start stations attend to mature neighbors. (b) Full attention heatmap: rows = query age, columns = key age. Dashed box marks cold-start region; diagonal line indicates self-age reference. Strong attention flow to 180d--2y columns across all query ages.}
+    \label{fig:attention_analysis}
+\end{figure}
+\textbf{Directional knowledge transfer:} Panel (a) reveals striking asymmetry: cold-start stations (0--14 days) allocate peak attention weight (${\sim}0.47$) to stations aged 1--2 years, with secondary attention to 180--365 day stations (${\sim}0.33$). Mature stations show similar preferences but with lower magnitude, indicating reduced reliance on neighbors. Critically, \emph{both} cold-start and mature queries attend minimally to other cold-start stations ($<0.02$), confirming the model learns to seek information-rich sources. \textbf{Attention heatmap structure:} Panel (b) provides a comprehensive visualization of the learned attention flow across station-age strata, revealing three salient regularities: (1) vertical concentration in the 180d--2y columns, where queries of all ages allocate a disproportionate share of attention to stations in this maturity range (weights $\approx 0.30$--$0.54$), suggesting that these stations function as \emph{knowledge hubs}; (2) a distinctive cold-start query pattern, whereby the top two rows (0--14d queries) place their strongest mass on mature keys (peaking at $\approx 0.54$ for 1--2y), directly validating the intended mature$\rightarrow$cold transfer bias; and (3) systematic suppression of below-diagonal entries, i.e., attention to younger stations remains consistently small (typically $<0.10$), indicating that information flow is predominantly directed from mature to young rather than the reverse. The attention mechanism and fusion gate serve complementary roles: attention determines \emph{which} neighbors to aggregate (preferring mature stations), while the gate determines \emph{how much} to weight spatial versus temporal representations overall. Together, they implement a coherent knowledge transfer strategy.
+
+%------------------------------------------------------------------------------
+\subsection{Training Dynamics}
+\label{sec:training}
+
+Figure~\ref{fig:training_curves} presents training curves illustrating model convergence.
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=\linewidth]{Figures/fig3_training_curves.png}
+    \caption{Training dynamics. (a) Training loss decreases smoothly from 0.63 to 0.49. (b) Validation MAE: overall MAE (dashed) continues decreasing while CS-Pos MAE (solid) reaches minimum at epoch 7 (star), after which cold-start performance degrades despite improving overall metrics---justifying early stopping on CS-Pos. (c) Detection AUPRC stabilizes at ${\sim}0.20$ after epoch 10.}
+    \label{fig:training_curves}
+\end{figure}
+\textbf{Early stopping justification:} Panel (b) reveals a critical insight: overall validation MAE continues improving throughout training (from 0.45 to 0.35), while CS-Pos MAE reaches its minimum at epoch 7 and subsequently \emph{increases} (from 0.33 to 0.55). This divergence justifies our choice to early-stop based on CS-Pos rather than overall MAE---optimizing for the latter would yield a model that excels at predicting zeros but fails at the operationally critical cold-start task. \textbf{Convergence behavior:} Training loss (panel a) decreases smoothly, indicating stable optimization. Detection AUPRC (panel c) rises rapidly in early epochs and plateaus at ${\sim}0.20$, suggesting the detection head learns quickly while intensity prediction requires continued refinement. This reinforces a practical takeaway: in zero-inflated cold-start problems, \emph{model selection criteria must match the lifecycle objective}, otherwise optimization will preferentially fit the dominant zero mass and under-serve the decision-critical early-life events.
+\textbf{Failure cases.} TA-GNN underperforms on stations that open in 
+geographic isolation (no mature neighbors within 15km) and on stations 
+with highly atypical demand patterns (e.g., fleet-dedicated stations 
+with bursty scheduled usage).
+
+
+
+
+
+%------------------------------------------------------------------------------
+\section{Conclusion}
+
+We formalized the cold-start spatiotemporal forecasting problem and proposed TA-GNN, a lifecycle-aware graph neural network that explicitly addresses prediction at newly deployed nodes in evolving infrastructure networks. Our key insight is that optimal prediction should adapt based on node maturity: young nodes should rely on spatial knowledge transfer from established neighbors, while mature nodes should leverage their own temporal dynamics. TA-GNN operationalizes this through age-modulated graph attention with a directional transfer bias $\delta \tanh(a_j - a_i)$ promoting mature-to-cold-start information flow, combined with monotonic age-gated fusion $g(a) = \sigma(\alpha(a - \beta))$ that smoothly interpolates between spatial-dominant and temporal-dominant representations.
+
+On a multi-provider EV charging dataset with 16:1 zero-inflation, TA-GNN achieves 28.5\% improvement in cold-start positive MAE over the strongest neural baseline. Notably, standard GNNs underperform non-graph baselines on cold-start prediction, revealing that naive aggregation can dilute sparse historical signal—a failure mode our adaptive gating directly addresses. Analysis of learned parameters validates our design hypotheses: cold-start stations allocate 65\% weight to spatial transfer ($g=0.35$) while mature stations rely 85\% on temporal patterns ($g=0.85$), and attention flows predominantly from established ``knowledge hub'' stations (aged 1--2 years) to newly deployed nodes with minimal attention to other information-poor cold-start stations.
+Beyond architectural contributions, we introduced a lifecycle-aligned evaluation protocol that defines cold-start relative to each node's commissioning time and carefully distinguishes pre-opening missingness from post-opening observed zeros—methodological foundations essential for valid benchmarking in evolving networks.
+
+Our study focuses on EV charging within a single geographic region; assessing transfer to other settings (e.g., bike-sharing, sensor networks, retail demand) is an important direction. The current formulation also assumes a fixed graph; supporting dynamic node arrivals at inference time, adding principled uncertainty quantification, and developing continual/online updates as stations mature would further improve practical deployment. %More broadly, lifecycle-aware spatiotemporal modeling targets a key gap in many GNN forecasters, which implicitly assume all nodes have sufficient history: by explicitly conditioning on node maturity, TA-GNN improves predictions in the operationally critical early deployment phase and may motivate future work on models for continuously evolving networks.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+% In the unusual situation where you want a paper to appear in the
+% references without citing it in the main text, use \nocite
+%\nocite{langley00}
+
+\bibliography{example_paper}
+\bibliographystyle{icml2026}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% APPENDIX
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\appendix
+\onecolumn
+
+\section{TA-GNN: Detailed Model Specification}
+\label{app:tagnn}
+
+This appendix provides a complete mathematical specification of TA-GNN, including design justifications, theoretical properties, and implementation details that complement the main text.
+
+\subsection{Notation and Dimensionality Summary}
+
+Table~\ref{tab:notation} summarizes the key notation and tensor dimensions used throughout the model specification.
+
+\begin{table}[h]
+\centering
+\caption{Notation summary and tensor dimensions.}
+\label{tab:notation}
+\small
+\begin{tabular}{lll}
+\toprule
+\textbf{Symbol} & \textbf{Dimension} & \textbf{Description} \\
+\midrule
+$N$ & scalar & Number of stations \\
+$T$ & scalar & Number of time steps \\
+$L$ & scalar & Lookback window length (168 hours) \\
+$H$ & scalar & Forecast horizon (5 hours) \\
+$d$ & scalar & Hidden dimension (64) \\
+$d_f$ & scalar & Temporal feature dimension (7) \\
+$d_a$ & scalar & Age embedding dimension (32) \\
+$d_s$ & scalar & Station metadata dimension \\
+$R$ & scalar & Number of attention heads (4) \\
+$K$ & scalar & Number of attention layers (2) \\
+\midrule
+$\mathbf{y}^{(i)}_{t-L:t-1}$ & $\mathbb{R}^{L}_{\geq 0}$ & Demand history for station $i$ \\
+$\mathbf{m}^{(i)}_{t-L:t-1}$ & $\{0,1\}^{L}$ & Operational mask for station $i$ \\
+$\mathbf{x}_{t-L:t-1}$ & $\mathbb{R}^{L \times d_f}$ & Temporal covariates \\
+$a^{(i)}_t$ & $\mathbb{R}_{\geq 0}$ & Operational age (years) \\
+$\mathbf{A}$ & $\mathbb{R}^{N \times N}$ & Proximity adjacency matrix \\
+\midrule
+$\mathbf{h}^{T}_i$ & $\mathbb{R}^{d}$ & Temporal pathway output \\
+$\mathbf{h}^{S}_i$ & $\mathbb{R}^{d}$ & Spatial pathway output \\
+$\mathbf{h}_i$ & $\mathbb{R}^{d}$ & Fused representation \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Inputs, Masks, and Lifecycle Features}
+
+We consider $N$ stations and discretize time at an hourly resolution. At prediction index $t$, TA-GNN consumes a lookback window of length $L$ and forecasts a horizon of length $H$. For station $i$, let
+\begin{align}
+\mathbf{y}^{(i)}_{t-L:t-1} &\in \mathbb{R}_{\ge 0}^{L}, &
+\mathbf{m}^{(i)}_{t-L:t-1} &\in \{0,1\}^{L},
+\end{align}
+denote demand and observation/operational masks, where $m=1$ indicates the station is operational and the demand entry is observed (including observed zeros), and $m=0$ denotes pre-opening or otherwise unobserved periods. Let $\mathbf{x}_{t-L:t-1}\in \mathbb{R}^{L\times d_f}$ denote exogenous calendar/time covariates (e.g., hour-of-day and day-of-week encodings), shared across stations.
+
+Each station $i$ has (i) static metadata $\mathbf{s}_i \in \mathbb{R}^{d_s}$ (e.g., charger count, coordinates when available, and a binary indicator of coordinate availability), and (ii) a provider identifier $c_i \in \{1,\dots,C\}$. We also compute a time-varying operational age $a^{(i)}_t\ge 0$, defined as elapsed time since the station's commissioning timestamp (expressed in years for numerical stability). In practice, we treat stations as eligible attention sources only if they are operational at $t$ via the \emph{operational source mask}
+\begin{align}
+o^{(i)}_t \triangleq \mathbb{I}[m^{(i)}_{t-1}=1].
+\end{align}
+
+\textbf{Design justification.} The explicit inclusion of the mask $\mathbf{m}$ as an input feature (rather than merely using it to filter losses) enables the model to distinguish between ``no charging activity'' and ``station not yet operational''---a critical distinction for cold-start modeling. This design choice is inspired by the treatment of missingness indicators in clinical time series \citep{che2018recurrent} and allows the temporal encoder to learn mask-aware representations.
+
+\subsection{Sequence Input Projection and Feature Fusion}
+
+At each history offset $\ell\in\{0,\dots,L-1\}$, we construct a per-station input vector
+\begin{align}
+\mathbf{z}^{(i)}_{t-L+\ell} = \big[ y^{(i)}_{t-L+\ell},~ m^{(i)}_{t-L+\ell},~ \mathbf{x}_{t-L+\ell} \big] \in \mathbb{R}^{2+d_f}.
+\end{align}
+A shared linear input map yields an initial hidden sequence:
+\begin{align}
+\mathbf{h}^{0,(i)}_{t-L+\ell} = \mathbf{W}_{\text{in}}\mathbf{z}^{(i)}_{t-L+\ell} + \mathbf{b}_{\text{in}} \in \mathbb{R}^{d}.
+\end{align}
+
+\textbf{Station encoder.} We embed station metadata via a learned encoder
+\begin{align}
+\mathbf{e}^{S}_i = f_S(\mathbf{s}_i, c_i)\in\mathbb{R}^{d},
+\end{align}
+implemented as a small MLP over continuous features concatenated with a learned provider embedding:
+\begin{align}
+f_S(\mathbf{s}_i, c_i) = \text{MLP}\big([\mathbf{s}_i;~ \mathbf{E}_{\text{provider}}[c_i]]\big),
+\end{align}
+where $\mathbf{E}_{\text{provider}} \in \mathbb{R}^{C \times d_e}$ is a learnable embedding table with $d_e = 16$.
+
+\textbf{Operational-age embedding.} 
+We compute operational age at the forecast origin timestamp and use it to condition both spatial transfer and temporal encoding.
+Within a single training example, $a^{(i)}_{t}$ is treated as constant across the $L$ history steps and the $H$ horizon steps (a negligible approximation at hourly resolution since $L,H\ll 1$ year), while remaining time-varying across forecast origins. We embed operational age using a sinusoidal map with $d_a$ dimensions:
+\begin{align}
+\mathbf{e}^{A}_i = f_A(a^{(i)}_t)\in\mathbb{R}^{d_a}, \qquad
+f_A(a) = \big[\sin(\boldsymbol{\omega}\,\tilde{a}),~\cos(\boldsymbol{\omega}\,\tilde{a})\big],
+\end{align}
+where $\tilde{a}=a/a_{\max}\in[0,1]$ is a normalized age, $a_{\max} = 5$ years covers our dataset range, and $\boldsymbol{\omega} \in \mathbb{R}^{d_a/2}$ are fixed frequency bands computed as:
+\begin{align}
+\omega_k = \frac{1}{10000^{2k/d_a}}, \quad k = 0, 1, \ldots, d_a/2 - 1.
+\end{align}
+
+\textbf{Design justification.} We adopt sinusoidal embeddings (rather than learned embeddings) for operational age for three reasons: (i) they provide smooth interpolation for ages not seen during training, which is critical since test stations may have ages outside the training distribution; (ii) the multi-scale frequency bands capture both fine-grained (daily/weekly) and coarse (monthly/yearly) age distinctions; and (iii) they introduce no additional learnable parameters, reducing overfitting risk in our data-limited cold-start regime. This design follows the positional encoding strategy in Transformers \citep{vaswani2017attention} but applied to the lifecycle dimension.
+
+We fuse history, station, and age information at each $\ell$ via
+\begin{align}
+\mathbf{h}^{(i)}_{t-L+\ell} = \phi\!\Big( \mathbf{W}_{f}\big[\mathbf{h}^{0,(i)}_{t-L+\ell};~\mathbf{e}^{S}_i;~\mathbf{e}^{A}_i\big]+\mathbf{b}_{f} \Big) \in\mathbb{R}^{d},
+\end{align}
+where $\phi(\cdot)$ is a pointwise nonlinearity (ReLU in our implementation) and $[\cdot;\cdot]$ denotes concatenation.
+
+\subsection{Temporal Pathway: Station-Local Dynamics}
+
+The temporal pathway models station-specific dynamics by applying a stacked GRU to each station's latent sequence:
+\begin{align}
+\mathbf{H}^{(i)}_t = \mathrm{GRU}\Big(\mathbf{h}^{(i)}_{t-L:t-1}\Big)\in\mathbb{R}^{L\times d}, \qquad
+\mathbf{h}^{T}_i = \mathbf{H}^{(i)}_t[L]\in\mathbb{R}^{d},
+\end{align}
+where $\mathbf{H}^{(i)}_t[L]$ denotes the final hidden state.
+
+\textbf{Design justification.} We choose GRU over LSTM for the temporal pathway based on three considerations: (i) GRUs have fewer parameters (two gates vs. three), reducing overfitting risk given our sparse supervision signal; (ii) empirically, GRUs perform comparably to LSTMs on sequences of moderate length ($L=168$) while training faster; and (iii) the simpler gating structure facilitates gradient flow, which is particularly important when the effective sequence length varies dramatically across stations (cold-start stations have mostly masked history). We use a 2-layer stacked architecture with hidden dimension $d=64$ and dropout $p=0.2$ between layers.
+
+\subsection{Spatial Pathway: Truly-Soft Age-Modulated Graph Attention}
+
+Let $\mathbf{A}\in\mathbb{R}^{N\times N}$ denote a static proximity prior (e.g., distance-based adjacency) constructed from metadata only. TA-GNN uses a multi-head attention mechanism that is \emph{not} constrained to hard edges; instead, the prior enters as an additive logit bias (``truly soft''). This design allows the model to attend to any station while still incorporating spatial inductive bias.
+
+Let $\mathbf{h}^{S,0}_i = \mathbf{h}^{(i)}_{t-1}$ be the most recent latent state. For each attention layer $k\in\{1,\dots,K\}$ and head $r\in\{1,\dots,R\}$, we compute queries, keys, and values:
+\begin{align}
+\mathbf{q}^{r}_i &= \mathbf{W}^{r}_{Q}\mathbf{h}^{S,k-1}_i, \quad
+\mathbf{k}^{r}_j = \mathbf{W}^{r}_{K}\mathbf{h}^{S,k-1}_j, \quad
+\mathbf{v}^{r}_j = \mathbf{W}^{r}_{V}\mathbf{h}^{S,k-1}_j,
+\end{align}
+where $\mathbf{W}^{r}_{Q}, \mathbf{W}^{r}_{K}, \mathbf{W}^{r}_{V} \in \mathbb{R}^{(d/R) \times d}$.
+
+The attention logits incorporate four terms:
+\begin{align}
+\ell^{r}_{ij} = \underbrace{\frac{\langle \mathbf{q}^{r}_i,\mathbf{k}^{r}_j\rangle}{\sqrt{d/R}}}_{\text{content attention}} + \underbrace{\gamma_r\,A_{ij}}_{\text{proximity prior}} + \underbrace{\delta_r\,\tanh\!\big(a^{(j)}_t-a^{(i)}_t\big)}_{\text{age-directional bias}} + \underbrace{\log o^{(j)}_t}_{\text{operational mask}},
+\label{eq:attention_logits}
+\end{align}
+where $\gamma_r$ and $\delta_r$ are learned per-head scalars initialized to $\gamma_r = 2.0$ and $\delta_r = 0.5$, and $\log o^{(j)}_t$ is a masking term that sets logits to $-\infty$ for non-operational sources ($o^{(j)}_t=0$).
+
+\textbf{Justification for each attention component:}
+
+\emph{(i) Content attention} $\langle \mathbf{q}^{r}_i,\mathbf{k}^{r}_j\rangle / \sqrt{d/R}$: Standard scaled dot-product attention enables learning content-based similarity, allowing stations with similar demand patterns to attend to each other regardless of spatial proximity.
+
+\emph{(ii) Proximity prior} $\gamma_r A_{ij}$: The soft adjacency bias encourages attention to geographically proximate stations, encoding the inductive bias that nearby stations share demand characteristics due to common catchment areas, traffic patterns, and user populations. Unlike hard-masked graph attention (e.g., standard GAT), this formulation allows the model to override spatial priors when content similarity suggests otherwise.
+
+\emph{(iii) Age-directional bias} $\delta_r \tanh(a^{(j)}_t - a^{(i)}_t)$: This is the key novel component enabling knowledge transfer. When $\delta_r > 0$ (which we observe empirically), the bias is positive when attending from young ($a^{(i)}_t$ small) to mature ($a^{(j)}_t$ large) stations, and negative in the reverse direction. This asymmetry encourages cold-start stations to draw information from established neighbors while discouraging the reverse flow that could corrupt mature stations' representations with uninformative cold-start features.
+
+\emph{(iv) Operational mask} $\log o^{(j)}_t$: This hard constraint ensures that non-operational stations cannot serve as attention sources, preventing information leakage from future (not-yet-opened) stations and avoiding aggregation of undefined representations.
+
+\textbf{Why $\tanh$ for age bias?} We choose $\tanh(a^{(j)}_t - a^{(i)}_t)$ over alternatives for several reasons:
+\begin{enumerate}[leftmargin=*, topsep=2pt, itemsep=2pt]
+    \item \emph{Bounded output}: $\tanh \in [-1, 1]$ prevents the age bias from dominating other attention terms, ensuring content similarity remains influential.
+    \item \emph{Antisymmetry}: $\tanh(-x) = -\tanh(x)$ guarantees that attention from $i$ to $j$ receives the opposite bias as attention from $j$ to $i$, encoding directional transfer.
+    \item \emph{Saturation}: For large age differences ($|a^{(j)}_t - a^{(i)}_t| \gg 1$), the bias saturates, preventing extreme attention weights that could destabilize training.
+    \item \emph{Smooth gradient}: Unlike alternatives such as $\text{sign}(a^{(j)}_t - a^{(i)}_t)$, $\tanh$ is differentiable everywhere, enabling end-to-end learning.
+\end{enumerate}
+
+Attention weights and head outputs are computed as:
+\begin{align}
+\alpha^{r}_{ij} = \mathrm{softmax}_j(\ell^{r}_{ij}), \qquad
+\tilde{\mathbf{h}}^{r}_i = \sum_{j=1}^{N}\alpha^{r}_{ij}\mathbf{v}^{r}_j.
+\end{align}
+
+We concatenate heads and apply an output map with residual connection and layer normalization:
+\begin{align}
+\tilde{\mathbf{h}}^{S,k}_i &= \mathbf{W}_{O}\big[\tilde{\mathbf{h}}^{1}_i;\dots;\tilde{\mathbf{h}}^{R}_i\big], \\
+\mathbf{h}^{S,k}_i &= \mathrm{LayerNorm}\big(\mathbf{h}^{S,k-1}_i + \tilde{\mathbf{h}}^{S,k}_i\big).
+\end{align}
+
+The final spatial representation is $\mathbf{h}^{S}_i=\mathbf{h}^{S,K}_i$. 
+
+\subsection{Monotonic Age-Gated Fusion}
+
+We fuse spatial and temporal summaries using a scalar monotone gate:
+\begin{align}
+g_i \triangleq \sigma\!\big(\alpha(a^{(i)}_t-\beta)\big), \qquad \alpha>0,
+\label{eq:gate}
+\end{align}
+and
+\begin{align}
+\mathbf{h}_i = (1-g_i)\mathbf{h}^{S}_i + g_i\mathbf{h}^{T}_i \in \mathbb{R}^{d}.
+\label{eq:fusion}
+\end{align}
+
+\textbf{Monotonicity guarantee.} The constraint $\alpha > 0$ is critical for encoding our inductive bias that reliance on temporal history should \emph{increase} with station age. We enforce this constraint via reparameterization:
+\begin{align}
+\alpha = \mathrm{softplus}(\tilde{\alpha}) + \epsilon, \qquad \epsilon = 10^{-3},
+\end{align}
+where $\tilde{\alpha} \in \mathbb{R}$ is the unconstrained learnable parameter and $\mathrm{softplus}(x) = \log(1 + e^x)$. This guarantees $\alpha > \epsilon > 0$ for all $\tilde{\alpha}$, ensuring monotonicity.
+
+\textbf{Properties of the gate function.} The sigmoid gate $g(a) = \sigma(\alpha(a - \beta))$ has several desirable properties:
+
+\emph{(i) Interpretable parameters}: $\beta$ represents the age at which spatial and temporal contributions are balanced ($g(\beta) = 0.5$), while $\alpha$ controls the sharpness of the transition. In our experiments, the model learns $\alpha \approx 1.85$ and $\beta \approx 0.36$ years ($\approx 131$ days), indicating a gradual transition with the crossover point at approximately 4 months.
+
+\emph{(ii) Bounded interpolation}: Since $g_i \in (0, 1)$, the fused representation is always a convex combination of spatial and temporal features, preventing either pathway from being completely ignored.
+
+\emph{(iii) Gradient flow}: The gate provides a direct gradient path to both pathways:
+\begin{align}
+\frac{\partial \mathbf{h}_i}{\partial \mathbf{h}^{S}_i} = (1 - g_i)\mathbf{I}, \qquad
+\frac{\partial \mathbf{h}_i}{\partial \mathbf{h}^{T}_i} = g_i\mathbf{I}.
+\end{align}
+For cold-start stations ($g_i \approx 0.35$), gradients flow more strongly to the spatial pathway, encouraging it to learn effective transfer. For mature stations ($g_i \approx 0.85$), gradients flow more strongly to the temporal pathway, encouraging it to learn station-specific patterns.
+
+\textbf{Alternative fusion mechanisms considered.} We evaluated several alternative fusion strategies during development:
+
+\emph{(i) Fixed gate}: Setting $g = 0.5$ for all stations (equivalent to simple averaging) yielded 15\% worse CS-Pos MAE, confirming the value of adaptive fusion.
+
+\emph{(ii) Learned per-station gate}: Parameterizing $g_i$ as a function of station metadata (without age) performed 8\% worse, suggesting that lifecycle stage is the key factor.
+
+\emph{(iii) Attention-based fusion}: Using $g_i = \sigma(\mathbf{w}^T[\mathbf{h}^S_i; \mathbf{h}^T_i])$ performed comparably but sacrificed interpretability and occasionally produced non-monotonic age-gate relationships.
+
+\emph{(iv) Non-monotonic gate}: Allowing $\alpha < 0$ (by removing the softplus constraint) occasionally yielded gates that \emph{decreased} with age, contradicting our inductive bias and degrading cold-start performance by 12\%.
+
+\subsection{Hurdle Head for Zero-Inflated Demand}
+
+For each horizon step $h\in\{1,\dots,H\}$, TA-GNN predicts:
+\begin{align}
+\ell^{(i)}_{t+h} &= f_p(\mathbf{h}_i)_h, \qquad p^{(i)}_{t+h} = \sigma(\ell^{(i)}_{t+h}), \\
+\mu^{(i)}_{t+h} &= \mathrm{softplus}\!\big(f_\mu(\mathbf{h}_i)_h\big),
+\end{align}
+where $f_p: \mathbb{R}^d \rightarrow \mathbb{R}^H$ and $f_\mu: \mathbb{R}^d \rightarrow \mathbb{R}^H$ are small MLP heads:
+\begin{align}
+f_p(\mathbf{h}) &= \mathbf{W}_{p2} \cdot \text{ReLU}(\mathbf{W}_{p1}\mathbf{h} + \mathbf{b}_{p1}) + \mathbf{b}_{p2}, \\
+f_\mu(\mathbf{h}) &= \mathbf{W}_{\mu 2} \cdot \text{ReLU}(\mathbf{W}_{\mu 1}\mathbf{h} + \mathbf{b}_{\mu 1}) + \mathbf{b}_{\mu 2},
+\end{align}
+with $\mathbf{W}_{p1}, \mathbf{W}_{\mu 1} \in \mathbb{R}^{32 \times d}$ and $\mathbf{W}_{p2}, \mathbf{W}_{\mu 2} \in \mathbb{R}^{H \times 32}$.
+
+The expected demand forecast is:
+\begin{align}
+\hat{y}^{(i)}_{t+h} = p^{(i)}_{t+h}\,\mu^{(i)}_{t+h}.
+\end{align}
+
+\textbf{Justification for hurdle decomposition.} The hurdle (two-part) model is well-suited to zero-inflated count data where zeros arise from a different generative process than positive counts \citep{mullahy1986specification}. In our setting, $y^{(i)}_t = 0$ may occur either because no EV arrived (occurrence process) or because an EV arrived but did not charge (intensity process truncated to zero). Decomposing prediction into occurrence probability $p$ and conditional intensity $\mu$ allows the model to learn these processes separately, which is particularly valuable under extreme zero-inflation (94\% zeros) where a single regression head would be dominated by the zero mode.
+
+\subsection{Imbalance-Aware Hurdle Objective}
+
+Let $y^{(i)}_{t+h}$ and $m^{(i)}_{t+h}$ denote the target and observation mask for horizon step $h$. Define $z^{(i)}_{t+h}=\mathbb{I}[y^{(i)}_{t+h}>0]$.
+
+\textbf{Occurrence loss (weighted BCE).} We use a weighted binary cross-entropy loss for occurrence prediction:
+\begin{align}
+\mathcal{L}_{\text{cls}} = \frac{\sum_{i,h} m^{(i)}_{t+h}\, \mathrm{BCE}\!\big(\ell^{(i)}_{t+h}, z^{(i)}_{t+h}; w_{+}\big)} {\sum_{i,h} m^{(i)}_{t+h}},
+\end{align}
+where $w_{+} = 16$ is a positive-class weight matching the empirical zero/positive ratio. This reweighting ensures that the detection head does not trivially predict $p \approx 0$ everywhere.
+
+\textbf{Intensity loss (positive-only MSE).} We define a positive mask $\tilde{m}^{(i)}_{t+h}=m^{(i)}_{t+h}z^{(i)}_{t+h}$ and optimize MSE only on positive observations:
+\begin{align}
+\mathcal{L}_{\text{cnt}} = \frac{\sum_{i,h} \tilde{m}^{(i)}_{t+h}\,\big(\mu^{(i)}_{t+h}-y^{(i)}_{t+h}\big)^2} {\sum_{i,h}\tilde{m}^{(i)}_{t+h}}.
+\end{align}
+
+\textbf{Zero regularization.} To prevent arbitrarily large intensity predictions on observed zeros (which would not affect $\mathcal{L}_{\text{cnt}}$ but would inflate $\hat{y} = p \cdot \mu$ when $p > 0$), we add a regularizer with $\bar{m}^{(i)}_{t+h}=m^{(i)}_{t+h}(1-z^{(i)}_{t+h})$:
+\begin{align}
+\mathcal{L}_{\text{reg}} = \frac{\sum_{i,h}\bar{m}^{(i)}_{t+h}\,\big(\mu^{(i)}_{t+h}\big)^2} {\sum_{i,h}\bar{m}^{(i)}_{t+h}}.
+\end{align}
+
+\textbf{Total loss.} The combined hurdle objective is:
+\begin{align}
+\mathcal{L} = \lambda\,\mathcal{L}_{\text{cls}} + (1-\lambda)\,\mathcal{L}_{\text{cnt}} + \rho\,\mathcal{L}_{\text{reg}},
+\end{align}
+with $\lambda = 0.5$ (equal weighting of detection and intensity) and $\rho = 0.1$ (mild zero regularization).
+
+\subsection{Age-Consistent Cold-Start Augmentation}
+
+To increase robustness in data-scarce regimes, we simulate additional cold-start conditions during training with probability $p_{\mathrm{aug}}$ per station.
+For a selected station $i$ that is operational at the forecast origin, we:
+(i) overwrite its history with zeros, $\mathbf{y}^{(i)}_{t-L:t-1}\leftarrow \mathbf{0}$;
+(ii) sample a synthetic age $\tilde{a}$ uniformly in $[0,\Delta]$ days (with $\Delta=14$);
+(iii) set $a^{(i)}_{t}\leftarrow \tilde{a}/365.25$;
+(iv) enforce lifecycle-consistent availability by setting $\mathbf{m}^{(i)}_{t-L:t-1}$ to be zero except for the most recent $\min(L,\lfloor 24\tilde{a}\rfloor)$ hours, which are set to one.
+This augmentation preserves the semantic coupling between \emph{age}, \emph{mask}, and \emph{history}, ensuring that synthetic cold-start examples remain statistically consistent with the lifecycle-aligned observation model.
+
+
+\textbf{Design justification.} This augmentation preserves the semantic coupling between (age, mask, history) required by lifecycle-aligned cold-start modeling. Unlike naive dropout (which would create inconsistent age-mask-history tuples), our augmentation simulates realistic cold-start scenarios where a station has recently opened and has limited observed history. This encourages the model to rely on spatial transfer when temporal history is unavailable, reinforcing the intended behavior of the age-gated fusion mechanism.
+
+\subsection{Computational Complexity}
+
+\textbf{Time complexity.} Let $N$ be the number of stations, $L$ the lookback length, $d$ the hidden dimension, $K$ the number of attention layers, and $R$ the number of heads. The per-forward-pass complexity is:
+\begin{align}
+\mathcal{O}\big(N \cdot L \cdot d^2 + K \cdot N^2 \cdot d\big),
+\end{align}
+where the first term corresponds to the GRU temporal pathway (applied independently to each station) and the second term corresponds to the multi-head attention (quadratic in $N$ due to all-pairs attention). For our configuration ($N=118$, $L=168$, $d=64$, $K=2$), the GRU term dominates.
+
+\textbf{Scalability.} The $\mathcal{O}(N^2)$ attention complexity may become prohibitive for networks with $N > 1000$ stations. For such settings, sparse  attention variants (e.g., attending only to $k$-nearest neighbors) or hierarchical approaches would be necessary. We leave this extension to future work.
+
+
+\textbf{Space complexity.} The model contains approximately 287K learnable parameters, distributed as: input projection (2K), station encoder (8K), GRU (98K), attention layers (131K), fusion (minimal), and hurdle heads (48K).
+
+\textbf{Inference latency.} On a single NVIDIA V100 GPU, TA-GNN processes the entire 118-station network in approximately 12ms per time step, enabling real-time deployment for operational forecasting.
+
+\subsection{Initialization Strategy}
+
+Proper initialization is critical for stable training, particularly given the novel attention and gating components:
+
+\emph{Linear layers}: Xavier uniform initialization \citep{glorot2010understanding}.
+
+\emph{GRU parameters}: Orthogonal initialization for recurrent weights, Xavier for input weights.
+
+\emph{Gate parameters}: $\tilde{\alpha}$ initialized such that $\alpha = \text{softplus}(\tilde{\alpha}) + \epsilon \approx 2.0$; $\beta$ initialized to 0.5 years. This provides a reasonable starting point where cold-start stations (age $< 0.5$ years) favor spatial transfer.
+
+\emph{Attention biases}: $\gamma_r = 2.0$, $\delta_r = 0.5$ for all heads, providing moderate initial strength for both proximity prior and age-directional bias.
+
+\emph{Provider embeddings}: Standard normal initialization scaled by $1/\sqrt{d_e}$.
+
+\subsection{Training Stability Techniques}
+
+Several techniques ensure stable optimization under the challenging conditions of severe zero-inflation and heterogeneous station ages:
+
+\emph{Gradient clipping}: Maximum gradient norm of 1.0 prevents exploding gradients during early training when the model encounters extreme age differences.
+
+\emph{Learning rate warmup}: Linear warmup over the first 5 epochs, ramping from $10^{-5}$ to $10^{-3}$, allows the randomly initialized attention and gating parameters to stabilize before aggressive updates.
+
+\emph{Layer normalization}: Applied after each attention layer and before the hurdle heads, stabilizing activations across the heterogeneous station population.
+
+\emph{Dropout}: Applied with $p=0.2$ in the GRU (between layers), attention (on attention weights), and hurdle heads, reducing overfitting on the sparse positive-demand signal.
+
+
+%*********************************************************************
+\section{Preprocessing Pipeline, Leakage-Free Adjacency, and Evaluation Details}
+\label{app:preprocessing}
+
+This appendix provides complete details on data preprocessing, leakage-free graph construction, and the lifecycle-aligned evaluation protocol. We emphasize two methodological distinctions critical for valid cold-start benchmarking: (i) separating pre-opening missingness from post-opening observed zeros, and (ii) constructing the adjacency matrix from metadata only (no demand-derived edges).
+
+\subsection{Temporal Aggregation and Time Zone Standardization}
+
+Raw charging-session records are converted to a common reference time zone (US/Eastern; \texttt{America/New\_York}) prior to hourly aggregation to ensure consistent calendar features across all stations. This standardization choice implies that stations physically located in other time zones are represented on the same reference clock; their local diurnal patterns are thus phase-shifted in the feature space, which the model must learn to accommodate.
+
+Let $\mathcal{S}$ denote the set of all charging sessions and let $\mathrm{station}(s)$ and $\mathrm{hour}(s)$ denote the mapped physical station and the corresponding hour bin for session $s$. We construct an hourly station-level count series:
+\begin{equation}
+y_t^{(i)} \;\triangleq\; \sum_{s\in\mathcal{S}} \mathbf{1}\!\left[\mathrm{station}(s)=i \,\wedge\, \mathrm{hour}(s)=t\right].
+\end{equation}
+The resulting demand tensor $\mathbf{Y}\in\mathbb{R}_{\ge 0}^{T\times N}$ is defined over $T$ hourly timestamps and $N$ stations.
+
+\subsection{Commissioning Time Estimation and Operational Mask}
+
+A critical step for valid cold-start evaluation is to distinguish \emph{pre-opening unobserved periods} from \emph{post-opening observed zeros}. For each station $i$, let $\tau_i$ denote the commissioning time (opening timestamp).
+
+\textbf{Commissioning time as an estimator.} When explicit commissioning metadata are unavailable from charging network operators—as is the case in our dataset—we estimate $\tau_i$ as the earliest observed session start time at station $i$, rounded down to the hourly grid:
+\begin{equation}
+\hat{\tau}_i \;\triangleq\; \min_{s \in \mathcal{S}_i} \lfloor \mathrm{start\_time}(s) \rfloor_{\text{hour}},
+\end{equation}
+where $\mathcal{S}_i = \{s \in \mathcal{S} : \mathrm{station}(s) = i\}$. This estimator provides a \emph{conservative lower bound} on operational age: the true commissioning date satisfies $\tau_i \leq \hat{\tau}_i$, since a station must be operational before its first recorded session. We use $\hat{\tau}_i$ in place of $\tau_i$ throughout and note this as a limitation; access to operator metadata would enable tighter lifecycle alignment.
+
+We define an operational observation mask $\mathbf{M}\in\{0,1\}^{T\times N}$ by
+\begin{equation}
+m_t^{(i)} \;\triangleq\; \mathbf{1}[t \ge \hat{\tau}_i].
+\end{equation}
+Thus, all post-opening hours are treated as observed ($m_t^{(i)}=1$) even when $y_t^{(i)}=0$, while pre-opening periods are excluded from training and evaluation ($m_t^{(i)}=0$). This prevents conflating structural missingness with zero-inflated demand—a subtle but critical distinction under severe sparsity.
+
+\subsection{Temporal Feature Engineering}
+
+We extract cyclical temporal features for each hour $t$:
+\begin{align}
+\text{Hour-of-day: } &\sin(2\pi h/24), \;\cos(2\pi h/24), \\
+\text{Day-of-week: } &\sin(2\pi d/7), \;\cos(2\pi d/7), \\
+\text{Month-of-year: } &\sin(2\pi m/12), \;\cos(2\pi m/12),
+\end{align}
+along with a binary weekend indicator. This yields a temporal feature vector $\mathbf{f}_t\in\mathbb{R}^{d_f}$ with $d_f=7$ in our implementation. Note that because all timestamps are standardized to US/Eastern time, these cyclical features reflect the reference clock rather than station-local time.
+
+\subsection{Station Metadata and Provider Encoding}
+
+Each station is associated with static metadata including the number of charging ports and (when available) geographic coordinates. Continuous attributes are normalized; for coordinates, we normalize latitude/longitude over stations with valid coordinates and include a binary coordinate-availability indicator. Provider identity is represented as a categorical feature and embedded via a learned lookup table.
+
+\subsection{Leakage-Free Graph Construction from Metadata}
+
+We construct a static adjacency matrix $\mathbf{A}\in\mathbb{R}^{N\times N}$ using \emph{metadata only} (no demand-derived edges), ensuring no information leakage from future observations or target variables.
+
+\textbf{Distance-based proximity kernel.} When station coordinates are available, we compute pairwise geodesic distances $d_{ij}$ and define a Gaussian proximity kernel with distance cutoff:
+\begin{equation}
+A_{ij} \;\triangleq\; \exp\!\left(-\frac{d_{ij}^2}{2\sigma^2}\right)\cdot \mathbf{1}[d_{ij}\le \delta], \quad i\neq j,
+\label{eq:adjacency_kernel}
+\end{equation}
+with bandwidth $\sigma$ and distance cutoff $\delta$. Unless stated otherwise, we use $\delta = 15$ km and $\sigma = 5$ km in all experiments, chosen to capture local spatial correlation while avoiding overly dense connectivity.
+
+\textbf{Self-loops and normalization.} We add self-loops ($A_{ii}=1$) and row-normalize $\mathbf{A}$ to obtain a stochastic prior adjacency.
+
+\textbf{Handling missing coordinates.} For stations lacking geographic coordinates, we set $A_{ij} = 0$ for $i \neq j$, so the prior reduces to the identity (self-connectivity only). Importantly, this does \emph{not} prevent information exchange: TA-GNN's learned attention mechanism is unconstrained and can attend across all operational stations regardless of the prior. The adjacency $\mathbf{A}$ enters only as an additive logit bias in the attention computation (see Appendix~\ref{app:tagnn}, Eq.~\ref{eq:attention_logits}), meaning it provides a \emph{soft inductive bias} toward spatially proximate stations rather than a hard constraint on message passing. Stations without coordinates simply receive no proximity boost but remain fully connected in the attention graph.
+
+\subsection{Temporal Splits and Sliding Window Construction}
+
+To prevent leakage and reflect realistic deployment scenarios, we split by global time:
+\begin{itemize}[leftmargin=*, topsep=2pt, itemsep=2pt]
+    \item \textbf{Train:} first 70\% of timestamps
+    \item \textbf{Validation:} next 15\% of timestamps  
+    \item \textbf{Test:} final 15\% of timestamps
+\end{itemize}
+
+\textbf{Sliding window construction.} Training examples are constructed via a sliding window over forecast origins $t \in [L, T - H]$, where $L$ is the lookback length and $H$ is the forecast horizon. The train/validation/test splits are applied to the \emph{forecast origins} $t$ (not to individual target hours $t + h$) to avoid temporal leakage—i.e., a training example with origin $t$ uses only history from $[t-L, t-1]$ and predicts targets in $[t, t+H-1]$, and all origins in a given split are strictly earlier than origins in subsequent splits.
+
+All stations may appear across splits, but their \emph{operational ages} differ over time. Stations that open after the training cutoff appear only in validation/test and constitute true cold-start cases with minimal or no training history—providing a rigorous test of generalization to newly deployed infrastructure.
+
+\subsection{Lifecycle-Aligned Evaluation Protocol}
+
+\textbf{Cold-start window.} We define the cold-start period as the first $\Delta$ days of operation (default $\Delta=14$, i.e., 336 hours). For an evaluation triple $(i,t,h)$, station $i$ is in cold-start if its operational age $a_t^{(i)} < \Delta$.
+
+\textbf{Metrics under zero inflation.} Let $\mathcal{T}\triangleq\{(i,t,h): m_{t+h}^{(i)}=1\}$ denote valid evaluation triples (post-opening only) and let $\mathcal{T}^+\triangleq\{(i,t,h)\in\mathcal{T}: y_{t+h}^{(i)}>0\}$ denote those with positive demand. All metrics are computed over all horizon steps $h \in \{1, \ldots, H\}$ (flattened across batch, station, and horizon dimensions) unless otherwise specified. We report:
+
+\textbf{Overall MAE:}
+\begin{equation}
+\mathrm{MAE} \;\triangleq\; \frac{1}{|\mathcal{T}|}\sum_{(i,t,h)\in\mathcal{T}} \left|\hat{y}_{t+h}^{(i)}-y_{t+h}^{(i)}\right|.
+\end{equation}
+
+\textbf{Positive MAE} (restricted to $y > 0$):
+\begin{equation}
+\mathrm{PosMAE} \;\triangleq\; \frac{1}{|\mathcal{T}^+|}\sum_{(i,t,h)\in\mathcal{T}^+} \left|\hat{y}_{t+h}^{(i)}-y_{t+h}^{(i)}\right|.
+\end{equation}
+
+\textbf{Cold-Start Positive MAE} (our primary metric):
+\begin{equation}
+\mathrm{CS\text{-}PosMAE} \;\triangleq\;
+\frac{1}{|\mathcal{T}^+_{\mathrm{cs}}|}
+\sum_{(i,t,h)\in\mathcal{T}^+_{\mathrm{cs}}}
+\left|\hat{y}_{t+h}^{(i)}-y_{t+h}^{(i)}\right|,
+\end{equation}
+where $\mathcal{T}^+_{\mathrm{cs}} \triangleq \{(i,t,h)\in\mathcal{T}: y_{t+h}^{(i)}>0 \wedge a_t^{(i)}<\Delta\}$ restricts to positive-demand observations within the cold-start window.
+
+\textbf{Event detection metrics.} We evaluate the binary classification task $\mathbf{1}[y_{t+h}^{(i)}>0]$ using predicted occurrence probabilities $\hat{p}_{t+h}^{(i)}$ from the hurdle head. We report AUPRC (Area Under the Precision-Recall Curve) and AUROC, which are informative under severe class imbalance ($\sim$16:1 zero-to-positive ratio).
+
+\begin{table}[t]
+\centering
+\small
+\caption{\textbf{Dataset statistics after preprocessing.} Operational station-hours are defined by $\sum_{t,i} m_t^{(i)}$.}
+\label{tab:dataset_stats}
+\begin{tabular}{lr}
+\toprule
+\textbf{Statistic} & \textbf{Value} \\
+\midrule
+Stations ($N$) & 118 \\
+Providers & 5 \\
+Hourly timestamps ($T$) & 28{,}758 \\
+Temporal span & January 2018 -- January 2025 \\
+Total charging sessions & 82{,}950 \\
+Observed station-hours ($\sum m_t^{(i)}$) & 1{,}105{,}292 \\
+Positive-demand station-hours ($y_t^{(i)}>0$) & 63{,}927 (5.8\%) \\
+Observed zero-demand station-hours & 1{,}041{,}365 (94.2\%) \\
+Zero-to-positive ratio & 16.29:1 \\
+Stations with valid coordinates & 97 (82.2\%) \\
+\midrule
+Lookback window ($L$) & 168 hours (7 days) \\
+Forecast horizon ($H$) & 5 hours \\
+Cold-start window ($\Delta$) & 14 days (336 hours) \\
+Adjacency bandwidth ($\sigma$) & 5 km \\
+Adjacency cutoff ($\delta$) & 15 km \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{Note on temporal span and station coverage.} The dataset spans January 2018 through January 2025, yielding $T = 28{,}758$ hourly timestamps. The effective temporal coverage per station varies substantially due to heterogeneous commissioning dates: the median station has approximately 2.5 years of operational history, while stations deployed in late 2024 have only weeks of observations in our test set. Of the 118 stations, 97 (82.2\%) have valid geographic coordinates enabling distance-based adjacency construction; the remaining 21 stations participate in attention-based message passing but receive no spatial proximity bias.
+%******************************************************************
+\section{Baseline Formulations and Experimental Details}
+\label{app:baselines}
+
+This appendix provides detailed mathematical formulations for all baseline methods and complete experimental configuration.
+
+%------------------------------------------------------------------------------
+\subsection{Statistical Baselines}
+
+\paragraph{Historical Average (HA).} For each station $i$ and target hour $h$, we predict the mean demand observed during matching temporal patterns:
+\begin{equation}
+\hat{y}_{t+h}^{(i)} = \frac{1}{|\mathcal{H}_{i,h}|} \sum_{t' \in \mathcal{H}_{i,h}} y_{t'}^{(i)}
+\end{equation}
+where $\mathcal{H}_{i,h} = \{t' : t' < T_{\text{train}} \land \text{hour}(t') = \text{hour}(t+h) \land \text{dow}(t') = \text{dow}(t+h) \land m_{t'}^{(i)} = 1\}$. For cold-start stations with $|\mathcal{H}_{i,h}| < 5$, we use the network-wide average for that time slot.
+
+\paragraph{Last Value (Persistence).} We predict the most recent observed demand: $\hat{y}_{t+h}^{(i)} = y_{t-1}^{(i)}$.
+
+%------------------------------------------------------------------------------
+\subsection{Neural Baselines}
+
+All neural baselines share identical hurdle output heads and loss function, differing only in encoder architecture.
+
+\paragraph{LSTM-Hurdle.} A 2-layer LSTM processes each station independently:
+\begin{equation}
+\mathbf{h}_i^{\text{enc}} = \text{LSTM}\left([\mathbf{y}_{t-L:t}^{(i)} \| \mathbf{m}_{t-L:t}^{(i)} \| \mathbf{f}_{t-L:t}]\right) \in \mathbb{R}^{d}
+\end{equation}
+where $L = 168$ hours (7 days), isolating temporal modeling without spatial information.
+
+\paragraph{GCN-Hurdle.} Graph Convolutional Network~\cite{kipf2016semi} with spectral convolutions:
+\begin{equation}
+\mathbf{H}^{(\ell+1)} = \sigma\left(\tilde{\mathbf{D}}^{-1/2} \tilde{\mathbf{A}} \tilde{\mathbf{D}}^{-1/2} \mathbf{H}^{(\ell)} \mathbf{W}^{(\ell)}\right)
+\end{equation}
+where $\tilde{\mathbf{A}} = \mathbf{A} + \mathbf{I}_N$ includes self-loops. We stack 2 GCN layers followed by a GRU temporal encoder. \textbf{Limitation:} Fixed, symmetric aggregation weights determined solely by topology.
+
+\paragraph{GAT-Hurdle.} Graph Attention Network~\cite{velivckovic2017graph} with learned attention:
+\begin{equation}
+\alpha_{ij} = \frac{\exp\left(\text{LeakyReLU}\left(\mathbf{a}^T[\mathbf{W}\mathbf{h}_i \| \mathbf{W}\mathbf{h}_j]\right)\right)}{\sum_{k \in \mathcal{N}(i)} \exp\left(\text{LeakyReLU}\left(\mathbf{a}^T[\mathbf{W}\mathbf{h}_i \| \mathbf{W}\mathbf{h}_k]\right)\right)}
+\end{equation}
+We use 4-head attention with 2 layers, followed by GRU encoding. \textbf{Limitation:} Attention is symmetric with respect to station age---cannot encode directional transfer from mature to young stations.
+
+%------------------------------------------------------------------------------
+\subsection{Shared Hurdle Output and Loss}
+
+\paragraph{Output Heads.} Given encoder output $\mathbf{h}_i^{\text{enc}}$:
+\begin{align}
+p_i &= \sigma\left(\mathbf{w}_p^T \mathbf{h}_i^{\text{enc}} + b_p\right) && \text{(detection probability)} \\
+\mu_i &= \text{softplus}\left(\mathbf{w}_\mu^T \mathbf{h}_i^{\text{enc}} + b_\mu\right) && \text{(conditional intensity)} \\
+\hat{y}_i &= p_i \cdot \mu_i && \text{(expected prediction)}
+\end{align}
+
+\paragraph{Hurdle Loss.} $\mathcal{L} = \mathcal{L}_{\text{det}} + \mathcal{L}_{\text{int}} + \mathcal{L}_{\text{reg}}$, where:
+\begin{align}
+\mathcal{L}_{\text{det}} &= -\frac{1}{|\mathcal{V}|} \sum_{(i,t,h) \in \mathcal{V}} \left[ w_+ z \log p + (1 - z) \log(1 - p) \right] && (w_+ = 16) \\
+\mathcal{L}_{\text{int}} &= \frac{1}{|\mathcal{V}^+|} \sum_{(i,t,h) \in \mathcal{V}^+} \left( \mu_{t+h}^{(i)} - y_{t+h}^{(i)} \right)^2 && \text{(positives only)} \\
+\mathcal{L}_{\text{reg}} &= \frac{0.1}{|\mathcal{V}^0|} \sum_{(i,t,h) \in \mathcal{V}^0} \left( \mu_{t+h}^{(i)} \right)^2 && \text{(zero regularization)}
+\end{align}
+
+%------------------------------------------------------------------------------
+\subsection{Evaluation Metrics}
+
+\paragraph{Overall MAE.}
+\begin{equation}
+\text{MAE} = \frac{1}{|\mathcal{T}|} \sum_{(i,t,h) \in \mathcal{T}} \left|\hat{y}_{t+h}^{(i)} - y_{t+h}^{(i)}\right|, \quad \mathcal{T} = \{(i, t, h) : m_{t+h}^{(i)} = 1\}
+\end{equation}
+
+\paragraph{Positive MAE.}
+\begin{equation}
+\text{Pos-MAE} = \frac{1}{|\mathcal{T}^+|} \sum_{(i,t,h) \in \mathcal{T}^+} \left|\hat{y}_{t+h}^{(i)} - y_{t+h}^{(i)}\right|, \quad \mathcal{T}^+ = \{(i, t, h) \in \mathcal{T} : y_{t+h}^{(i)} > 0\}
+\end{equation}
+
+\paragraph{Cold-Start Positive MAE (Primary Metric).}
+\begin{equation}
+\text{CS-Pos} = \frac{1}{|\mathcal{T}^+_{\text{cs}}|} \sum_{(i,t,h) \in \mathcal{T}^+_{\text{cs}}} \left|\hat{y}_{t+h}^{(i)} - y_{t+h}^{(i)}\right|, \quad \mathcal{T}^+_{\text{cs}} = \{(i, t, h) \in \mathcal{T}^+ : a_t^{(i)} < \Delta\}
+\end{equation}
+where $\Delta = 14$ days defines the cold-start window.
+
+%------------------------------------------------------------------------------
+\subsection{Architecture Hyperparameters}
+
+\begin{table}[h]
+\centering
+\caption{Shared hyperparameters across all neural models.}
+\label{tab:hyperparameters_app}
+\small
+\begin{tabular}{@{}lcp{5cm}@{}}
+\toprule
+\textbf{Hyperparameter} & \textbf{Value} & \textbf{Rationale} \\
+\midrule
+Hidden dimension $d$ & 64 & Balances capacity and overfitting \\
+Lookback window $L$ & 168 hrs & Captures weekly periodicity \\
+Forecast horizon $H$ & 5 hrs & Operational planning window \\
+GNN / Temporal layers & 2 / 2 & Sufficient receptive field \\
+Attention heads & 4 & Standard multi-head configuration \\
+Dropout rate & 0.2 & Regularization for sparse data \\
+Age embedding dim & 32 & Multi-scale age information \\
+Max age (embedding) & 5.0 yrs & Covers dataset range \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+%------------------------------------------------------------------------------
+\subsection{TA-GNN Specific Parameters}
+
+\begin{table}[h]
+\centering
+\caption{TA-GNN learnable parameters. The midpoint $\beta \approx 175$ days indicates transition from spatial-dominant to temporal-dominant after ${\sim}6$ months.}
+\label{tab:tagnn_params_app}
+\small
+\begin{tabular}{@{}lccp{3.5cm}@{}}
+\toprule
+\textbf{Parameter} & \textbf{Init} & \textbf{Learned} & \textbf{Interpretation} \\
+\midrule
+Gate steepness $\alpha$ & 2.0 & 2.1 & Transition sharpness \\
+Gate midpoint $\beta$ & 0.5 yr & 0.48 yr & 50\% spatial-temporal balance \\
+Adjacency bias $\gamma$ & 2.0 & (per head) & Proximity prior strength \\
+Age direction bias $\lambda$ & 0.5 & (per head) & Transfer bias strength \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+%------------------------------------------------------------------------------
+\subsection{Ablation Study Design}
+
+\begin{table}[h]
+\centering
+\caption{Ablation variants testing specific architectural hypotheses.}
+\label{tab:ablations_app}
+\small
+\begin{tabular}{@{}lp{6cm}@{}}
+\toprule
+\textbf{Variant} & \textbf{Modification} \\
+\midrule
+TA-GNN (full) & Complete model \\
+w/o Age Gate & Replace $g(a)$ with fixed $g = 0.5$ \\
+w/o Monotonicity & Allow $\alpha < 0$ (non-monotonic gate) \\
+w/o Age Attn Bias & Remove $b_{ij}^{\text{age}}$ from attention \\
+w/o Adjacency Bias & Remove $b_{ij}^{\text{adj}}$ from attention \\
+w/o Hurdle Loss & Single MSE head on expected value \\
+w/o Mask Input & Remove $\mathbf{m}$ from input features \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+
+%------------------------------------------------------------------------------
+\subsection{Baseline Hierarchy Summary}
+
+\begin{table}[h]
+\centering
+\caption{Architectural comparison forming an ablation hierarchy.}
+\label{tab:baseline_hierarchy_app}
+\small
+\begin{tabular}{@{}lccccc@{}}
+\toprule
+\textbf{Model} & \textbf{Spatial} & \textbf{Temporal} & \textbf{Attention} & \textbf{Age-Aware} & \textbf{Adaptive} \\
+\midrule
+Historical Avg & $\times$ & Implicit & $\times$ & $\times$ & $\times$ \\
+Last Value & $\times$ & Implicit & $\times$ & $\times$ & $\times$ \\
+LSTM-Hurdle & $\times$ & GRU & $\times$ & $\times$ & $\times$ \\
+GCN-Hurdle & Fixed & GRU & $\times$ & $\times$ & $\times$ \\
+GAT-Hurdle & Learned & GRU & $\checkmark$ & $\times$ & $\times$ \\
+\textbf{TA-GNN} & \textbf{Learned} & \textbf{GRU} & $\checkmark$ & $\checkmark$ & $\checkmark$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The hierarchy enables precise attribution:
+\begin{itemize}[leftmargin=*, itemsep=1pt]
+    \item LSTM $\rightarrow$ GCN: Value of spatial information
+    \item GCN $\rightarrow$ GAT: Value of learned attention
+    \item GAT $\rightarrow$ TA-GNN: Value of age-awareness + adaptive fusion
+\end{itemize}
+
+%------------------------------------------------------------------------------
+\subsection{Experimental Configuration Summary}
+
+\begin{table}[h]
+\centering
+\caption{Complete experimental configuration.}
+\label{tab:exp_summary_app}
+\small
+\begin{tabular}{@{}ll@{}}
+\toprule
+\textbf{Aspect} & \textbf{Configuration} \\
+\midrule
+Data splits & 70\% / 15\% / 15\% (temporal) \\
+Cold-start threshold $\Delta$ & 14 days (336 hours) \\
+Primary metric & Cold-Start Positive MAE \\
+Secondary metrics & Positive MAE, Overall MAE, AUPRC \\
+Optimizer & AdamW ($\eta{=}10^{-3}$, wd${=}10^{-4}$) \\
+Batch size & 32 \\
+Early stopping & Patience 15, monitor CS-Pos MAE \\
+Class balancing & $w_+ = 16$ \\
+Lookback / Horizon & 168 hours / 5 hours \\
+Hidden dimension & 64 \\
+Runs per model & 3 (different seeds) \\
+Hardware & Single NVIDIA V100 GPU \\
+Training time (TA-GNN) & ${\sim}45$ minutes \\
+Model size (TA-GNN) & 287K parameters \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document}
+
+% This document was modified from the file originally made available by
+% Pat Langley and Andrea Danyluk for ICML-2K. This version was created
+% by Iain Murray in 2018, and modified by Alexandre Bouchard in
+% 2019 and 2021 and by Csaba Szepesvari, Gang Niu and Sivan Sabato in 2022.
+% Modified again in 2023 and 2024 by Sivan Sabato and Jonathan Scarlett.
+% Previous contributors include Dan Roy, Lise Getoor and Tobias
+% Scheffer, which was slightly modified from the 2010 version by
+% Thorsten Joachims & Johannes Fuernkranz, slightly modified from the
+% 2009 version by Kiri Wagstaff and Sam Roweis's 2008 version, which is
+% slightly modified from Prasad Tadepalli's 2007 version which is a
+% lightly changed version of the previous year's version by Andrew
+% Moore, which was in turn edited from those of Kristian Kersting and
+% Codrina Lauth. Alex Smola contributed to the algorithmic style files.

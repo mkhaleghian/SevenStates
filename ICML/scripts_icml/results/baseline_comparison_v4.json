@@ -1,0 +1,68 @@
+{
+  "Historical Average": {
+    "overall_mae": 0.14199504256248474,
+    "overall_rmse": 0.3590228259563446,
+    "positive_mae": 1.1295664310455322,
+    "positive_count": 153833,
+    "cold_start_positive_mae": 0.9409193992614746,
+    "cold_start_positive_count": 562,
+    "auprc": 0.20234274292033178,
+    "auroc": 0.7482840644143984
+  },
+  "Last Value": {
+    "overall_mae": 0.14122827351093292,
+    "overall_rmse": 0.4952763020992279,
+    "positive_mae": 1.1594781875610352,
+    "positive_count": 153833,
+    "cold_start_positive_mae": 0.9306049942970276,
+    "cold_start_positive_count": 562,
+    "auprc": 0.080373615057983,
+    "auroc": 0.5555785436711603
+  },
+  "LSTM-Hurdle": {
+    "overall_mae": 0.4852803647518158,
+    "overall_rmse": 0.5912902355194092,
+    "positive_mae": 0.5514662861824036,
+    "positive_count": 153833,
+    "cold_start_positive_mae": 0.36163708567619324,
+    "cold_start_positive_count": 562,
+    "auprc": 0.22087050860793916,
+    "auroc": 0.7980514892145822
+  },
+  "GCN-Hurdle": {
+    "overall_mae": 0.4304431676864624,
+    "overall_rmse": 0.5493627190589905,
+    "positive_mae": 0.589690089225769,
+    "positive_count": 153833,
+    "cold_start_positive_mae": 0.4744977355003357,
+    "cold_start_positive_count": 562,
+    "auprc": 0.26270222074576016,
+    "auroc": 0.8075181969320402
+  },
+  "GAT-Hurdle": {
+    "overall_mae": 0.44086065888404846,
+    "overall_rmse": 0.5564874410629272,
+    "positive_mae": 0.574470579624176,
+    "positive_count": 153833,
+    "cold_start_positive_mae": 0.43658092617988586,
+    "cold_start_positive_count": 562,
+    "auprc": 0.2617461206094007,
+    "auroc": 0.807571645206249
+  },
+  "TA-GNN v4": {
+    "overall_mae": 0.46724268794059753,
+    "overall_rmse": 0.5868310928344727,
+    "cold_start_mae": 0.5669732093811035,
+    "cold_start_count": 15235,
+    "post_cold_start_mae": 0.46661677956581116,
+    "positive_only_mae": 0.5553849935531616,
+    "positive_only_rmse": 0.8705688714981079,
+    "positive_count": 153833,
+    "cold_start_positive_mae": 0.2586525082588196,
+    "cold_start_positive_count": 562,
+    "auprc": 0.2416627668198689,
+    "auroc": 0.7905490174187286,
+    "gate_cold_start": 0.3393263816833496,
+    "gate_mature": 0.8532784581184387
+  }
+}
