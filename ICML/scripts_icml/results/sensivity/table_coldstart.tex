@@ -1,0 +1,16 @@
+\begin{table}[h]
+\centering
+\caption{Sensitivity to cold-start window duration $\Delta$. CS-Pos MAE is computed on positive-demand hours within the first $\Delta$ days of each station's operation.}
+\label{tab:sensitivity_delta}
+\small
+\begin{tabular}{@{}ccccc@{}}
+\toprule
+$\Delta$ (days) & \textbf{CS-Pos MAE}$\downarrow$ & \textbf{Samples} & \textbf{Avg Gate $\bar{g}$} & \textbf{Pos-MAE}$\downarrow$ \\
+\midrule
+7 & 0.267 & 264 & 0.34 & 0.555 \\
+14 & 0.259 & 562 & 0.34 & 0.555 \\
+21 & 0.267 & 900 & 0.34 & 0.555 \\
+30 & 0.256 & 1,472 & 0.34 & 0.555 \\
+\bottomrule
+\end{tabular}
+\end{table}

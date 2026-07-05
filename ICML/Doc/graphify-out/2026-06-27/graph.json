@@ -1,0 +1,291 @@
+{
+  "directed": false,
+  "multigraph": false,
+  "graph": {
+    "hyperedges": [
+      {
+        "id": "ta_gnn_architecture",
+        "label": "TA-GNN Components",
+        "nodes": [
+          "gnn_ev_icml_claude_chat_history_aware_node_embedding",
+          "gnn_ev_icml_claude_chat_history_length_attention",
+          "gnn_ev_icml_claude_chat_masked_negative_log_likelihood"
+        ],
+        "relation": "participate_in",
+        "confidence": "EXTRACTED",
+        "confidence_score": 1.0,
+        "source_file": "GNN_EV_ICML_claude_chat.txt"
+      },
+      {
+        "id": "gm_zero_architecture",
+        "label": "GM-Zero Components",
+        "nodes": [
+          "gnn_ev_icml_claude_chat_graph_meta_learner",
+          "gnn_ev_icml_claude_chat_contrastive_station_embedding"
+        ],
+        "relation": "participate_in",
+        "confidence": "EXTRACTED",
+        "confidence_score": 1.0,
+        "source_file": "GNN_EV_ICML_claude_chat.txt"
+      }
+    ]
+  },
+  "nodes": [
+    {
+      "label": "build_target_tensor",
+      "file_type": "code",
+      "source_file": "GNN_EV_ICML_claude_chat.txt",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "gnn_ev_icml_claude_chat_build_target_tensor",
+      "community": 4,
+      "norm_label": "build_target_tensor"
+    },
+    {
+      "label": "build_distance_adjacency",
+      "file_type": "code",
+      "source_file": "GNN_EV_ICML_claude_chat.txt",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "gnn_ev_icml_claude_chat_build_distance_adjacency",
+      "community": 2,
+      "norm_label": "build_distance_adjacency"
+    },
+    {
+      "label": "build_provider_adjacency",
+      "file_type": "code",
+      "source_file": "GNN_EV_ICML_claude_chat.txt",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "gnn_ev_icml_claude_chat_build_provider_adjacency",
+      "community": 3,
+      "norm_label": "build_provider_adjacency"
+    },
+    {
+      "label": "compute_history_features",
+      "file_type": "code",
+      "source_file": "GNN_EV_ICML_claude_chat.txt",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "gnn_ev_icml_claude_chat_compute_history_features",
+      "community": 5,
+      "norm_label": "compute_history_features"
+    },
+    {
+      "label": "HistoryAwareNodeEmbedding",
+      "file_type": "code",
+      "source_file": "GNN_EV_ICML_claude_chat.txt",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "gnn_ev_icml_claude_chat_history_aware_node_embedding",
+      "community": 0,
+      "norm_label": "historyawarenodeembedding"
+    },
+    {
+      "label": "HistoryLengthAttention",
+      "file_type": "code",
+      "source_file": "GNN_EV_ICML_claude_chat.txt",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "gnn_ev_icml_claude_chat_history_length_attention",
+      "community": 0,
+      "norm_label": "historylengthattention"
+    },
+    {
+      "label": "MaskedNegativeLogLikelihood",
+      "file_type": "code",
+      "source_file": "GNN_EV_ICML_claude_chat.txt",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "gnn_ev_icml_claude_chat_masked_negative_log_likelihood",
+      "community": 0,
+      "norm_label": "maskednegativeloglikelihood"
+    },
+    {
+      "label": "TA-GNN",
+      "file_type": "concept",
+      "source_file": "GNN_EV_ICML_claude_chat.txt",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "gnn_ev_icml_claude_chat_tagnn",
+      "community": 0,
+      "norm_label": "ta-gnn"
+    },
+    {
+      "label": "GM-Zero",
+      "file_type": "concept",
+      "source_file": "GNN_EV_ICML_claude_chat.txt",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "gnn_ev_icml_claude_chat_gm_zero",
+      "community": 1,
+      "norm_label": "gm-zero"
+    },
+    {
+      "label": "GraphMetaLearner",
+      "file_type": "code",
+      "source_file": "GNN_EV_ICML_claude_chat.txt",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "gnn_ev_icml_claude_chat_graph_meta_learner",
+      "community": 1,
+      "norm_label": "graphmetalearner"
+    },
+    {
+      "label": "ContrastiveStationEmbedding",
+      "file_type": "code",
+      "source_file": "GNN_EV_ICML_claude_chat.txt",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "gnn_ev_icml_claude_chat_contrastive_station_embedding",
+      "community": 1,
+      "norm_label": "contrastivestationembedding"
+    },
+    {
+      "label": "Curriculum Learning",
+      "file_type": "concept",
+      "source_file": "GNN_EV_ICML_claude_chat.txt",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "gnn_ev_icml_claude_chat_curriculum_learning",
+      "community": 0,
+      "norm_label": "curriculum learning"
+    }
+  ],
+  "links": [
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "GNN_EV_ICML_claude_chat.txt",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "gnn_ev_icml_claude_chat_tagnn",
+      "target": "gnn_ev_icml_claude_chat_history_aware_node_embedding"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "GNN_EV_ICML_claude_chat.txt",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "gnn_ev_icml_claude_chat_tagnn",
+      "target": "gnn_ev_icml_claude_chat_history_length_attention"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "GNN_EV_ICML_claude_chat.txt",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "gnn_ev_icml_claude_chat_tagnn",
+      "target": "gnn_ev_icml_claude_chat_masked_negative_log_likelihood"
+    },
+    {
+      "relation": "references",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "GNN_EV_ICML_claude_chat.txt",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "gnn_ev_icml_claude_chat_graph_meta_learner",
+      "target": "gnn_ev_icml_claude_chat_tagnn"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "GNN_EV_ICML_claude_chat.txt",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "gnn_ev_icml_claude_chat_tagnn",
+      "target": "gnn_ev_icml_claude_chat_curriculum_learning"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "GNN_EV_ICML_claude_chat.txt",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "gnn_ev_icml_claude_chat_gm_zero",
+      "target": "gnn_ev_icml_claude_chat_contrastive_station_embedding"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "GNN_EV_ICML_claude_chat.txt",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "gnn_ev_icml_claude_chat_gm_zero",
+      "target": "gnn_ev_icml_claude_chat_graph_meta_learner"
+    }
+  ],
+  "hyperedges": [
+    {
+      "id": "ta_gnn_architecture",
+      "label": "TA-GNN Components",
+      "nodes": [
+        "gnn_ev_icml_claude_chat_history_aware_node_embedding",
+        "gnn_ev_icml_claude_chat_history_length_attention",
+        "gnn_ev_icml_claude_chat_masked_negative_log_likelihood"
+      ],
+      "relation": "participate_in",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "GNN_EV_ICML_claude_chat.txt"
+    },
+    {
+      "id": "gm_zero_architecture",
+      "label": "GM-Zero Components",
+      "nodes": [
+        "gnn_ev_icml_claude_chat_graph_meta_learner",
+        "gnn_ev_icml_claude_chat_contrastive_station_embedding"
+      ],
+      "relation": "participate_in",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "GNN_EV_ICML_claude_chat.txt"
+    }
+  ],
+  "built_at_commit": "128a1aa4f979aee84c389ad55b169fa9011e9230"
+}

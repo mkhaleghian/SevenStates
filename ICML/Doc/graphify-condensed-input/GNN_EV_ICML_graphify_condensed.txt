@@ -1,0 +1,606 @@
+# Graphify Condensed Extraction Source
+Derived from source file: GNN_EV_ICML_claude_chat.txt
+Purpose: condensed source for knowledge graph extraction when the full chat transcript exceeds Gemini free-tier limits.
+
+## EV Charging GNN Literature Entries
+### Literature Entry 1
+1. Spatial-temporal load prediction of electric bus charging station based on S2TAT
+• Method: Synchronous Spatial-Temporal Attention Transformer (S2TAT). It incorporates an adaptive adjacency matrix for dynamic spatial dependency learning and a periodicity extraction mechanism.
+• Node & Edge: Nodes represent charging stations; Edges represent the connectivity between them.
+• Demand: The number of charging vehicles (electric buses) at a specific station in a specific period of time.
+• Prediction: Charging load (number of vehicles) for electric buses.
+• Data: Operational data from 321 new energy electric buses in Shanghai, converted into a charging load matrix and distance matrix.
+
+### Literature Entry 2
+2. Spatio-temporal forecasting of EV charging demand in urban communities considering differentiated user characteristics
+• Method: A framework integrating a Temporal Graph Convolutional Network (T-GCN) for traffic flow, Maximum Entropy Estimation for Origin-Destination (O-D) analysis, Dynamic Traffic Assignment (DTA), and an enhanced M/M/C/K queuing model.
+• Node & Edge: Nodes represent traffic nodes (intersections/endpoints) or charging station locations within the Transportation Network (TN); Edges represent road segments.
+• Demand: Charging demand is derived from traffic flow and classified into fast charging (Type B, public stations) and slow charging (Type A, private/workplace).
+• Prediction: Spatio-temporal EV charging demand.
+• Data: Traffic flow data, temperature data, and road network topology from a city in East China.
+
+### Literature Entry 3
+3. Load probabilistic forecasting for electric vehicle charging station cluster: Adaptive multivariate spatiotemporal graph fusion technology
+• Method: Adaptive Multivariate Spatiotemporal Graph (AMSTG) model. It combines a time Transformer, a multi-layer graph fusion module (dynamic and static graphs), and a Copula-based probabilistic decoder.
+• Node & Edge: Nodes represent charging stations; Edges represent correlations between load attributes (intra-station) or spatial dependencies (inter-station).
+• Demand: Multivariate demand consisting of charging power (kW) and charging station occupancy rate.
+• Prediction: Probabilistic forecasting of charging load (power and occupancy).
+• Data: Real-world data from 247 public EV charging stations in Shenzhen, China.
+
+### Literature Entry 4
+4. A Physics-Informed and Attention-Based Graph Learning Approach for Regional Electric Vehicle Charging Demand Prediction
+• Method: Physics-Informed Attention-based Graph learning (PIAST / PAG). It uses a 2D-CNN for feature engineering, a spatio-temporal dual attention module (GAT and LSTM), and Physics-informed Meta-learning (PIML) to embed economic laws (Price Elasticity of Demand).
+• Node & Edge: Nodes represent traffic zones/areas; Edges represent spatial adjacency (neighboring relationships).
+• Demand: The number of EVs being serviced in a specific area (occupancy).
+• Prediction: Regional EV charging demand (occupancy).
+• Data: 18,061 EV charging piles in Shenzhen, China.
+
+### Literature Entry 5
+5. Privacy-preserving coordination of power and transportation networks using spatiotemporal GAT for predicting EV charging demands
+• Method: Predict-Then-Optimize (PTO) framework using a Spatiotemporal Graph Attention Network (STGAT) combined with an enhanced M/M/C/N queuing model.
+• Node & Edge: Nodes are sensor/traffic nodes in the Urban Transportation Network (UTN); Edges represent connectivity.
+• Demand: EV charging demand derived from predicted vehicle flow.
+• Prediction: Vehicle flow (traffic flow) converted to charging demand.
+• Data: PeMSD4 traffic dataset (San Francisco) and IEEE 33-bus power system data.
+
+### Literature Entry 6
+6. An adaptive spatio-temporal graph recurrent network for short-term electric vehicle charging demand prediction
+• Method: Adaptive Spatial-Temporal Graph Recurrent Network (ASTGRN). It uses an adaptive graph learning layer (data-driven adjacency matrix) and a graph recurrent layer (GCN + GRU).
+• Node & Edge: Nodes represent charging stations; Edges represent spatial correlations learned via dynamic node embeddings (adaptive adjacency).
+• Demand: The number of served EVs at a charging station.
+• Prediction: Short-term EV charging demand.
+• Data: Real-world EV GPS trajectory dataset of 76,774 private EVs and 1,128 charging stations in Beijing, China.
+
+### Literature Entry 7
+7. Citywide electric vehicle charging demand prediction approach considering urban region and dynamic influences
+• Method: CityEVCP. Uses attentive hypergraph networks (clustering areas by POI), Graph Attention Network (GAT) for adjacency, a Variable Selection Network, and an improved Transformer encoder.
+• Node & Edge: Nodes are travel communities/sub-areas; Edges are spatial neighbors (GAT) and hyperedges representing groups of areas with similar land-use attributes.
+• Demand: Number of EV charging piles occupied (occupancy).
+• Prediction: Citywide EV charging demand (occupancy).
+• Data: ST-EVCDP dataset containing 18,061 public charging piles in Shenzhen, China.
+
+### Literature Entry 8
+8. Probabilistic prediction of electric vehicle load in service area incorporating highway spatiotemporal traffic information
+• Method: TCN-GAT (Temporal Convolutional Network + Graph Attention Network) for traffic flow prediction, followed by a refined EV entry rate estimation and an improved queuing theory model.
+• Node & Edge: Nodes are monitoring nodes (road sensors); Edges represent highway connections.
+• Demand: EV charging load (calculated from traffic flow, entry probability, and service rates).
+• Prediction: Highway traffic flow quantiles, converted to EV load.
+• Data: England highway traffic flow dataset and highway driving data from Guizhou Province.
+
+### Literature Entry 9
+9. Variational spatiotemporal factorized graph neural networks for integrated electric vehicle usage prediction and pattern recognition...
+• Method: Variational Spatiotemporal Factorized Graph Neural Network (VSTF-GNN). It decomposes data into spatial and temporal pattern matrices using a variational Bayesian method to handle missing data. It integrates STGNNs (STGCN, DCRNN, or AGCRN).
+• Node & Edge: Nodes are detectors (freeway) or Traffic Analysis Zones (urban); Edges are flow-based (freeway) or distance-based (urban).
+• Demand: EV flow (freeway) or charging occupancy (urban).
+• Prediction: Regional EV usage patterns and future values.
+• Data: FreewayEV dataset (Zhejiang, China) and UrbanEV dataset (Shenzhen, China).
+
+### Literature Entry 10
+10. Predicting electric vehicle charging demand using a heterogeneous spatio-temporal graph convolutional network
+• Method: Heterogeneous Spatio-Temporal Graph Convolutional Network. It constructs two graphs (geographic and demand) and uses GCN and GRU with a region-specific prediction module.
+• Node & Edge: Nodes are charging regions; Edges represent geographic adjacency and demand similarity (via Dynamic Time Warping).
+• Demand: Number of EVs served within a time interval and region.
+• Prediction: Short-term EV charging demand.
+• Data: GPS trajectory dataset of over 76,000 private EVs in Beijing, China.
+
+### Literature Entry 11
+11. Charging station cluster load prediction: Spatiotemporal multi-graph fusion technology
+• Method: MGAT-MIC-LSTM (Multi-Graph Attention Fusion Network). Fuses multiple graphs (distance, traffic network, traffic density) and feature graphs (via Maximum Information Coefficient) using attention mechanisms and LSTM.
+• Node & Edge: Nodes are charging stations or feature variables; Edges represent relationships (distance, traffic flow, correlation).
+• Demand: Power load.
+• Prediction: Charging station cluster load.
+• Data: 10 EV charging stations in Xi’an, China.
+
+### Literature Entry 12
+12. Modeling of machine learning with SHAP approach for electric vehicle charging station choice behavior prediction
+• Method: Machine Learning classifiers (Logistic Regression, Naive Bayes, Random Forest, XGBoost) combined with SHAP (Shapley Additive Explanations) for interpretability.
+• Node & Edge: Not applicable (Not a graph-based method).
+• Demand: Charging station choice behavior (Fast vs. Normal charging).
+• Prediction: Charging station choice class (Classification).
+• Data: Real-world charging event data from 500 EVs in Japan.
+
+### Literature Entry 13
+13. An electric vehicle charging demand prediction approach based on a Graph-based Spatio-temporal Attention Network
+• Method: Graph-based Spatio-Temporal Attention Network (G-STAN). Utilizes Residual Temporal Convolution Network (Res-TCN), Simple Graph Convolution Attention (Sim-GCA), and Temporal Pattern Attention (TPA).
+• Node & Edge: Nodes are traffic zones; Edges are spatial connections.
+• Demand: Charging demand (occupied charging piles).
+• Prediction: Charging demand.
+• Data: 18,061 charging piles in 247 traffic zones in Shenzhen, China.
+
+### Literature Entry 14
+14. Deep Spatio-Temporal Forecasting of Electrical Vehicle Charging Demand
+• Method: Temporal Graph Convolutional Network (T-GCN). Combines GCN for spatial and LSTM for temporal modeling.
+• Node & Edge: Nodes are charging stations; Edges are based on Haversine distance (thresholded).
+• Demand: Daily energy demand (consumption).
+• Prediction: Daily energy demand.
+• Data: Publicly available charging transaction data from Palo Alto, USA.
+
+### Literature Entry 15
+15. Spatiotemporal Prediction of Electric Vehicle Charging Load Based on Large Language Models
+• Method: EV-LLM. Integrates Graph Convolutional Networks (GCN) with a fine-tuned Large Language Model (LLAMA2) using a multimodal feature fusion module.
+• Node & Edge: Nodes are EV charging stations; Edges represent correlations/adjacency.
+• Demand: Charging load (power).
+• Prediction: EV charging load.
+• Data: Charging data from 10 stations in Palo Alto, California.
+
+### Literature Entry 16
+16. Spatio-Temporal Graph Convolutional Networks for EV Charging Demand Forecasting Using Real-World Multi-Modal Data Integration
+• Method: Traffic-Weather Graph Convolutional Network (TW-GCN). Uses a stacked GCN architecture with temporal components (1DCNN/LSTM/GRU/RNN) and K-means clustering.
+• Node & Edge: Nodes are charging stations; Edges are based on geographic proximity and demand similarity (DTW).
+• Demand: Energy consumption (kWh).
+• Prediction: EV charging demand (energy consumption).
+• Data: ChargePoint dataset (86 stations) in Tennessee, USA, plus traffic and weather data.
+
+### Literature Entry 17
+17. FMGCN: Federated Meta Learning-Augmented Graph Convolutional Network for EV Charging Demand Forecasting
+• Method: Federated Meta Learning-based Graph Convolutional Network (FMGCN). Uses a GCN with spatiotemporal attention (GCNSA) backbone within a Federated Learning (FedAvg) and Meta-Learning (FOMAML) framework.
+• Node & Edge: Nodes are urban regions/districts; Edges are neighboring relationships.
+• Demand: Charging demand (aggregated from records).
+• Prediction: Regional EV charging demand.
+• Data: 25,246 EV charging piles across six cities in the Greater Bay Area, China.
+
+### Literature Entry 18
+18. Forecasting EV Charging Station Occupancy Using ST-GCN And Adapter-Based Transfer Learning
+• Method: Spatio-Temporal Graph Convolutional Network (ST-GCN) using a Transformer for the temporal component. Introduces a Bridged Attention Module (BAM) adapter for transfer learning.
+• Node & Edge: Nodes are charging stations; Edges are connections in a fully connected network (simplified for transfer).
+• Demand: Occupancy (ratio of occupied chargers to total chargers).
+• Prediction: Charging station occupancy.
+• Data: ChargeFinder data for Sweden (Värnamo, Varberg, Malmö).
+
+### Literature Entry 19
+19. Graph WaveNet for Deep Spatial-Temporal Graph Modeling
+• Method: Graph WaveNet. Uses a self-adaptive adjacency matrix (learned through node embeddings) and stacked dilated 1D convolutions.
+• Node & Edge: Nodes are sensors; Edges are adaptive/learned dependencies.
+• Demand: Traffic speed (used as a proxy for demand modeling in this context).
+• Prediction: Traffic speed.
+• Data: METR-LA and PEMS-BAY traffic datasets.
+
+### Literature Entry 20
+20. Graph Attention Fusion Network for Electric Vehicle Charging Stations Management in Vehicle-to-Grid Systems
+• Method: Graph Attention Fusion Network (GAF-Net). Uses graph attention mechanisms and multi-view feature fusion.
+• Node & Edge: Nodes imply charging stations/grid points; Edges represent connections weighted by attention coefficients.
+• Demand: Energy demand patterns.
+• Prediction: Energy demand and renewable energy generation.
+• Data: Simulation in MATLAB compared with ANN, AIChOa, and NSGA-II.
+
+### Literature Entry 21
+21. Optimizing Electric Vehicles Charging using Large Language Models and Graph Neural Networks
+• Method: Offline Reinforcement Learning (RL) using a Decision Transformer (LLM-based) with GNN embeddings.
+• Node & Edge: Nodes are entities (EV, charger, transformer, CPO); Edges are interactions (power/information exchange).
+• Demand: Charging requirements (energy charged vs. desired SoC).
+• Prediction: Optimal charging/discharging actions (Maximize reward).
+• Data: Trajectories generated using EV2Gym simulator.
+
+### Literature Entry 22
+22. Load Forecasting of Electric Vehicle Charging Stations: Attention Based Spatiotemporal Multi–Graph Convolutional Networks
+• Method: Spatiotemporal Multi-Graph Convolutional Networks (STMGCN). Uses dilated causal convolution (TCN), spatiotemporal attention, and multi-graph convolution (distance and similarity graphs).
+• Node & Edge: Nodes are charging stations; Edges represent distance and load similarity.
+• Demand: Charging load (power).
+• Prediction: Charging load.
+• Data: 10 fast charging stations in Beijing, China.
+
+### Literature Entry 23
+23. Multi-Scale Spatial-Temporal Graph Attention Network for Charging Station Load Prediction
+• Method: Multi-Scale Spatial-Temporal Graph Attention Network (MSSTGAN). Uses Pyramid Split Attention, Multi-Head Attention, and Gated Fusion in an encoder-decoder architecture.
+• Node & Edge: Nodes are charging stations; Edges are defined by a spatial heterogeneity matrix.
+• Demand: Charging load (energy consumption).
+• Prediction: Charging load.
+• Data: Datasets from Palo Alto, Boulder, Dundee, and Perth.
+
+### Literature Entry 24
+24. Multiscale Spatio-Temporal Enhanced Short-term Load Forecasting of Electric Vehicle Charging Stations
+• Method: Multiscale Spatio-Temporal Enhanced Model (MSTEM). Uses Multiscale Graph Construction and Learning (MGCL) and a Temporal Enhanced Neural Network (TENN/LSTM).
+• Node & Edge: Nodes are charging stations; Edges are adjacency matrices processed via graph convolution.
+• Demand: Charging load.
+• Prediction: Short-term load.
+• Data: Fast and slow charging loads from EVCS in Perth, UK.
+
+### Literature Entry 25
+25. Operating Status Prediction Model at EV Charging Stations With Fusing Spatiotemporal Graph Convolutional Network
+• Method: Spatiotemporal Graph Convolutional Network (SGCN). Combines GCN and GRU using a Charging Station-Traffic Flow (CS-TF) model.
+• Node & Edge: Nodes represent road intersections and charging stations (as virtual roads); Edges represent connections.
+• Demand: Operating status (occupancy rate).
+• Prediction: Operating status.
+• Data: 4 charging stations and 15 surrounding roads in Xi’an, China.
+
+### Literature Entry 26
+26. Predicting Electric Vehicle Charging Load Using Graph Attention Networks and Autoformer
+• Method: GAT-Autoformer. Integrates Graph Attention Network (GAT) for spatial and Autoformer for temporal modeling.
+• Node & Edge: Nodes are grids/regions based on user trajectories; Edges represent actual movement of EVs between grids.
+• Demand: Charging load.
+• Prediction: Charging load.
+• Data: EV trajectory and charging data from Wuhan, China.
+
+### Literature Entry 27
+27. Short-term Charging Quantity Prediction of Charging Stations Based on Graph Neural Networks
+• Method: Dynamic Multi-Graph Spatio-Temporal Convolutional Network with Attention (DM-STGCN(A)). Uses temporal and graph convolutional layers with dynamic price graphs.
+• Node & Edge: Nodes are charging stations; Edges represent distance and price differences.
+• Demand: Charging quantity/demand (electricity usage in kWh).
+• Prediction: Short-term charging demand.
+• Data: Xingxing Charging data from a Chinese city (256 stations).
+
+### Literature Entry 28
+28. Short-term Spatial Load Forecasting Method Based on Spatio-Temporal Graph Convolutional Network
+• Method: DCT-STGCN. Integrates Discrete Cosine Transform (DCT) for frequency domain analysis and STGCN.
+• Node & Edge: Nodes are charging stations; Edges represent connectivity based on road network distance (Gaussian kernel).
+• Demand: Charging station load.
+• Prediction: Short-term spatial load.
+• Data: 11 EV charging stations in Changsha, China.
+
+### Literature Entry 29
+29. Spatial-Temporal Graph Convolutional-Based Recurrent Network for Electric Vehicle Charging Stations Demand Forecasting in Energy Market
+• Method: Mutual Residual Graph Convolution-Combined Bi-LSTM (mRGC-CBi-LSTM). Uses a Mutual Adjacency Matrix (MAM) considering static and dynamic attributes.
+• Node & Edge: Nodes are EVCS (Charging Stations); Edges represent mutual correlations (distance, feature correlation, user comfort, exogenous factors).
+• Demand: Charging demand.
+• Prediction: Charging demand.
+• Data: Public charging data from Palo Alto, California (6 EVCSs).
+
+### Literature Entry 30
+30. Spatial-Temporal Prediction of Schedulable Capacity of Electric Vehicles based on Graph Convolutional Network with Spatial-Attention
+• Method: GCN with Spatial-Attention combined with Gate Recurrent Unit (GRU).
+• Node & Edge: Nodes are charging stations; Edges represent connectivity based on geographical locations.
+• Demand: Schedulable capacity (EVSC).
+• Prediction: Schedulable capacity.
+• Data: 20 charging stations in a city distributed network.
+
+### Literature Entry 31
+31. Electric vehicle charging load prediction based on graph attention networks and autoformer
+• Method: GAT-Autoformer (same as source 26). Uses GAT for spatial and Autoformer for temporal modeling.
+• Node & Edge: Nodes are grids/regions; Edges represent actual movement of EVs.
+• Demand: Charging load.
+• Prediction: Charging load.
+• Data: EV trajectory and charging data from Wuhan, China.
+
+### Literature Entry 32
+32. GCN-Transformer-Based Spatio-Temporal Load Forecasting for EV Battery Swapping Stations under Differential Couplings
+• Method: GCN-Transformer. Uses Spearman’s rank correlation for feature selection, GCN for spatial aggregation, and Transformer for temporal dynamics.
+• Node & Edge: Nodes are Battery Swapping Stations (EVBSSs); Edges represent connectivity (adjacency matrix).
+• Demand: Load (electricity consumption).
+• Prediction: Spatio-temporal load.
+• Data: 46 battery swap stations in a city in Northeast China.
+
+### Literature Entry 33
+33. Spatiotemporal Forecasting of Regional Electric Vehicles Charging Load: A Multi-Channel Attentional Graph Network Integrating Dynamic Electricity Price and Weather
+• Method: STGCN-Attention. Integrates Multi-Scale Temporal Feature Extraction (MSTFE), GCN, and Cross-Attention.
+• Node & Edge: Nodes are spatial nodes (charging regions); Edges represent connectivity based on inverse distance.
+• Demand: Charging load volume.
+• Prediction: Regional EV charging load.
+• Data: 1,681 public charging stations in Shenzhen, China.
+
+### Literature Entry 34
+34. Prediction of electric vehicle charging demand using enhanced gated recurrent units with RKOA based graph convolutional network
+• Method: Fusion Graph Convolutional Network (FGCN) with Enhanced Gated Recurrent Unit (EGRU). Uses Red Kite Optimization Algorithm (RKOA) and Berkeley Wavelet Transform (BWT).
+• Node & Edge: Nodes are car nodes in the EV network; Edges represent spatial correlation (fusion of adjacency and adaptive graphs).
+• Demand: Charging demand.
+• Prediction: Charging demand.
+• Data: Georgia Tech EV charging dataset (Atlanta, USA).
+
+### Literature Entry 35
+35. AST-GIN: Attribute-Augmented Spatiotemporal Graph Informer Network for Electric Vehicle Charging Station Availability Forecasting
+• Method: Attribute-Augmented Spatiotemporal Graph Informer Network (AST-GIN). Integrates A2Unit (Attribute Augmentation), GCN, and Informer.
+• Node & Edge: Nodes are charging stations; Edges represent connectivity based on road distance.
+• Demand: Charging station availability (occupancy status).
+• Prediction: Charging station availability.
+• Data: Dundee EV Charging Station dataset (57 points).
+
+### Literature Entry 36
+36. Enhancing Urban Electric Vehicle (EV) Fleet Management Efficiency in Smart Cities: A Predictive Hybrid Deep Learning Framework
+• Method: GNN-ViGNet (Hybrid regression model using GNN, VGGNet, and Inception). Also uses Coati–Northern Goshawk Optimization (Coati–NGO) for route optimization.
+• Node & Edge: Nodes/Edges are not explicitly defined as a graph for the prediction target in the traditional sense, but GNN is used to learn interconnections between EV load consumption and user dynamics.
+• Demand: Charging load (kW).
+• Prediction: EV charging load.
+• Data: 400,000 IoT sensor records from Texas (Dallas metro).
+
+### Literature Entry 37
+37. Two-Stage City Fast Charging Demand Prediction Based on Spatio-Temporal Graph Convolutional Networks with Attention Mechanism and Deep Feedforward Neural Networks
+• Method: Two-stage framework: ASTGCN (Attention-based Spatiotemporal Graph Convolutional Network) for dynamic demand + DFNN (Deep Feedforward Neural Network) for static factors. Uses Simulated Annealing for Voronoi partitioning.
+• Node & Edge: Nodes are Voronoi units (90 nodes); Edges are undirected edges connecting adjacent units.
+• Demand: Charging demand (occupancy).
+• Prediction: City fast charging demand.
+• Data: 330 fast charging stations in Chongqing, China.
+
+### Literature Entry 38
+38. Smart City EV Charging Prediction with Adaptive Graph Networks
+• Method: Spatiotemporal Electric Vehicle Diffusion Network (STEV-DiffNet). Integrates Adaptive Graph Diffusion Network (AGDN), Multi-scale Temporal Variational Autoencoder (MT-VAE), and Power-guided Knowledge Distillation (PKD).
+• Node & Edge: Nodes are Traffic Analysis Zones (TAZs); Edges are adaptively generated based on geographical proximity and features.
+• Demand: Charging power demand.
+• Prediction: Charging power demand.
+• Data: 22 TAZs in Futian District, Shenzhen, China.
+
+### Literature Entry 39
+40. Spatial-temporal load forecasting of electric vehicle charging stations based on graph neural network
+• Method: Adaptive Spatial-temporal Graph Neural Network with Transformer (ASTNet-T). Uses adaptive optimal node graph learning (macro and micro graphs) and a Transformer.
+• Node & Edge: Nodes are EV charging stations; Edges are pairwise edges (adjacency) derived from macro (predefined + hidden) and micro (dynamic) structures.
+• Demand: Charging load.
+• Prediction: Charging load.
+• Data: Palo Alto (USA) and Dundee (Scotland) datasets.
+
+### Literature Entry 40
+41. Dynamic Spatio-Temporal Planning Strategy of EV Charging Stations and DGs Using GCNN-Based Predicted Power Demand
+• Method: GCNN-LSTM fusion model for prediction; Q-learning for allocation.
+• Node & Edge: Nodes are power substations (buses); Edges are power lines.
+• Demand: EV charging power demand.
+• Prediction: EV charging demand growth (Power).
+• Data: ERCOT load data and Texas traffic flow data (synthetic 2000-bus grid).
+
+### Literature Entry 41
+42. ChatEV: Predicting electric vehicle charging demand as natural language processing
+• Method: ChatEV. Uses a pre-trained Large Language Model (Sentence-T5) fine-tuned via a meta-learning framework (Reptile). Reformulates prediction as a text-to-text task.
+• Node & Edge: Nodes are traffic zones; Edges are neighboring relationships used to create textual descriptions of spatial context.
+• Demand: Charging occupancy.
+• Prediction: Charging demand (occupancy).
+• Data: ST-EVCDP dataset (18,061 piles, 247 traffic zones) from Shenzhen, China.
+
+### Literature Entry 42
+43. Electric vehicle charging demand prediction using spatio-temporal graph attention network
+• Method: Spatio-Temporal Graph Attention Network (STGAT). Uses GAT and LSTM. Includes geographic adjacency graph and functional similarity graph.
+• Node & Edge: Nodes are charging stations (regions); Edges represent geographic adjacency or functional similarity (POI-based).
+• Demand: Number of vehicles charged (charging demand).
+• Prediction: Charging demand.
+• Data: Real-world EV charging records from 732 stations in Beijing, China.
+
+### Literature Entry 43
+44. Electric Vehicle Charging Demand Prediction Model Based on Spatiotemporal Attention Mechanism
+• Method: FastDTW-ASTGCN. Uses Fast Dynamic Time Warping (FastDTW) to construct adjacency and ASTGCN (Attention-based Spatio-Temporal Graph Convolutional Network).
+• Node & Edge: Nodes are charging region nodes (Voronoi/functional areas); Edges represent correlation strength (DTW distance).
+• Demand: Charging load.
+• Prediction: Charging load.
+• Data: Charging load data from a city in Northeast China (likely Wuhan based on text or example)
+
+### Literature Entry 44
+2. Spatio-temporal forecasting of EV charging demand in urban communities...
+• Method: Framework integrating Temporal Graph Convolutional Network (T-GCN), Maximum Entropy Estimation, Dynamic Traffic Assignment (DTA), and enhanced M/M/C/K queuing model.
+• Node & Edge: Nodes are traffic nodes (intersections/endpoints); Edges are road segments.
+• Demand: Charging demand derived from traffic flow (classified into fast/Type B and slow/Type A).
+• Prediction: Spatio-temporal EV charging demand.
+• Data: Traffic flow and road network data from a city in East China.
+
+### Literature Entry 45
+4. A Physics-Informed and Attention-Based Graph Learning Approach (PIAST/PAG)
+• Method: PIAST/PAG. Uses 2D-CNN, Spatio-temporal dual attention (GAT/LSTM), and Physics-informed Meta-learning (PIML).
+• Node & Edge: Nodes are traffic zones/areas; Edges are spatial adjacency.
+• Demand: Number of EVs being serviced (occupancy).
+• Prediction: Regional EV charging demand.
+• Data: 18,061 charging piles in Shenzhen, China.
+
+### Literature Entry 46
+5. Privacy-preserving coordination of power and transportation networks... (STGAT)
+• Method: Predict-Then-Optimize (PTO) framework using Spatiotemporal Graph Attention Network (STGAT) and enhanced M/M/C/N queuing model.
+• Node & Edge: Nodes are sensor/traffic nodes in the UTN; Edges are connectivity.
+• Demand: EV charging demand derived from predicted vehicle flow.
+• Prediction: Vehicle flow converted to charging demand.
+• Data: PeMSD4 traffic dataset (San Francisco) and IEEE 33-bus power system.
+
+### Literature Entry 47
+6. An adaptive spatio-temporal graph recurrent network (ASTGRN)
+• Method: ASTGRN. Uses an adaptive graph learning layer (data-driven adjacency) and a graph recurrent layer (GCN + GRU).
+• Node & Edge: Nodes are charging stations; Edges are spatial correlations learned via dynamic embeddings.
+• Demand: Number of served EVs at a charging station.
+• Prediction: Short-term EV charging demand.
+• Data: GPS trajectory dataset of 76,774 EVs and 1,128 stations in Beijing.
+
+### Literature Entry 48
+7. Citywide electric vehicle charging demand prediction... (CityEVCP)
+• Method: CityEVCP. Uses attentive hypergraph networks (POI clustering), GAT, Variable Selection Network, and improved Transformer encoder.
+• Node & Edge: Nodes are travel communities/sub-areas; Edges are spatial neighbors and hyperedges (land-use attributes).
+• Demand: Number of EV charging piles occupied (occupancy).
+• Prediction: Citywide EV charging demand.
+• Data: ST-EVCDP dataset (Shenzhen).
+
+### Literature Entry 49
+8. Probabilistic prediction of electric vehicle load in service area... (TCN-GAT)
+• Method: TCN-GAT (Temporal Convolutional Network + Graph Attention Network) followed by a refined EV entry rate and queuing model.
+• Node & Edge: Nodes are monitoring nodes (road sensors); Edges are highway connections.
+• Demand: EV charging load (calculated from traffic flow quantile).
+• Prediction: Highway traffic flow quantiles converted to EV load.
+• Data: UK highway traffic flow and Guizhou driving data.
+
+### Literature Entry 50
+9. Variational spatiotemporal factorized graph neural networks (VSTF-GNN)
+• Method: VSTF-GNN. Decomposes data into spatial/temporal pattern matrices using variational Bayesian inference; integrates STGNNs (STGCN, DCRNN, or AGCRN).
+• Node & Edge: Nodes are detectors or Traffic Analysis Zones; Edges are flow-based or distance-based.
+• Demand: EV flow (freeway) or charging occupancy (urban).
+• Prediction: Regional EV usage patterns.
+• Data: FreewayEV (Zhejiang) and UrbanEV (Shenzhen).
+
+### Literature Entry 51
+10. Predicting electric vehicle charging demand using a heterogeneous spatio-temporal GCN
+• Method: Heterogeneous Spatio-Temporal Graph Convolutional Network. Uses two graphs (geographic and demand) with GCN and GRU.
+• Node & Edge: Nodes are charging regions; Edges are geographic adjacency and demand similarity (DTW).
+• Demand: Number of EVs served within a time interval.
+• Prediction: Short-term EV charging demand.
+• Data: GPS trajectory dataset of EVs in Beijing.
+
+### Literature Entry 52
+12. Modeling of machine learning with SHAP approach for... choice behavior prediction
+• Method: Machine Learning classifiers (XGBoost, RF, etc.) with SHAP interpretation.
+• Node & Edge: N/A (Classification task, not graph-based forecasting).
+• Demand: Charging station choice behavior (Fast vs. Normal).
+• Prediction: Charging station choice class.
+• Data: 500 EVs in Japan.
+
+### Literature Entry 53
+13. An electric vehicle charging demand prediction approach based on... (G-STAN)
+• Method: G-STAN. Uses Residual Temporal Convolution Network (Res-TCN), Simple Graph Convolution Attention (Sim-GCA), and Temporal Pattern Attention (TPA).
+• Node & Edge: Nodes are traffic zones; Edges are spatial connections.
+• Demand: Charging demand (occupied charging piles).
+• Prediction: Charging demand.
+• Data: 247 traffic zones in Shenzhen.
+
+### Literature Entry 54
+16. Spatio-Temporal Graph Convolutional Networks for EV Charging Demand Forecasting...
+• Method: Traffic-Weather Graph Convolutional Network (TW-GCN). Stacked GCN with temporal architectures (1DCNN, etc.).
+• Node & Edge: Nodes are charging stations; Edges are geographic proximity and demand similarity (DTW).
+• Demand: Energy consumption (kWh).
+• Prediction: EV charging demand.
+• Data: ChargePoint dataset in Tennessee, USA.
+
+### Literature Entry 55
+17. FMGCN: Federated Meta Learning-Augmented GCN...
+• Method: FMGCN. Uses GCNSA (GCN with ST attention) within a Federated Meta-Learning framework.
+• Node & Edge: Nodes are urban regions/districts; Edges are neighboring relationships.
+• Demand: Charging demand.
+• Prediction: Regional EV charging demand.
+• Data: 6 cities in the Greater Bay Area, China.
+
+### Literature Entry 56
+20. Graph Attention Fusion Network for... Vehicle-to-Grid Systems
+• Method: GAF-Net. Uses graph attention and multi-view feature fusion.
+• Node & Edge: Nodes are charging stations/grid points; Edges are connections.
+• Demand: Energy demand patterns.
+• Prediction: Energy demand and generation.
+• Data: Simulation in MATLAB.
+
+### Literature Entry 57
+21. Optimizing Electric Vehicles Charging using LLMs and GNNs
+• Method: Offline RL using Decision Transformer (LLM) and GNN embeddings.
+• Node & Edge: Nodes are entities (EV, charger, etc.); Edges are interactions.
+• Demand: Charging requirements vs. Grid constraints.
+• Prediction: Optimal charging actions (Reward maximization).
+• Data: EV2Gym simulator.
+
+### Literature Entry 58
+22. Load Forecasting of Electric Vehicle Charging Stations... (STMGCN)
+• Method: STMGCN. Uses dilated causal convolution, spatiotemporal attention, and multi-graph convolution.
+• Node & Edge: Nodes are charging stations; Edges are distance and similarity.
+• Demand: Charging load (power).
+• Prediction: Charging load.
+• Data: 10 fast charging stations in Beijing.
+
+### Literature Entry 59
+23. Multi-Scale Spatial-Temporal Graph Attention Network... (MSSTGAN)
+• Method: MSSTGAN. Uses Pyramid Split Attention and multi-scale feature extraction.
+• Node & Edge: Nodes are charging stations; Edges are spatial heterogeneity matrix.
+• Demand: Charging load.
+• Prediction: Charging load.
+• Data: Palo Alto, Boulder, Dundee, Perth.
+
+### Literature Entry 60
+24. Multiscale Spatio-Temporal Enhanced Short-term Load Forecasting... (MSTEM)
+• Method: MSTEM. Uses Multiscale Graph Construction and TENN/LSTM.
+• Node & Edge: Nodes are charging stations; Edges are adjacency matrices.
+• Demand: Charging load.
+• Prediction: Short-term load.
+• Data: Perth, UK.
+
+## Cross-Cutting Concepts And Proposed Model Notes
+- Concept note 1: 1. Spatial-temporal load prediction of electric bus charging station based on S2TAT
+- Concept note 2: • Method: Synchronous Spatial-Temporal Attention Transformer (S2TAT). It incorporates an adaptive adjacency matrix for dynamic spatial dependency learning and a periodicity extraction mechanism.
+- Concept note 3: • Node & Edge: Nodes represent charging stations; Edges represent the connectivity between them.
+- Concept note 4: 2. Spatio-temporal forecasting of EV charging demand in urban communities considering differentiated user characteristics
+- Concept note 5: • Node & Edge: Nodes represent traffic nodes (intersections/endpoints) or charging station locations within the Transportation Network (TN); Edges represent road segments.
+- Concept note 6: 3. Load probabilistic forecasting for electric vehicle charging station cluster: Adaptive multivariate spatiotemporal graph fusion technology
+- Concept note 7: • Method: Adaptive Multivariate Spatiotemporal Graph (AMSTG) model. It combines a time Transformer, a multi-layer graph fusion module (dynamic and static graphs), and a Copula-based probabilistic decoder.
+- Concept note 8: • Node & Edge: Nodes represent charging stations; Edges represent correlations between load attributes (intra-station) or spatial dependencies (inter-station).
+- Concept note 9: • Demand: Multivariate demand consisting of charging power (kW) and charging station occupancy rate.
+- Concept note 10: • Data: Real-world data from 247 public EV charging stations in Shenzhen, China.
+- Concept note 11: 4. A Physics-Informed and Attention-Based Graph Learning Approach for Regional Electric Vehicle Charging Demand Prediction
+- Concept note 12: • Method: Physics-Informed Attention-based Graph learning (PIAST / PAG). It uses a 2D-CNN for feature engineering, a spatio-temporal dual attention module (GAT and LSTM), and Physics-informed Meta-learning (PIML) to embed economic laws (Price Elasticity of Demand).
+- Concept note 13: • Method: Predict-Then-Optimize (PTO) framework using a Spatiotemporal Graph Attention Network (STGAT) combined with an enhanced M/M/C/N queuing model.
+- Concept note 14: 6. An adaptive spatio-temporal graph recurrent network for short-term electric vehicle charging demand prediction
+- Concept note 15: • Method: Adaptive Spatial-Temporal Graph Recurrent Network (ASTGRN). It uses an adaptive graph learning layer (data-driven adjacency matrix) and a graph recurrent layer (GCN + GRU).
+- Concept note 16: • Node & Edge: Nodes represent charging stations; Edges represent spatial correlations learned via dynamic node embeddings (adaptive adjacency).
+- Concept note 17: • Data: Real-world EV GPS trajectory dataset of 76,774 private EVs and 1,128 charging stations in Beijing, China.
+- Concept note 18: • Method: CityEVCP. Uses attentive hypergraph networks (clustering areas by POI), Graph Attention Network (GAT) for adjacency, a Variable Selection Network, and an improved Transformer encoder.
+- Concept note 19: • Method: TCN-GAT (Temporal Convolutional Network + Graph Attention Network) for traffic flow prediction, followed by a refined EV entry rate estimation and an improved queuing theory model.
+- Concept note 20: 10. Predicting electric vehicle charging demand using a heterogeneous spatio-temporal graph convolutional network
+- Concept note 21: • Method: Heterogeneous Spatio-Temporal Graph Convolutional Network. It constructs two graphs (geographic and demand) and uses GCN and GRU with a region-specific prediction module.
+- Concept note 22: 11. Charging station cluster load prediction: Spatiotemporal multi-graph fusion technology
+- Concept note 23: • Method: MGAT-MIC-LSTM (Multi-Graph Attention Fusion Network). Fuses multiple graphs (distance, traffic network, traffic density) and feature graphs (via Maximum Information Coefficient) using attention mechanisms and LSTM.
+- Concept note 24: • Node & Edge: Nodes are charging stations or feature variables; Edges represent relationships (distance, traffic flow, correlation).
+- Concept note 25: 12. Modeling of machine learning with SHAP approach for electric vehicle charging station choice behavior prediction
+- Concept note 26: • Demand: Charging station choice behavior (Fast vs. Normal charging).
+- Concept note 27: • Prediction: Charging station choice class (Classification).
+- Concept note 28: 13. An electric vehicle charging demand prediction approach based on a Graph-based Spatio-temporal Attention Network
+- Concept note 29: • Method: Graph-based Spatio-Temporal Attention Network (G-STAN). Utilizes Residual Temporal Convolution Network (Res-TCN), Simple Graph Convolution Attention (Sim-GCA), and Temporal Pattern Attention (TPA).
+- Concept note 30: 14. Deep Spatio-Temporal Forecasting of Electrical Vehicle Charging Demand
+- Concept note 31: • Node & Edge: Nodes are charging stations; Edges are based on Haversine distance (thresholded).
+- Concept note 32: • Node & Edge: Nodes are EV charging stations; Edges represent correlations/adjacency.
+- Concept note 33: 16. Spatio-Temporal Graph Convolutional Networks for EV Charging Demand Forecasting Using Real-World Multi-Modal Data Integration
+- Concept note 34: • Node & Edge: Nodes are charging stations; Edges are based on geographic proximity and demand similarity (DTW).
+- Concept note 35: • Method: Federated Meta Learning-based Graph Convolutional Network (FMGCN). Uses a GCN with spatiotemporal attention (GCNSA) backbone within a Federated Learning (FedAvg) and Meta-Learning (FOMAML) framework.
+- Concept note 36: 18. Forecasting EV Charging Station Occupancy Using ST-GCN And Adapter-Based Transfer Learning
+- Concept note 37: • Method: Spatio-Temporal Graph Convolutional Network (ST-GCN) using a Transformer for the temporal component. Introduces a Bridged Attention Module (BAM) adapter for transfer learning.
+- Concept note 38: • Node & Edge: Nodes are charging stations; Edges are connections in a fully connected network (simplified for transfer).
+- Concept note 39: • Method: Graph WaveNet. Uses a self-adaptive adjacency matrix (learned through node embeddings) and stacked dilated 1D convolutions.
+- Concept note 40: 20. Graph Attention Fusion Network for Electric Vehicle Charging Stations Management in Vehicle-to-Grid Systems
+- Concept note 41: • Method: Graph Attention Fusion Network (GAF-Net). Uses graph attention mechanisms and multi-view feature fusion.
+- Concept note 42: • Node & Edge: Nodes imply charging stations/grid points; Edges represent connections weighted by attention coefficients.
+- Concept note 43: 22. Load Forecasting of Electric Vehicle Charging Stations: Attention Based Spatiotemporal Multi–Graph Convolutional Networks
+- Concept note 44: • Method: Spatiotemporal Multi-Graph Convolutional Networks (STMGCN). Uses dilated causal convolution (TCN), spatiotemporal attention, and multi-graph convolution (distance and similarity graphs).
+- Concept note 45: • Node & Edge: Nodes are charging stations; Edges represent distance and load similarity.
+- Concept note 46: 23. Multi-Scale Spatial-Temporal Graph Attention Network for Charging Station Load Prediction
+- Concept note 47: • Method: Multi-Scale Spatial-Temporal Graph Attention Network (MSSTGAN). Uses Pyramid Split Attention, Multi-Head Attention, and Gated Fusion in an encoder-decoder architecture.
+- Concept note 48: • Node & Edge: Nodes are charging stations; Edges are defined by a spatial heterogeneity matrix.
+- Concept note 49: 24. Multiscale Spatio-Temporal Enhanced Short-term Load Forecasting of Electric Vehicle Charging Stations
+- Concept note 50: • Method: Multiscale Spatio-Temporal Enhanced Model (MSTEM). Uses Multiscale Graph Construction and Learning (MGCL) and a Temporal Enhanced Neural Network (TENN/LSTM).
+- Concept note 51: • Node & Edge: Nodes are charging stations; Edges are adjacency matrices processed via graph convolution.
+- Concept note 52: 25. Operating Status Prediction Model at EV Charging Stations With Fusing Spatiotemporal Graph Convolutional Network
+- Concept note 53: • Method: Spatiotemporal Graph Convolutional Network (SGCN). Combines GCN and GRU using a Charging Station-Traffic Flow (CS-TF) model.
+- Concept note 54: • Node & Edge: Nodes represent road intersections and charging stations (as virtual roads); Edges represent connections.
+- Concept note 55: • Data: 4 charging stations and 15 surrounding roads in Xi’an, China.
+- Concept note 56: 26. Predicting Electric Vehicle Charging Load Using Graph Attention Networks and Autoformer
+- Concept note 57: • Method: GAT-Autoformer. Integrates Graph Attention Network (GAT) for spatial and Autoformer for temporal modeling.
+- Concept note 58: 27. Short-term Charging Quantity Prediction of Charging Stations Based on Graph Neural Networks
+- Concept note 59: • Method: Dynamic Multi-Graph Spatio-Temporal Convolutional Network with Attention (DM-STGCN(A)). Uses temporal and graph convolutional layers with dynamic price graphs.
+- Concept note 60: • Node & Edge: Nodes are charging stations; Edges represent distance and price differences.
+- Concept note 61: 28. Short-term Spatial Load Forecasting Method Based on Spatio-Temporal Graph Convolutional Network
+- Concept note 62: • Node & Edge: Nodes are charging stations; Edges represent connectivity based on road network distance (Gaussian kernel).
+- Concept note 63: 29. Spatial-Temporal Graph Convolutional-Based Recurrent Network for Electric Vehicle Charging Stations Demand Forecasting in Energy Market
+- Concept note 64: • Node & Edge: Nodes are EVCS (Charging Stations); Edges represent mutual correlations (distance, feature correlation, user comfort, exogenous factors).
+- Concept note 65: 30. Spatial-Temporal Prediction of Schedulable Capacity of Electric Vehicles based on Graph Convolutional Network with Spatial-Attention
+- Concept note 66: • Method: GCN with Spatial-Attention combined with Gate Recurrent Unit (GRU).
+- Concept note 67: • Node & Edge: Nodes are charging stations; Edges represent connectivity based on geographical locations.
+- Concept note 68: 31. Electric vehicle charging load prediction based on graph attention networks and autoformer
+- Concept note 69: 32. GCN-Transformer-Based Spatio-Temporal Load Forecasting for EV Battery Swapping Stations under Differential Couplings
+- Concept note 70: 33. Spatiotemporal Forecasting of Regional Electric Vehicles Charging Load: A Multi-Channel Attentional Graph Network Integrating Dynamic Electricity Price and Weather
+- Concept note 71: • Method: STGCN-Attention. Integrates Multi-Scale Temporal Feature Extraction (MSTFE), GCN, and Cross-Attention.
+- Concept note 72: • Node & Edge: Nodes are car nodes in the EV network; Edges represent spatial correlation (fusion of adjacency and adaptive graphs).
+- Concept note 73: 35. AST-GIN: Attribute-Augmented Spatiotemporal Graph Informer Network for Electric Vehicle Charging Station Availability Forecasting
+- Concept note 74: • Node & Edge: Nodes are charging stations; Edges represent connectivity based on road distance.
+- Concept note 75: 37. Two-Stage City Fast Charging Demand Prediction Based on Spatio-Temporal Graph Convolutional Networks with Attention Mechanism and Deep Feedforward Neural Networks
+- Concept note 76: • Method: Two-stage framework: ASTGCN (Attention-based Spatiotemporal Graph Convolutional Network) for dynamic demand + DFNN (Deep Feedforward Neural Network) for static factors. Uses Simulated Annealing for Voronoi partitioning.
+- Concept note 77: 38. Smart City EV Charging Prediction with Adaptive Graph Networks
+- Concept note 78: • Method: Spatiotemporal Electric Vehicle Diffusion Network (STEV-DiffNet). Integrates Adaptive Graph Diffusion Network (AGDN), Multi-scale Temporal Variational Autoencoder (MT-VAE), and Power-guided Knowledge Distillation (PKD).
+- Concept note 79: 39. Spatio-Temporal Graph Convolutional Networks for EV Charging Demand Forecasting Using Real-World Multi-Modal Data Integration
+- Concept note 80: 40. Spatial-temporal load forecasting of electric vehicle charging stations based on graph neural network
+- Concept note 81: • Method: Adaptive Spatial-temporal Graph Neural Network with Transformer (ASTNet-T). Uses adaptive optimal node graph learning (macro and micro graphs) and a Transformer.
+- Concept note 82: • Node & Edge: Nodes are EV charging stations; Edges are pairwise edges (adjacency) derived from macro (predefined + hidden) and micro (dynamic) structures.
+- Concept note 83: 41. Dynamic Spatio-Temporal Planning Strategy of EV Charging Stations and DGs Using GCNN-Based Predicted Power Demand
+- Concept note 84: 43. Electric vehicle charging demand prediction using spatio-temporal graph attention network
+- Concept note 85: • Method: Spatio-Temporal Graph Attention Network (STGAT). Uses GAT and LSTM. Includes geographic adjacency graph and functional similarity graph.
+- Concept note 86: • Node & Edge: Nodes are charging stations (regions); Edges represent geographic adjacency or functional similarity (POI-based).
+- Concept note 87: 44. Electric Vehicle Charging Demand Prediction Model Based on Spatiotemporal Attention Mechanism
+- Concept note 88: • Method: FastDTW-ASTGCN. Uses Fast Dynamic Time Warping (FastDTW) to construct adjacency and ASTGCN (Attention-based Spatio-Temporal Graph Convolutional Network).
+- Concept note 89: How do graph networks capture spatial-temporal dependencies to optimize electric vehicle charging?
+- Concept note 90: The methodology for Graph Networks used in EV Charging Optimization and Prediction typically involves building complex architectures that integrate temporal and spatial modeling techniques, often augmented with attention mechanisms or specific physics/economic constraints to enhance accuracy and interpretability.
+- Concept note 91: • Spatial Modeling (GCN/GAT): Graph Convolutional Networks (GCN) or Graph Attention Networks (GAT) are applied to extract spatial features and dependencies between charging nodes,,,,,,,. This process captures local connectivity based on relationships like distance or traffic flow,. GAT, specifically, dynamically assigns attention weights to neighboring nodes, adapting to the influence strength of different stations,,.
+- Concept note 92: • Adaptive Graph Learning: Models like the Adaptive Spatial-Temporal Graph Recurrent Network (ASTGRN) and the Adaptive Multivariate Spatiotemporal Graph (AMSTG) dynamically learn spatial correlations from data, rather than relying solely on predefined distances,,,,. In ASTGRN, the adjacency matrix is derived from the pairwise similarity of evolving node embeddings,,.
+- Concept note 93: • Multi-Graph Fusion: Architectures like the Multi-graph Attention Fusion Network (MGAT-MIC-LSTM) combine multiple relationship graphs (e.g., distance, traffic network, traffic density) to obtain a richer representation of spatial features,,,,,.
+- Concept note 94: • Synchronous Spatial-Temporal Modeling: The synchronous spatial-temporal attention transformer (S2TAT) model synchronously extracts spatial and temporal features, ensuring that their interdependencies are captured simultaneously rather than sequentially,,.
+- Concept note 95: • Causality and Critical Node Focus (CADGN): The Causality-Aware Dynamic Multi-Graph Convolutional Network (CADGN) constructs a causality graph using the Time-Fragment Greedy Equivalence Search (TFGES) algorithm to model cause-and-effect relationships,. It also identifies "critical" nodes (influential charging stations) based on a centrality score derived from historical load dependencies to dynamically model their relationships,.
+- Concept note 96: • Attention-based Output Refinement: S2TAT and G-STAN use attention-based aggregation mechanisms in their output modules to dynamically assign weights to inputs, helping to filter noise and amplify critical information, especially important for handling spatial heterogeneity,.
+- Concept note 97: • Long-Term Forecasting: S2TAT leverages a non-local attention mechanism to effectively capture spatial-temporal features in long-term series (12 hours or more),.
+- Concept note 98: The adoption of advanced techniques and frameworks—such as various forms of Graph Neural Networks (GNNs), attention mechanisms, and deep learning architectures—is fundamentally driven by the need to support critical applications, particularly those requiring complex coordination across energy and transportation systems.
+- Concept note 99: The central application identified across the sources is the accurate spatio-temporal forecasting of Electric Vehicle (EV) charging load, demand, or availability. This accurate prediction capacity serves as the indispensable foundation for advanced control and coordination tasks, ensuring effective resource allocation and maintaining system reliability. Models like the asynchronous spatial-temporal attention transformer (S2TAT) and the adaptive spatial-temporal graph recurrent network (ASTGRN) are developed explicitly to boost prediction accuracy by simultaneously modeling temporal and spatial dependencies.
+- Concept note 100: • Predict-Then-Optimize (PTO) Framework: Because PDNs and UTNs are operated independently and information privacy must be maintained, a centralized joint optimization model is often unrealistic. The advanced solution is the PTO framework, where the PDN operator first uses a model like the Spatiotemporal Graph Attention Network (STGAT) to forecast EV charging demands based on UTN traffic flow data. These accurate forecasts are then integrated into a multi-period PDN scheduling model to achieve coordinated optimization while preserving privacy.
+- Concept note 101: • Queuing and Traffic Flow Models: The STGAT model extracts dynamic spatial-temporal correlations from historical UTN traffic data, and these predicted traffic flows are converted into precise EV charging load predictions using an enhanced M/M/C/N queuing model. This integrated approach allows for system stability analysis, preventing overloads at charging stations and ensuring grid stability.
+- Concept note 102: • Dynamic Pricing and Interpretability: Models incorporating physics-informed knowledge, such as the Physics-informed and Attention-based Graph learning approach (PIAST), are used to assist in pricing strategies. PIAST utilizes Physics-Informed Neural Network (PINN) training to uncover the price elasticity of demand (PED) and model the spatial spillover effect of price adjustments on adjacent charging areas. This makes the model economically interpretable and directly supports pricing decision-making.
+- Concept note 103: • Infrastructure Allocation: GCNN-LSTM models are used to accurately predict long-term EV demand growth, which serves as the input for solving multi-objective optimization problems (e.g., Q-learning) to determine the optimal number and locations for allocating Charging Stations (CSs) and Distributed Generators (DGs) over extended time stages.
+- Concept note 104: The field of EV charging demand forecasting relies heavily on advanced techniques and frameworks to overcome challenges such as modeling dynamic spatial dependencies, handling complex temporal patterns, integrating heterogeneous external factors, and quantifying uncertainty. The sources detail several cutting-edge approaches, primarily driven by deep learning, spatial-temporal modeling, and adaptive mechanisms.
+- Concept note 105: Accurate forecasting requires capturing both Temporal Relationships (TR) and Spatial Relationships (SR), ideally in a synchronous manner, to avoid incomplete feature extraction. Advanced models typically integrate Graph Neural Networks (GNNs) with sophisticated recurrent or convolutional modules:
+- Concept note 106: • Graph Convolutional Networks (GCNs): These are fundamental tools for modeling SR, particularly essential because EV charging stations and road networks constitute complex non-Euclidean data structures that conventional Convolutional Neural Networks (CNNs) struggle to handle effectively.
+- Concept note 107: • Temporal Graph Convolutional Networks (T-GCN / STGCN): These models combine GCNs (for spatial features) with recurrent networks like GRUs or LSTMs (for temporal dynamics). The Synchronous Spatial-Temporal Attention Transformer (S2TAT) is a highly advanced variant that incorporates graph convolution into the powerful Transformer architecture to achieve synchronous spatial-temporal relationship (STR) modeling, overcoming limitations of models restricted to local computations or asynchronous processing.
+- Concept note 108: • Challenges of Fixed Graphs: Many traditional GNN/STGCN methods rely on a predefined, static adjacency matrix (often based on geographical distance), which struggles to capture the temporal heterogeneity and dynamic evolution of spatial relationships inherent in real-world charging behaviors.
+- Concept note 109: To address the limitations of static graphs, advanced frameworks employ techniques to learn and adapt the spatial topology dynamically:
+- Concept note 110: • Adaptive Graph Learning: The core idea is to derive an Adaptive Adjacency Matrix (AAM) directly from the spatial-temporal data, rather than relying on prior knowledge like fixed geographic distances. The Adaptive Spatial-Temporal Graph Recurrent Network (ASTGRN) explicitly demonstrated that relying on geographic location as prior knowledge may undermine model performance.
+- Concept note 111: • Multi-Graph Fusion: Models leverage heterogeneous or multi-view graphs to capture different aspects of correlation simultaneously:
+- Concept note 112: ◦ Multi-Graph Attention (MGAT-MIC-LSTM): This approach fuses multiple manually constructed graphs—such as distance graph, traffic network graph, and traffic density graph—to describe the spatial relationships between charging station clusters, optimizing their fusion based on the mutual information between influencing factors.
+- Concept note 113: ◦ Adaptive Multivariate Spatiotemporal Graph (AMSTG): Integrates dynamic and static graphs at both intra-station and inter-station levels, optimizing weights dynamically for probabilistic forecasting.
+- Concept note 114: • Causality-Aware Dynamic Multi-Graph Convolutional Network (CADGN): This framework explicitly addresses the distinction between correlation and causal relationships (e.g., load shifts caused by pricing or service interruption) using a Causality-Aware Graph Learning Module (CAGLM). It also features a Critical Relationship Graph Learning Module (CRGLM) which dynamically models the evolving connections among the most influential ("critical") EVCS nodes, enhancing robustness and insights.
+- Concept note 115: • Transformer-Based Temporal Modules: The Transformer architecture is favored for its parallel computation capabilities and ability to capture long-range temporal features, often integrated via self-attention mechanisms or modules like Autoformer and Informer. Some models utilize Dilated Causal Convolution (TCN) layers to efficiently extract temporal dependencies over long sequences.
+- Concept note 116: • Attention-Based Feature Refinement: Attention mechanisms are extensively used to prioritize relevant information. This includes Temporal Pattern Attention (TPA) to quantify the degree of influence of different time periods, and attention-based aggregation in the output layer of S2TAT to dynamically weight outputs and reduce the impact of anomalies.
+- Concept note 117: ◦ Queuing Theory: Used alongside traffic models (e.g., enhanced M/M/C/N model) to determine the EV arrival rate and forecast charging load under constraints like charging station capacity and user behavior uncertainty (refusal to join/impatient departure).
+- Concept note 118: • Transfer Learning and Distributed Training: To improve scalability and adapt models efficiently to new regions or sparse data:
+- Concept note 119: ◦ Adapter Architectures (BAM): Lightweight modules like the Bridged Attention Module (BAM) are inserted into pre-trained ST-GCNs to allow Parameter-Efficient Fine-Tuning (PEFT) on new city networks with limited data.
+- Concept note 120: The EV charging demand forecasting field is heavily influenced by the adoption of advanced spatio-temporal (ST) modeling techniques that address the complexity, randomness, and spatial heterogeneity inherent in charging behaviors. Accurate forecasting requires accounting for dynamic relationships and diverse external factors,.
